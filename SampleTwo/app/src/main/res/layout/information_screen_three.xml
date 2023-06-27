@@ -74,6 +74,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="20dp"
+        android:outlineProvider="none"
         android:background="@drawable/confirm_button_background"
         android:text="@string/confirm_btn_text"
         android:textColor="@color/white"
