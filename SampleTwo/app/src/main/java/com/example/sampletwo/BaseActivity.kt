@@ -17,16 +17,9 @@ abstract class BaseActivity<B : ViewBinding>(val bindingFactory: (LayoutInflater
         setContentView(binding.root)
     }
 
-    fun nextBtnClickListener(button: Button, activity: Activity) {
-        button.setOnClickListener {
-            val intent = Intent(this, activity::class.java)
-            startActivity(intent)
-        }
-    }
-
-    fun backBtnClickListener(button: Button){
-        button.setOnClickListener {
-            finish()
+    fun nextBtnClickListener(activity: Activity) {
+        Intent(this, activity::class.java).apply {
+            startActivity(this)
         }
     }
 }
