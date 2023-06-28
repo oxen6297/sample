@@ -8,10 +8,16 @@ class InformationPageOneActivity : BaseActivity<ActivityInformationScreenOneBind
 ) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val informationPageTwoActivity = InformationPageTwoActivity()
-        val agreementPageActivity = AgreementPageActivity()
-        nextBtnClickListener(binding.btnNext, informationPageTwoActivity)
-        nextBtnClickListener(binding.btnSkip, agreementPageActivity)
-        backBtnClickListener(binding.appBar.imgBack)
+        binding.apply {
+            btnNext.setOnClickListener {
+                nextBtnClickListener(InformationPageTwoActivity())
+            }
+            btnSkip.setOnClickListener {
+                nextBtnClickListener(AgreementPageActivity())
+            }
+            appBar.imgBack.setOnClickListener {
+                finish()
+            }
+        }
     }
 }
