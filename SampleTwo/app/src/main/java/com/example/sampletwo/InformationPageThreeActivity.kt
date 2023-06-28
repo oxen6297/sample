@@ -8,8 +8,13 @@ class InformationPageThreeActivity : BaseActivity<ActivityInformationScreenThree
 ) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val agreementPageActivity = AgreementPageActivity()
-        nextBtnClickListener(binding.btnConfirm, agreementPageActivity)
-        backBtnClickListener(binding.appBar.imgBack)
+        binding.apply {
+            btnConfirm.setOnClickListener {
+                nextBtnClickListener(AgreementPageActivity())
+            }
+            appBar.imgBack.setOnClickListener {
+                finish()
+            }
+        }
     }
 }
