@@ -4,58 +4,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/back_btn"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_margin="12dp"
-        android:src="@drawable/ico_arrow_left"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <include android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
 
     <ImageView
-        android:id="@+id/whole_page_image"
+        android:id="@+id/img_whole_page"
         android:layout_width="60dp"
         android:layout_height="6dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginStart="20dp"
         android:src="@drawable/info_screen_page_background"
-        app:layout_constraintStart_toStartOf="@+id/back_btn"
-        app:layout_constraintTop_toBottomOf="@+id/back_btn" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
-        android:id="@+id/now_page_image"
+        android:id="@+id/img_now_page"
         android:layout_width="20dp"
         android:layout_height="6dp"
         android:src="@drawable/info_screen_select_page_background"
-        app:layout_constraintEnd_toEndOf="@+id/whole_page_image"
-        app:layout_constraintStart_toStartOf="@+id/whole_page_image"
-        app:layout_constraintTop_toTopOf="@+id/whole_page_image" />
+        app:layout_constraintEnd_toEndOf="@+id/img_whole_page"
+        app:layout_constraintStart_toStartOf="@+id/img_whole_page"
+        app:layout_constraintTop_toTopOf="@+id/img_whole_page" />
 
     <ImageView
-        android:id="@+id/info_logo_three"
+        android:id="@+id/img_info"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="148dp"
         android:src="@drawable/ico_info_02"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back_btn" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/info_three_text"
+        android:id="@+id/text_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/info_two_text"
         android:textColor="@color/black"
-        android:textSize="22dp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_logo_three" />
+        app:layout_constraintTop_toBottomOf="@+id/img_info" />
 
     <TextView
-        android:id="@+id/info_two_content"
+        android:id="@+id/text_info_content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -64,13 +59,13 @@
         android:gravity="center"
         android:text="@string/info_two_content"
         android:textColor="@color/gray"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_three_text" />
+        app:layout_constraintTop_toBottomOf="@+id/text_info" />
 
     <Button
-        android:id="@+id/skip_btn"
+        android:id="@+id/btn_skip"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
@@ -78,13 +73,13 @@
         android:background="@drawable/next_skip_btn_background"
         android:text="@string/skip"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/next_btn"
+        app:layout_constraintEnd_toStartOf="@id/btn_next"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/next_btn"
+        android:id="@+id/btn_next"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
@@ -93,9 +88,9 @@
         android:background="@drawable/next_skip_btn_background"
         android:text="@string/next"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/skip_btn" />
+        app:layout_constraintStart_toEndOf="@+id/btn_skip" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

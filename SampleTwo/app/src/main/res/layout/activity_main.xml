@@ -7,8 +7,8 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/splash_logo"
-        android:layout_width="0dp"
+        android:id="@+id/img_splash_logo"
+        android:layout_width="252dp"
         android:layout_height="44dp"
         android:layout_marginStart="54dp"
         android:layout_marginTop="228dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/splash_logo_text"
+        android:id="@+id/text_splash_logo_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="57dp"
@@ -31,10 +31,10 @@
         android:textColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/splash_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/img_splash_logo" />
 
     <TextView
-        android:id="@+id/splash_bottom_text"
+        android:id="@+id/text_splash_bottom_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -43,7 +43,7 @@
         android:gravity="center"
         android:text="@string/splash_bottom_text"
         android:textColor="@color/medium_gray"
-        android:textSize="12dp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

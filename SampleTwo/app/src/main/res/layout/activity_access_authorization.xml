@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/access_authority_image"
+        android:id="@+id/img_access_authority"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="56dp"
@@ -15,17 +15,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/access_authorization_text"
+        android:id="@+id/text_access_authorization"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/access_authorization_text"
         android:textColor="@color/black"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/access_authority_image" />
+        app:layout_constraintTop_toBottomOf="@+id/img_access_authority" />
 
     <View
         android:id="@+id/divider"
@@ -37,10 +37,10 @@
         android:background="#D6D6D6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/access_authorization_text" />
+        app:layout_constraintTop_toBottomOf="@+id/text_access_authorization" />
 
     <ImageView
-        android:id="@+id/camera_image"
+        android:id="@+id/img_camera"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="40dp"
@@ -50,153 +50,154 @@
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <TextView
-        android:id="@+id/camera_text"
+        android:id="@+id/text_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="@string/camera_text"
         android:textColor="@color/black"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/camera_image"
-        app:layout_constraintStart_toEndOf="@+id/camera_image"
-        app:layout_constraintTop_toTopOf="@+id/camera_image" />
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_camera"
+        app:layout_constraintStart_toEndOf="@+id/img_camera"
+        app:layout_constraintTop_toTopOf="@+id/img_camera" />
 
     <TextView
-        android:id="@+id/camera_content"
+        android:id="@+id/text_camera_content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="40dp"
         android:text="@string/camera_content"
         android:textColor="@color/gray"
-        android:textSize="14dp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/camera_text"
-        app:layout_constraintTop_toBottomOf="@+id/camera_text" />
+        app:layout_constraintStart_toStartOf="@id/text_camera"
+        app:layout_constraintTop_toBottomOf="@+id/text_camera" />
 
     <ImageView
-        android:id="@+id/album_image"
+        android:id="@+id/img_album"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/ico_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/camera_content" />
+        app:layout_constraintTop_toBottomOf="@+id/text_camera_content" />
 
     <TextView
-        android:id="@+id/album_text"
+        android:id="@+id/text_album"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="@string/album_text"
         android:textColor="@color/black"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/album_image"
-        app:layout_constraintStart_toEndOf="@+id/album_image"
-        app:layout_constraintTop_toTopOf="@+id/album_image" />
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_album"
+        app:layout_constraintStart_toEndOf="@+id/img_album"
+        app:layout_constraintTop_toTopOf="@+id/img_album" />
 
     <TextView
-        android:id="@+id/album_content"
+        android:id="@+id/text_album_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="@string/album_content"
         android:textColor="@color/gray"
-        android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="@id/album_text"
-        app:layout_constraintTop_toBottomOf="@+id/album_text" />
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/text_album"
+        app:layout_constraintTop_toBottomOf="@+id/text_album" />
 
     <ImageView
-        android:id="@+id/call_image"
+        android:id="@+id/img_call"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/ico_call"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/album_content" />
+        app:layout_constraintTop_toBottomOf="@+id/text_album_content" />
 
     <TextView
-        android:id="@+id/call_text"
+        android:id="@+id/text_call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="@string/call_text"
         android:textColor="@color/black"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/call_image"
-        app:layout_constraintStart_toEndOf="@+id/call_image"
-        app:layout_constraintTop_toTopOf="@+id/call_image" />
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_call"
+        app:layout_constraintStart_toEndOf="@+id/img_call"
+        app:layout_constraintTop_toTopOf="@+id/img_call" />
 
     <TextView
-        android:id="@+id/call_content"
+        android:id="@+id/text_call_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="@string/call_content"
         android:textColor="@color/gray"
-        android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="@id/call_text"
-        app:layout_constraintTop_toBottomOf="@+id/call_text" />
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/text_call"
+        app:layout_constraintTop_toBottomOf="@+id/text_call" />
 
     <ImageView
-        android:id="@+id/notification_image"
+        android:id="@+id/img_notification"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/ico_notifications"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/call_content" />
+        app:layout_constraintTop_toBottomOf="@+id/text_call_content" />
 
     <TextView
-        android:id="@+id/notification_text"
+        android:id="@+id/text_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="@string/notification_text"
         android:textColor="@color/black"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/notification_image"
-        app:layout_constraintStart_toEndOf="@+id/notification_image"
-        app:layout_constraintTop_toTopOf="@+id/notification_image" />
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_notification"
+        app:layout_constraintStart_toEndOf="@+id/img_notification"
+        app:layout_constraintTop_toTopOf="@+id/img_notification" />
 
     <TextView
-        android:id="@+id/notification_content"
+        android:id="@+id/text_notification_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="@string/notification_content"
         android:textColor="@color/gray"
-        android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="@id/notification_text"
-        app:layout_constraintTop_toBottomOf="@+id/notification_text" />
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/text_notification"
+        app:layout_constraintTop_toBottomOf="@+id/text_notification" />
 
     <ImageView
-        android:id="@+id/warning_image"
+        android:id="@+id/img_warning"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="33dp"
         android:src="@drawable/ico_exclamation_mark_circle_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notification_content" />
+        app:layout_constraintTop_toBottomOf="@+id/text_notification_content" />
 
     <TextView
+        android:id="@+id/text_warning"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="20dp"
         android:text="@string/warning_text"
         android:textColor="@color/gray"
-        android:textSize="12dp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/warning_image"
-        app:layout_constraintTop_toTopOf="@+id/warning_image" />
+        app:layout_constraintStart_toEndOf="@+id/img_warning"
+        app:layout_constraintTop_toTopOf="@+id/img_warning" />
 
     <Button
-        android:id="@+id/confirm_button"
+        android:id="@+id/btn_confirm"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
@@ -206,7 +207,7 @@
         android:text="@string/confirm_btn_text"
         android:textColor="@color/white"
         android:outlineProvider="none"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

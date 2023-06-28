@@ -13,6 +13,21 @@
         android:theme="@style/Theme.SampleTwo"
         tools:targetApi="31">
         <activity
+            android:name=".InformationPageThreeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InformationPageTwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InformationPageOneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgreementPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AccessAuthorizationActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
