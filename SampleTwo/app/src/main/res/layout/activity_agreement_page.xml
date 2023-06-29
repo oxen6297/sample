@@ -68,7 +68,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <CheckBox
-        android:id="@+id/checkbox_agree_service"
+        android:id="@+id/checkbox_agree_one"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="32dp"
@@ -79,7 +79,7 @@
         app:layout_constraintTop_toBottomOf="@id/layout_agree_all" />
 
     <TextView
-        android:id="@+id/text_agree_service"
+        android:id="@+id/text_agree_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -87,7 +87,7 @@
         android:text="@string/agree_service"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/checkbox_agree_service"
+        app:layout_constraintStart_toEndOf="@+id/checkbox_agree_one"
         app:layout_constraintTop_toBottomOf="@+id/layout_agree_all" />
 
     <Button
@@ -96,12 +96,12 @@
         android:layout_height="24dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/ico_chevron_right_50"
-        app:layout_constraintBottom_toBottomOf="@+id/text_agree_service"
+        app:layout_constraintBottom_toBottomOf="@+id/text_agree_one"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_agree_service" />
+        app:layout_constraintTop_toTopOf="@+id/text_agree_one" />
 
     <CheckBox
-        android:id="@+id/checkbox_agree_individual"
+        android:id="@+id/checkbox_agree_two"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="32dp"
@@ -109,10 +109,10 @@
         android:button="@null"
         android:background="@drawable/checkbox_selector"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkbox_agree_service" />
+        app:layout_constraintTop_toBottomOf="@id/checkbox_agree_one" />
 
     <TextView
-        android:id="@+id/text_agree_individual"
+        android:id="@+id/text_agree_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -120,8 +120,8 @@
         android:text="@string/agree_individual"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/checkbox_agree_individual"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox_agree_service" />
+        app:layout_constraintStart_toEndOf="@+id/checkbox_agree_two"
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_agree_one" />
 
     <Button
         android:id="@+id/btn_agree_individual_right_arrow"
@@ -129,12 +129,12 @@
         android:layout_height="24dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/ico_chevron_right_50"
-        app:layout_constraintBottom_toBottomOf="@+id/text_agree_individual"
+        app:layout_constraintBottom_toBottomOf="@+id/text_agree_two"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_agree_individual" />
+        app:layout_constraintTop_toTopOf="@+id/text_agree_two" />
 
     <CheckBox
-        android:id="@+id/checkbox_agree_individual_two"
+        android:id="@+id/checkbox_agree_three"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="32dp"
@@ -142,10 +142,10 @@
         android:button="@null"
         android:background="@drawable/checkbox_selector"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkbox_agree_individual" />
+        app:layout_constraintTop_toBottomOf="@id/checkbox_agree_two" />
 
     <TextView
-        android:id="@+id/text_agree_individual_two"
+        android:id="@+id/text_agree_three"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -153,8 +153,8 @@
         android:text="@string/agree_individual_two"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/checkbox_agree_service"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox_agree_individual" />
+        app:layout_constraintStart_toEndOf="@+id/checkbox_agree_one"
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_agree_two" />
 
     <Button
         android:id="@+id/btn_agree_individua_twol_right_arrow"
@@ -162,12 +162,12 @@
         android:layout_height="24dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/ico_chevron_right_50"
-        app:layout_constraintBottom_toBottomOf="@+id/text_agree_individual_two"
+        app:layout_constraintBottom_toBottomOf="@+id/text_agree_three"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_agree_individual_two" />
+        app:layout_constraintTop_toTopOf="@+id/text_agree_three" />
 
     <CheckBox
-        android:id="@+id/checkbox_agree_notification"
+        android:id="@+id/checkbox_agree_four"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="32dp"
@@ -175,10 +175,10 @@
         android:background="@drawable/checkbox_selector"
         android:button="@null"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkbox_agree_individual_two" />
+        app:layout_constraintTop_toBottomOf="@id/checkbox_agree_three" />
 
     <TextView
-        android:id="@+id/text_agree_notification"
+        android:id="@+id/text_agree_four"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -186,8 +186,8 @@
         android:text="@string/agree_notification"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/checkbox_agree_service"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox_agree_individual_two" />
+        app:layout_constraintStart_toEndOf="@+id/checkbox_agree_one"
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_agree_three" />
 
     <TextView
         android:id="@+id/text_agree_notification_content"
@@ -199,8 +199,8 @@
         android:textColor="@color/medium_gray"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/text_agree_notification"
-        app:layout_constraintTop_toBottomOf="@+id/text_agree_notification" />
+        app:layout_constraintStart_toStartOf="@+id/text_agree_four"
+        app:layout_constraintTop_toBottomOf="@+id/text_agree_four" />
 
     <Button
         android:id="@+id/btn_confirm"
