@@ -51,44 +51,57 @@
             android:id="@+id/checkbox_agree_all"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:button="@null"
             android:layout_marginStart="13dp"
-            android:background="@drawable/checkbox_selector" />
+            android:background="@drawable/checkbox_selector"
+            android:button="@null"
+            android:clickable="false"
+            android:focusable="false" />
 
         <TextView
             android:id="@+id/text_agree_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textStyle="bold"
+            android:focusable="false"
             android:text="@string/agree_all"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_agree_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_agree_all">
+
+        <CheckBox
+            android:id="@+id/checkbox_agree_one"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/checkbox_selector"
+            android:button="@null"
+            android:clickable="false"
+            android:focusable="false" />
+
+        <TextView
+            android:id="@+id/text_agree_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:focusable="false"
+            android:text="@string/agree_service"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <CheckBox
-        android:id="@+id/checkbox_agree_one"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:button="@null"
-        android:background="@drawable/checkbox_selector"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_agree_all" />
-
-    <TextView
-        android:id="@+id/text_agree_one"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/agree_service"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/checkbox_agree_one"
-        app:layout_constraintTop_toBottomOf="@+id/layout_agree_all" />
 
     <Button
         android:id="@+id/btn_agree_service_right_arrow"
@@ -96,32 +109,41 @@
         android:layout_height="24dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/ico_chevron_right_50"
-        app:layout_constraintBottom_toBottomOf="@+id/text_agree_one"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_agree_one"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_agree_one" />
+        app:layout_constraintTop_toTopOf="@+id/layout_agree_one" />
 
-    <CheckBox
-        android:id="@+id/checkbox_agree_two"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:button="@null"
-        android:background="@drawable/checkbox_selector"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkbox_agree_one" />
-
-    <TextView
-        android:id="@+id/text_agree_two"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_agree_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/agree_individual"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/checkbox_agree_two"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox_agree_one" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_agree_one">
+
+        <CheckBox
+            android:id="@+id/checkbox_agree_two"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/checkbox_selector"
+            android:button="@null"
+            android:clickable="false"
+            android:focusable="false" />
+
+        <TextView
+            android:id="@+id/text_agree_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:focusable="false"
+            android:text="@string/agree_individual"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <Button
         android:id="@+id/btn_agree_individual_right_arrow"
@@ -129,32 +151,41 @@
         android:layout_height="24dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/ico_chevron_right_50"
-        app:layout_constraintBottom_toBottomOf="@+id/text_agree_two"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_agree_two"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_agree_two" />
+        app:layout_constraintTop_toTopOf="@+id/layout_agree_two" />
 
-    <CheckBox
-        android:id="@+id/checkbox_agree_three"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:button="@null"
-        android:background="@drawable/checkbox_selector"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkbox_agree_two" />
-
-    <TextView
-        android:id="@+id/text_agree_three"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_agree_three"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/agree_individual_two"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/checkbox_agree_one"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox_agree_two" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_agree_two">
+
+        <CheckBox
+            android:id="@+id/checkbox_agree_three"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/checkbox_selector"
+            android:button="@null"
+            android:clickable="false"
+            android:focusable="false" />
+
+        <TextView
+            android:id="@+id/text_agree_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:focusable="false"
+            android:text="@string/agree_individual_two"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <Button
         android:id="@+id/btn_agree_individua_twol_right_arrow"
@@ -162,45 +193,55 @@
         android:layout_height="24dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/ico_chevron_right_50"
-        app:layout_constraintBottom_toBottomOf="@+id/text_agree_three"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_agree_three"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_agree_three" />
+        app:layout_constraintTop_toTopOf="@+id/layout_agree_three" />
 
-    <CheckBox
-        android:id="@+id/checkbox_agree_four"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/checkbox_selector"
-        android:button="@null"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkbox_agree_three" />
-
-    <TextView
-        android:id="@+id/text_agree_four"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_agree_four"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/agree_notification"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/checkbox_agree_one"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox_agree_three" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_agree_three">
+
+        <CheckBox
+            android:id="@+id/checkbox_agree_four"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/checkbox_selector"
+            android:button="@null"
+            android:clickable="false"
+            android:focusable="false" />
+
+        <TextView
+            android:id="@+id/text_agree_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:focusable="false"
+            android:text="@string/agree_notification"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <TextView
         android:id="@+id/text_agree_notification_content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="44dp"
         android:text="@string/agree_notification_text"
         android:textColor="@color/medium_gray"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/text_agree_four"
-        app:layout_constraintTop_toBottomOf="@+id/text_agree_four" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_agree_four" />
 
     <Button
         android:id="@+id/btn_confirm"
@@ -210,12 +251,12 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/disabled_btn_background"
-        android:text="@string/confirm_btn_text"
         android:clickable="false"
+        android:outlineProvider="none"
+        android:text="@string/confirm_btn_text"
         android:textColor="@color/disabled_btn_text_color"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:outlineProvider="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
