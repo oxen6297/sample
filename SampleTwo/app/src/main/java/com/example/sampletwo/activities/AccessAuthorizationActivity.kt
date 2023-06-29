@@ -1,4 +1,4 @@
-package com.example.sampletwo
+package com.example.sampletwo.activities
 
 import android.os.Bundle
 import com.example.sampletwo.databinding.ActivityAccessAuthorizationBinding

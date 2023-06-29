@@ -13,22 +13,25 @@
         android:theme="@style/Theme.SampleTwo"
         tools:targetApi="31">
         <activity
-            android:name=".InformationPageThreeActivity"
+            android:name=".activities.MainScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".InformationPageTwoActivity"
+            android:name=".activities.InformationPageThreeActivity"
             android:exported="false" />
         <activity
-            android:name=".InformationPageOneActivity"
+            android:name=".activities.InformationPageTwoActivity"
             android:exported="false" />
         <activity
-            android:name=".AgreementPageActivity"
+            android:name=".activities.InformationPageOneActivity"
             android:exported="false" />
         <activity
-            android:name=".AccessAuthorizationActivity"
+            android:name=".activities.AgreementPageActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.AccessAuthorizationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

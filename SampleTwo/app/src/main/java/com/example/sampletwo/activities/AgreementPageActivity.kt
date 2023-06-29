@@ -1,8 +1,11 @@
-package com.example.sampletwo
+package com.example.sampletwo.activities
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.example.sampletwo.MainViewModel
+import com.example.sampletwo.R
 import com.example.sampletwo.databinding.ActivityAgreementPageBinding
+import com.example.sampletwo.extension.clickable
 
 class AgreementPageActivity : BaseActivity<ActivityAgreementPageBinding>(
     ActivityAgreementPageBinding::inflate
