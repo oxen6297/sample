@@ -1,7 +1,6 @@
 package com.example.sampletwo
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import com.example.sampletwo.databinding.ActivityAgreementPageBinding
 
@@ -23,7 +22,7 @@ class AgreementPageActivity : BaseActivity<ActivityAgreementPageBinding>(
                 finish()
             }
             btnConfirm.setOnClickListener {
-                Log.d("click", "true")
+                nextBtnClickListener(MainScreenActivity())
             }
             layoutAgreeOne.setOnClickListener {
                 mainViewModel.agreeOne.value = !(mainViewModel.agreeOne.value ?: false)
@@ -54,7 +53,6 @@ class AgreementPageActivity : BaseActivity<ActivityAgreementPageBinding>(
     }
 
     private fun observeData() {
-        mainViewModel.agreeAll.observe(this, ::agreeAllWatcher)
         mainViewModel.agreeOne.observe(this, ::agreeOneWatcher)
         mainViewModel.agreeTwo.observe(this, ::agreeTwoWatcher)
         mainViewModel.agreeThree.observe(this, ::agreeThreeWatcher)
@@ -83,6 +81,7 @@ class AgreementPageActivity : BaseActivity<ActivityAgreementPageBinding>(
 
     private fun isAgree() {
         mainViewModel.agreeAll.observe(this) { agree ->
+            agreeAllWatcher(agree)
             if (agree) {
                 binding.btnConfirm.clickable(
                     R.drawable.confirm_button_background,
