@@ -2,7 +2,6 @@ package com.example.sampletwo
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import androidx.activity.viewModels
 import com.example.sampletwo.databinding.ActivityAgreementPageBinding
 
@@ -85,33 +84,18 @@ class AgreementPageActivity : BaseActivity<ActivityAgreementPageBinding>(
     private fun isAgree() {
         mainViewModel.agreeAll.observe(this) { agree ->
             if (agree) {
-                confirmBtnClickable(
-                    binding.btnConfirm,
+                binding.btnConfirm.clickable(
                     R.drawable.confirm_button_background,
                     getColor(R.color.white),
                     true
                 )
             } else {
-                confirmBtnClickable(
-                    binding.btnConfirm,
+                binding.btnConfirm.clickable(
                     R.drawable.disabled_btn_background,
                     getColor(R.color.disabled_btn_text_color),
                     false
                 )
             }
-        }
-    }
-
-    private fun confirmBtnClickable(
-        button: Button,
-        resource: Int,
-        colorResource: Int,
-        isClickable: Boolean
-    ) {
-        button.apply {
-            this.setBackgroundResource(resource)
-            this.setTextColor(colorResource)
-            this.isClickable = isClickable
         }
     }
 }
