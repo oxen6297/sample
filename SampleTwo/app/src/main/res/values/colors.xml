@@ -12,6 +12,10 @@
     <color name="medium_gray">#999999</color>
     <color name="confirm_btn_color">#495FE9</color>
     <color name="light_gray">#DDDDDD</color>
+    <color name="switch_off_color">#CCCCCC</color>
     <color name="disabled_btn_color">#E1E1E1</color>
     <color name="disabled_btn_text_color">#AAAAAA</color>
+    <color name="certificate_card_btn_color">#6F81F3</color>
+    <color name="dialog_background_color">#0000004D</color>
+    <color name="red">#E94949</color>
 </resources>

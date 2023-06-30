@@ -29,4 +29,27 @@
     <string name="agree_individual_two">[필수] 개인정보 수집 및 이용동의</string>
     <string name="agree_notification">[선택] 앱 푸시 알림 수신 동의</string>
     <string name="agree_notification_text">서비스 이용에 필요한 안내사항을 푸시 알림으로 전달합니다.</string>
+    <string name="certificate_card_one">공무원연금증</string>
+    <string name="certificate_card_two">본인인증\n증명서</string>
+    <string name="certificate_content">본인인증 증명서가\n함께 발급됩니다.</string>
+    <string name="get_issued">발급받기</string>
+    <string name="bottom_certificate">증명서</string>
+    <string name="bottom_qr_login">QR로그인</string>
+    <string name="bottom_show_more">더보기</string>
+    <string name="dialog_certificate_text">공무원연금증 발급이후\n이용하실 수 있습니다.</string>
+    <string name="get_certificate">연금증 발급하기</string>
+    <string name="get_certificate_content">증명서를 발급하기 위해 본인인증이 필요합니다.</string>
+    <string name="password">비밀번호</string>
+    <string name="set_password">비밀번호 설정</string>
+    <string name="activate_biometric">생체인증 활성화</string>
+    <string name="set_notification">알림 설정</string>
+    <string name="activate_push_notification">푸시 알림 수신 활성화</string>
+    <string name="app_info">앱 정보</string>
+    <string name="information_use">이용안내</string>
+    <string name="app_version">앱버전</string>
+    <string name="app_version_number">1.0.0</string>
+    <string name="re_set_app">앱 재설정</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
