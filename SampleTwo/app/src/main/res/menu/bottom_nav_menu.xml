@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/certificateFragment"
+        android:icon="@drawable/ico_certificate"
+        android:title="@string/bottom_certificate"/>
+
+    <item
+        android:id="@+id/qrLoginFragment"
+        android:icon="@drawable/ico_code_scan"
+        android:title="@string/bottom_qr_login"/>
+
+    <item
+        android:id="@+id/showMoreFragment"
+        android:icon="@drawable/ico_more_horizontal"
+        android:title="@string/bottom_show_more"/>
+
+</menu>

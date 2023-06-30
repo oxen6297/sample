@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@id/certificateFragment">
+
+    <fragment
+        android:id="@+id/certificateFragment"
+        android:name="com.example.sampletwo.fragments.CertificateFragment"
+        android:label="fragment_certificate"
+        tools:layout="@layout/fragment_certificate" />
+    <fragment
+        android:id="@+id/qrLoginFragment"
+        android:name="com.example.sampletwo.fragments.QrLoginFragment"
+        android:label="fragment_qr_login"
+        tools:layout="@layout/fragment_qr_login" />
+    <fragment
+        android:id="@+id/showMoreFragment"
+        android:name="com.example.sampletwo.fragments.ShowMoreFragment"
+        android:label="fragment_show_more"
+        tools:layout="@layout/fragment_show_more" />
+</navigation>
