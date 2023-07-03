@@ -10,7 +10,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Handler(Looper.getMainLooper()).postDelayed({
-            Intent(this, AccessAuthorizationActivity::class.java).apply {
+            Intent(this, MainScreenActivity::class.java).apply {
                 startActivity(this.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
             }
