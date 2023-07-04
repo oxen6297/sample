@@ -2,10 +2,9 @@ package com.example.sampletwo.activities
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.example.sampletwo.viewmodels.MainViewModel
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.ActivityAgreementPageBinding
-import com.example.sampletwo.extension.clickable
+import com.example.sampletwo.viewmodels.MainViewModel
 
 class AgreementPageActivity : BaseActivity<ActivityAgreementPageBinding>(
     ActivityAgreementPageBinding::inflate
@@ -85,18 +84,16 @@ class AgreementPageActivity : BaseActivity<ActivityAgreementPageBinding>(
     private fun isAgree() {
         mainViewModel.agreeAll.observe(this) { agree ->
             agreeAllWatcher(agree)
-            if (agree) {
-                binding.btnConfirm.clickable(
-                    R.drawable.confirm_button_background,
-                    getColor(R.color.white),
+            binding.btnConfirm.apply {
+                isClickable = if (agree){
+                    setBackgroundResource(R.drawable.confirm_button_background)
+                    setTextColor(getColor(R.color.white))
                     true
-                )
-            } else {
-                binding.btnConfirm.clickable(
-                    R.drawable.disabled_btn_background,
-                    getColor(R.color.disabled_btn_text_color),
+                } else {
+                    setBackgroundResource(R.drawable.disabled_btn_background)
+                    setTextColor(getColor(R.color.white))
                     false
-                )
+                }
             }
         }
     }
