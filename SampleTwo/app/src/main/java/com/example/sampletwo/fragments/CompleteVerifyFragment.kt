@@ -13,7 +13,7 @@ class CompleteVerifyFragment :
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnConfirm.setOnClickListener {
-            findNavController().navigate(R.id.certificateInfoThreeFragment)
+            findNavController().navigate(R.id.certificateInfoThreeFragment, null, nextNavOptions)
         }
     }
 }

@@ -14,10 +14,14 @@ class CertificateInfoFragment :
 
         binding.apply {
             appBar.imgBack.setOnClickListener {
-                findNavController().popBackStack()
+                findNavController().navigate(R.id.certificateFragment)
             }
             btnNext.setOnClickListener {
-                findNavController().navigate(R.id.certificationInfoTwoFragment)
+                findNavController().navigate(
+                    R.id.certificationInfoTwoFragment,
+                    null,
+                    nextNavOptions
+                )
             }
         }
     }

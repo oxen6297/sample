@@ -4,20 +4,24 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
-import com.example.sampletwo.databinding.FragmentCertificationInfoTwoBinding
+import com.example.sampletwo.databinding.FragmentCertificateInfoTwoBinding
 
 
-class CertificationInfoTwoFragment :
-    BaseFragment<FragmentCertificationInfoTwoBinding>(FragmentCertificationInfoTwoBinding::inflate) {
+class CertificateInfoTwoFragment :
+    BaseFragment<FragmentCertificateInfoTwoBinding>(FragmentCertificateInfoTwoBinding::inflate) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             radioButtonVerifyMobile.isChecked = true
             appBar.imgBack.setOnClickListener {
-                findNavController().popBackStack()
+                findNavController().navigate(R.id.certificateInfoFragment, null, backNavOptions)
             }
             btnNext.setOnClickListener {
-                findNavController().navigate(R.id.questionCertificationFragment)
+                findNavController().navigate(
+                    R.id.questionCertificationFragment,
+                    null,
+                    nextNavOptions
+                )
             }
             layoutPossibleVerifyMobile.setOnClickListener {
                 radioButtonVerifyMobile.isChecked = true
