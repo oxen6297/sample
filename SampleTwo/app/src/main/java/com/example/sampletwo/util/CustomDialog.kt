@@ -13,7 +13,6 @@ class CustomDialog(context: Context, layoutResource: Int) {
     private val confirmBtn = view.findViewById<Button>(R.id.btn_confirm)
     private val dialog = AlertDialog.Builder(context).setView(view).create()
 
-    @SuppressLint("ResourceAsColor")
     fun setDialog() {
         dialog.show()
         confirmBtn.setOnClickListener {
