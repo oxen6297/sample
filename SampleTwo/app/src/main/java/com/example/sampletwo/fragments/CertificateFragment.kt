@@ -13,15 +13,14 @@ class CertificateFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val viewpagerAdapter = ViewPagerAdapter(requireActivity())
-        val value: Int = requireContext().convertDpToPixel(30)
-
+        val value: Int = view.context.convertDpToPixel(30)
         binding.viewpagerCertificateCard.apply {
-            this.adapter = viewpagerAdapter
-            this.clipToPadding = false
-            this.clipChildren = false
-            this.offscreenPageLimit = 1
-            this.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-            this.setPageTransformer { page, position ->
+            adapter = viewpagerAdapter
+            clipToPadding = false
+            clipChildren = false
+            offscreenPageLimit = 1
+            getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+            setPageTransformer { page, position ->
                 if (position <= 0) page.translationY = -position * value
                 else if (position > 0) page.translationY = position * value
             }
