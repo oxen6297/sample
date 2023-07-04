@@ -6,6 +6,7 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.widget.Button
 import android.widget.TextView
+import com.example.sampletwo.util.IndentLeadingMarginSpan
 import com.example.sampletwo.util.RelativeSizeTypeSpan
 
 fun Button.clickable(
@@ -37,6 +38,18 @@ fun TextView.spannableStringBuilder(
         startIndex,
         endIndex,
         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
+    this.text = builder
+}
+
+fun TextView.spannableIndentMarginBuilder(marginText:String) {
+    val textData = text
+    val builder = SpannableStringBuilder(textData)
+    builder.setSpan(
+        IndentLeadingMarginSpan(marginText),
+        0,
+        textData.length,
+        0
     )
     this.text = builder
 }

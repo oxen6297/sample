@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentCertificateInfoThreeBinding
+import com.example.sampletwo.extension.spannableIndentMarginBuilder
 import com.example.sampletwo.extension.spannableStringBuilder
 
 class CertificateInfoThreeFragment :
@@ -14,6 +15,7 @@ class CertificateInfoThreeFragment :
     @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val blueColor = requireContext().getColor(R.color.confirm_btn_color)
         val redColor = requireContext().getColor(R.color.red)
 
@@ -25,11 +27,12 @@ class CertificateInfoThreeFragment :
             textCautionContent.apply {
                 spannableStringBuilder(blueColor, 1, 7)
                 spannableStringBuilder(blueColor, 30, 37)
-                spannableStringBuilder(blueColor, 39, 47)
-                spannableStringBuilder(blueColor, 58, 65)
-                spannableStringBuilder(blueColor, 80, 87)
-                spannableStringBuilder(blueColor, 115, 123)
+                spannableStringBuilder(blueColor, 39, 46)
+                spannableStringBuilder(blueColor, 58, 64)
+                spannableStringBuilder(blueColor, 80, 86)
+                spannableStringBuilder(blueColor, 115, 122)
                 spannableStringBuilder(blueColor, 155, 162)
+                spannableIndentMarginBuilder("· ")
             }
             textCaution.spannableStringBuilder(redColor, 0, 2, Typeface.NORMAL)
         }
