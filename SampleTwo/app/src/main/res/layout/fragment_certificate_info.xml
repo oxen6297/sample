@@ -76,6 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:background="@null"
             android:text="@string/possible_verify_mobile"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -85,12 +86,15 @@
 
         <TextView
             android:id="@+id/text_verify_mobile_content"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
+            android:layout_marginEnd="20dp"
+            android:background="@null"
             android:text="@string/possible_verify_mobile_content"
             android:textColor="@color/gray"
             android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/text_verify_mobile"
             app:layout_constraintTop_toBottomOf="@+id/text_verify_mobile" />
 
@@ -120,6 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:background="@null"
             android:text="@string/possible_verify_only_one"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -129,12 +134,15 @@
 
         <TextView
             android:id="@+id/text_verify_certification_content"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
+            android:layout_marginEnd="20dp"
+            android:background="@null"
             android:text="@string/possible_verify_only_one_content"
             android:textColor="@color/gray"
             android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/text_verify_certification"
             app:layout_constraintTop_toBottomOf="@+id/text_verify_certification" />
 
