@@ -24,50 +24,27 @@
         android:id="@+id/certificateCardOneFragment"
         android:name="com.example.sampletwo.fragments.CertificateCardOneFragment"
         android:label="fragment_certificate_card_one"
-        tools:layout="@layout/fragment_certificate_card_one" >
-        <action
-            android:id="@+id/action_certificateCardOneFragment_to_certificateInfoFragment"
-            app:destination="@id/certificateInfoFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_certificate_card_one" />
     <fragment
         android:id="@+id/certificateInfoFragment"
         android:name="com.example.sampletwo.fragments.CertificateInfoFragment"
         android:label="fragment_certificate_info"
-        tools:layout="@layout/fragment_certificate_info" >
-        <action
-            android:id="@+id/action_certificateInfoFragment_to_certificationInfoTwoFragment"
-            app:destination="@id/certificationInfoTwoFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_certificate_info" />
     <fragment
         android:id="@+id/certificationInfoTwoFragment"
         android:name="com.example.sampletwo.fragments.CertificateInfoTwoFragment"
         android:label="fragment_certification_info_two"
-        tools:layout="@layout/fragment_certificate_info_two" >
-        <action
-            android:id="@+id/action_certificationInfoTwoFragment_to_questionCertificationFragment"
-            app:destination="@id/questionCertificationFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_certificate_info_two" />
     <fragment
         android:id="@+id/questionCertificationFragment"
         android:name="com.example.sampletwo.fragments.QuestionCertificationFragment"
         android:label="fragment_question_certification"
-        tools:layout="@layout/fragment_question_certification" >
-        <action
-            android:id="@+id/action_questionCertificationFragment_to_certificateCardOneFragment"
-            app:destination="@id/certificateCardOneFragment" />
-        <action
-            android:id="@+id/action_questionCertificationFragment_to_completeVerifyFragment"
-            app:destination="@id/completeVerifyFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_question_certification" />
     <fragment
         android:id="@+id/completeVerifyFragment"
         android:name="com.example.sampletwo.fragments.CompleteVerifyFragment"
         android:label="fragment_complete_verify"
-        tools:layout="@layout/fragment_complete_verify" >
-        <action
-            android:id="@+id/action_completeVerifyFragment_to_certificateInfoThreeFragment"
-            app:destination="@id/certificateInfoThreeFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_complete_verify" />
     <fragment
         android:id="@+id/certificateInfoThreeFragment"
         android:name="com.example.sampletwo.fragments.CertificateInfoThreeFragment"
