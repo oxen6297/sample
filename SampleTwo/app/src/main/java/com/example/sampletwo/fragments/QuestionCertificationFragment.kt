@@ -13,17 +13,13 @@ class QuestionCertificationFragment :
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             appBar.imgBack.setOnClickListener {
-                findNavController().navigate(
-                    R.id.certificationInfoTwoFragment,
-                    null,
-                    backNavOptions
-                )
+                findNavController().popBackStack()
             }
             btnCancel.setOnClickListener {
-                findNavController().navigate(R.id.certificateFragment)
+                findNavController().navigate(R.id.action_questionCertificationFragment_to_certificateFragment)
             }
             btnNext.setOnClickListener {
-                findNavController().navigate(R.id.completeVerifyFragment, null, nextNavOptions)
+                findNavController().navigate(R.id.action_questionCertificationFragment_to_completeVerifyFragment)
             }
         }
     }

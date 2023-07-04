@@ -13,7 +13,7 @@ class CertificateCardOneFragment :
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnGetIssue.setOnClickListener {
-            findNavController().navigate(R.id.certificateInfoFragment)
+            findNavController().navigate(R.id.action_certificateFragment_to_certificateInfoFragment)
         }
     }
 }

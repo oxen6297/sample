@@ -14,13 +14,11 @@ class CertificateInfoTwoFragment :
         binding.apply {
             radioButtonVerifyMobile.isChecked = true
             appBar.imgBack.setOnClickListener {
-                findNavController().navigate(R.id.certificateInfoFragment, null, backNavOptions)
+                findNavController().popBackStack()
             }
             btnNext.setOnClickListener {
                 findNavController().navigate(
-                    R.id.questionCertificationFragment,
-                    null,
-                    nextNavOptions
+                    R.id.action_certificationInfoTwoFragment_to_questionCertificationFragment
                 )
             }
             layoutPossibleVerifyMobile.setOnClickListener {

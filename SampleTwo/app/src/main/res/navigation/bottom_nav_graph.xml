@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
- <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_nav_graph"
@@ -9,7 +9,11 @@
         android:id="@+id/certificateFragment"
         android:name="com.example.sampletwo.fragments.CertificateFragment"
         android:label="fragment_certificate"
-        tools:layout="@layout/fragment_certificate" />
+        tools:layout="@layout/fragment_certificate" >
+        <action
+            android:id="@+id/action_certificateFragment_to_certificateInfoFragment"
+            app:destination="@id/certificateInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/qrLoginFragment"
         android:name="com.example.sampletwo.fragments.QrLoginFragment"
@@ -24,27 +28,62 @@
         android:id="@+id/certificateCardOneFragment"
         android:name="com.example.sampletwo.fragments.CertificateCardOneFragment"
         android:label="fragment_certificate_card_one"
-        tools:layout="@layout/fragment_certificate_card_one" />
+        tools:layout="@layout/fragment_certificate_card_one"/>
     <fragment
         android:id="@+id/certificateInfoFragment"
         android:name="com.example.sampletwo.fragments.CertificateInfoFragment"
         android:label="fragment_certificate_info"
-        tools:layout="@layout/fragment_certificate_info" />
+        tools:layout="@layout/fragment_certificate_info">
+        <action
+            android:id="@+id/action_certificateInfoFragment_to_certificationInfoTwoFragment"
+            app:destination="@id/certificationInfoTwoFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"/>
+    </fragment>
     <fragment
         android:id="@+id/certificationInfoTwoFragment"
         android:name="com.example.sampletwo.fragments.CertificateInfoTwoFragment"
         android:label="fragment_certification_info_two"
-        tools:layout="@layout/fragment_certificate_info_two" />
+        tools:layout="@layout/fragment_certificate_info_two">
+        <action
+            android:id="@+id/action_certificationInfoTwoFragment_to_questionCertificationFragment"
+            app:destination="@id/questionCertificationFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
+    </fragment>
     <fragment
         android:id="@+id/questionCertificationFragment"
         android:name="com.example.sampletwo.fragments.QuestionCertificationFragment"
         android:label="fragment_question_certification"
-        tools:layout="@layout/fragment_question_certification" />
+        tools:layout="@layout/fragment_question_certification">
+        <action
+            android:id="@+id/action_questionCertificationFragment_to_completeVerifyFragment"
+            app:destination="@id/completeVerifyFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"/>
+        <action
+            android:id="@+id/action_questionCertificationFragment_to_certificateFragment"
+            app:destination="@id/certificateFragment" />
+    </fragment>
     <fragment
         android:id="@+id/completeVerifyFragment"
         android:name="com.example.sampletwo.fragments.CompleteVerifyFragment"
         android:label="fragment_complete_verify"
-        tools:layout="@layout/fragment_complete_verify" />
+        tools:layout="@layout/fragment_complete_verify">
+        <action
+            android:id="@+id/action_completeVerifyFragment_to_certificateInfoThreeFragment"
+            app:destination="@id/certificateInfoThreeFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"/>
+    </fragment>
     <fragment
         android:id="@+id/certificateInfoThreeFragment"
         android:name="com.example.sampletwo.fragments.CertificateInfoThreeFragment"
