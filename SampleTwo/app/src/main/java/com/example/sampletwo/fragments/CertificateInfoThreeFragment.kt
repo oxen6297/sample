@@ -16,8 +16,8 @@ class CertificateInfoThreeFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val blueColor = requireContext().getColor(R.color.confirm_btn_color)
-        val redColor = requireContext().getColor(R.color.red)
+        val blueColor = view.context.getColor(R.color.confirm_btn_color)
+        val redColor = view.context.getColor(R.color.red)
 
         binding.apply {
             textInfoCameraIdCardContent.apply {
