@@ -40,9 +40,9 @@
     </fragment>
     <fragment
         android:id="@+id/certificationInfoTwoFragment"
-        android:name="com.example.sampletwo.fragments.CertificationInfoTwoFragment"
+        android:name="com.example.sampletwo.fragments.CertificateInfoTwoFragment"
         android:label="fragment_certification_info_two"
-        tools:layout="@layout/fragment_certification_info_two" >
+        tools:layout="@layout/fragment_certificate_info_two" >
         <action
             android:id="@+id/action_certificationInfoTwoFragment_to_questionCertificationFragment"
             app:destination="@id/questionCertificationFragment" />
