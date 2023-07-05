@@ -25,11 +25,6 @@
         android:label="fragment_show_more"
         tools:layout="@layout/fragment_show_more" />
     <fragment
-        android:id="@+id/certificateCardOneFragment"
-        android:name="com.example.sampletwo.fragments.CertificateCardOneFragment"
-        android:label="fragment_certificate_card_one"
-        tools:layout="@layout/fragment_certificate_card_one"/>
-    <fragment
         android:id="@+id/certificateInfoFragment"
         android:name="com.example.sampletwo.fragments.CertificateInfoFragment"
         android:label="fragment_certificate_info"
