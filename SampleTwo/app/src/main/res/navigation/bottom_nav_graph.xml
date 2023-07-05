@@ -23,7 +23,11 @@
         android:id="@+id/showMoreFragment"
         android:name="com.example.sampletwo.fragments.ShowMoreFragment"
         android:label="fragment_show_more"
-        tools:layout="@layout/fragment_show_more" />
+        tools:layout="@layout/fragment_show_more" >
+        <action
+            android:id="@+id/action_showMoreFragment_to_certificateInfoFragment"
+            app:destination="@id/certificateInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/certificateInfoFragment"
         android:name="com.example.sampletwo.fragments.CertificateInfoFragment"
@@ -84,5 +88,15 @@
         android:name="com.example.sampletwo.fragments.CertificateInfoThreeFragment"
         android:label="fragment_certificate_info_three"
         tools:layout="@layout/fragment_certificate_info_three" />
+    <fragment
+        android:id="@+id/certificateCardOneFragment"
+        android:name="com.example.sampletwo.fragments.CertificateCardOneFragment"
+        android:label="fragment_certificate_card_one"
+        tools:layout="@layout/fragment_certificate_card_one"/>
+    <fragment
+        android:id="@+id/certificateCardTwoFragment"
+        android:name="com.example.sampletwo.fragments.CertificateCardTwoFragment"
+        android:label="fragment_certificate_card_two"
+        tools:layout="@layout/fragment_certificate_card_two" />
 
 </navigation>
