@@ -10,6 +10,8 @@ class MainViewModel : ViewModel() {
     val agreeFour = MutableLiveData(false)
     val agreeAll = MutableLiveData(false)
 
+    val radioButtonClick = MutableLiveData(true)
+
     fun setAgreeAll(isCheck: Boolean) {
         agreeOne.value = isCheck
         agreeTwo.value = isCheck
@@ -20,7 +22,12 @@ class MainViewModel : ViewModel() {
     fun isAgreeAll() {
         agreeAll.value = isAgree()
     }
+
     private fun isAgree(): Boolean {
         return agreeOne.value ?: false && agreeTwo.value ?: false && agreeThree.value ?: false
+    }
+
+    fun onClickRadioButton() {
+        radioButtonClick.value = !(radioButtonClick.value ?: true)
     }
 }

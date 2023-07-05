@@ -2,17 +2,27 @@ package com.example.sampletwo.fragments
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentCertificateInfoTwoBinding
+import com.example.sampletwo.viewmodels.MainViewModel
 
 
 class CertificateInfoTwoFragment :
-    BaseFragment<FragmentCertificateInfoTwoBinding>(FragmentCertificateInfoTwoBinding::inflate) {
+    BaseFragmentDataBinding<MainViewModel, FragmentCertificateInfoTwoBinding>(R.layout.fragment_certificate_info_two) {
+
+    override val viewModel: MainViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.vm = viewModel
+        observingData()
+        setUpBinding()
+    }
+
+    private fun setUpBinding() {
         binding.apply {
-            radioButtonVerifyMobile.isChecked = true
             appBar.imgBack.setOnClickListener {
                 findNavController().popBackStack()
             }
@@ -21,14 +31,17 @@ class CertificateInfoTwoFragment :
                     R.id.action_certificationInfoTwoFragment_to_questionCertificationFragment
                 )
             }
-            layoutPossibleVerifyMobile.setOnClickListener {
-                radioButtonVerifyMobile.isChecked = true
-                radioButtonVerifyCertification.isChecked = false
-            }
-            layoutPossibleOnlyOne.setOnClickListener {
-                radioButtonVerifyMobile.isChecked = false
-                radioButtonVerifyCertification.isChecked = true
-            }
+        }
+    }
+
+    private fun observingData() {
+        viewModel.radioButtonClick.observe(viewLifecycleOwner, ::radioButtonWatcher)
+    }
+
+    private fun radioButtonWatcher(onOff: Boolean) {
+        binding.apply {
+            radioButtonVerifyMobile.isChecked = onOff
+            radioButtonVerifyCertification.isChecked = !onOff
         }
     }
 }
