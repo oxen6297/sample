@@ -1,11 +1,12 @@
 package com.example.sampletwo.activities
 
 import android.os.Bundle
-import android.view.View
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.ActivityMainScreenBinding
+import com.example.sampletwo.extension.visibilityGone
+import com.example.sampletwo.extension.visibilityVisible
 import com.example.sampletwo.util.CustomDialog
 
 class MainScreenActivity :
@@ -23,11 +24,11 @@ class MainScreenActivity :
                 R.id.qrLoginFragment -> {
                     controller.popBackStack()
                     CustomDialog(this, R.layout.custom_dialog).setDialog()
-                    binding.bottomNavMainScreen.visibility = View.VISIBLE
+                    binding.bottomNavMainScreen.visibilityVisible()
                 }
-                R.id.certificateFragment -> binding.bottomNavMainScreen.visibility = View.VISIBLE
-                R.id.showMoreFragment -> binding.bottomNavMainScreen.visibility = View.VISIBLE
-                else -> binding.bottomNavMainScreen.visibility = View.GONE
+                R.id.certificateFragment -> binding.bottomNavMainScreen.visibilityVisible()
+                R.id.showMoreFragment -> binding.bottomNavMainScreen.visibilityVisible()
+                else -> binding.bottomNavMainScreen.visibilityGone()
             }
         }
     }

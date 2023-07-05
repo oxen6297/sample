@@ -4,19 +4,17 @@ import android.content.Context
 import android.graphics.Typeface
 import android.text.SpannableStringBuilder
 import android.text.Spanned
-import android.widget.Button
+import android.view.View
 import android.widget.TextView
 import com.example.sampletwo.util.IndentLeadingMarginSpan
 import com.example.sampletwo.util.RelativeSizeTypeSpan
 
-fun Button.clickable(
-    resource: Int,
-    colorResource: Int,
-    isClickable: Boolean
-) {
-    this.setBackgroundResource(resource)
-    this.setTextColor(colorResource)
-    this.isClickable = isClickable
+fun View.visibilityGone() {
+    visibility = View.GONE
+}
+
+fun View.visibilityVisible() {
+    visibility = View.VISIBLE
 }
 
 fun Context.convertDpToPixel(dp: Int): Int {
@@ -42,14 +40,14 @@ fun TextView.spannableStringBuilder(
     this.text = builder
 }
 
-fun TextView.spannableIndentMarginBuilder(marginText:String) {
+fun TextView.spannableIndentMarginBuilder(marginText: String) {
     val textData = text
     val builder = SpannableStringBuilder(textData)
     builder.setSpan(
         IndentLeadingMarginSpan(marginText),
         0,
         textData.length,
-        0
+        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
     )
     this.text = builder
 }
