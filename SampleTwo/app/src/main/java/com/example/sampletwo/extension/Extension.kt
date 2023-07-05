@@ -29,25 +29,23 @@ fun TextView.spannableStringBuilder(
     typeResource: Int = Typeface.BOLD,
     textSize: Float = 1f
 ) {
-    val textData = text
-    val builder = SpannableStringBuilder(textData)
+    val builder = SpannableStringBuilder(text)
     builder.setSpan(
         RelativeSizeTypeSpan(textSize, colorResource, typeResource),
         startIndex,
         endIndex,
         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
     )
-    this.text = builder
+    text = builder
 }
 
 fun TextView.spannableIndentMarginBuilder(marginText: String) {
-    val textData = text
-    val builder = SpannableStringBuilder(textData)
+    val builder = SpannableStringBuilder(text)
     builder.setSpan(
         IndentLeadingMarginSpan(marginText),
         0,
-        textData.length,
+        text.length,
         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
     )
-    this.text = builder
+    text = builder
 }
