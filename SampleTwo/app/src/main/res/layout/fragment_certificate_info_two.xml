@@ -66,118 +66,119 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_get_issue_certification" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_possible_verify_mobile"
-            android:layout_width="match_parent"
-            android:layout_height="78dp"
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/btn_cancel_background"
-            android:onClick="@{()->vm.onClickRadioButton(RadioType.MOBILE)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_verify_way">
 
-            <TextView
-                android:id="@+id/text_verify_mobile"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_possible_verify_mobile"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="17dp"
-                android:text="@string/verify_with_mobile"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:background="@drawable/btn_cancel_background"
+                android:onClick="@{()->vm.onClickRadioButton(RadioType.MOBILE)}">
 
-            <TextView
-                android:id="@+id/text_verify_mobile_content"
-                android:layout_width="wrap_content"
+                <RadioButton
+                    android:id="@+id/radio_button_verify_mobile"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/radio_button_selector"
+                    android:button="@null"
+                    android:checked="@{vm.radioButtonClick == RadioType.MOBILE}"
+                    android:clickable="false"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_verify_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/verify_with_mobile"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/radio_button_verify_mobile"
+                    app:layout_constraintStart_toEndOf="@+id/radio_button_verify_mobile"
+                    app:layout_constraintTop_toTopOf="@+id/radio_button_verify_mobile" />
+
+                <TextView
+                    android:id="@+id/text_verify_mobile_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/verify_with_mobile_content"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/text_verify_mobile"
+                    app:layout_constraintTop_toBottomOf="@+id/text_verify_mobile" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_possible_only_one"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="16dp"
-                android:text="@string/verify_with_mobile_content"
-                android:textColor="@color/gray"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/text_verify_mobile"
-                app:layout_constraintTop_toBottomOf="@+id/text_verify_mobile" />
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_cancel_background"
+                android:onClick="@{()->vm.onClickRadioButton(RadioType.NICE)}"
+                app:layout_constraintTop_toBottomOf="@+id/layout_possible_verify_mobile">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <RadioButton
+                    android:id="@+id/radio_button_verify_certification"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/radio_button_selector"
+                    android:button="@null"
+                    android:checked="@{vm.radioButtonClick == RadioType.NICE}"
+                    android:clickable="false"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_possible_only_one"
-            android:layout_width="match_parent"
-            android:layout_height="78dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/btn_cancel_background"
-            android:onClick="@{()->vm.onClickRadioButton(RadioType.NICE)}"
-            app:layout_constraintTop_toBottomOf="@+id/layout_possible_verify_mobile">
+                <TextView
+                    android:id="@+id/text_verify_certification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/verify_with_certification"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/radio_button_verify_certification"
+                    app:layout_constraintStart_toEndOf="@+id/radio_button_verify_certification"
+                    app:layout_constraintTop_toTopOf="@+id/radio_button_verify_certification" />
 
-            <TextView
-                android:id="@+id/text_verify_certification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="17dp"
-                android:text="@string/verify_with_certification"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/text_verify_certification_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/verify_with_certification_content"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/text_verify_certification"
+                    app:layout_constraintTop_toBottomOf="@+id/text_verify_certification" />
 
-            <TextView
-                android:id="@+id/text_verify_certification_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="16dp"
-                android:text="@string/verify_with_certification_content"
-                android:textColor="@color/gray"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/text_verify_certification"
-                app:layout_constraintTop_toBottomOf="@+id/text_verify_certification" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="@+id/layout_possible_verify_mobile"
-            app:layout_constraintTop_toTopOf="@+id/layout_possible_verify_mobile">
-
-            <RadioButton
-                android:id="@+id/radio_button_verify_mobile"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@drawable/radio_button_selector"
-                android:button="@null"
-                android:checked="@{vm.radioButtonClick == RadioType.MOBILE}"
-                android:clickable="false"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <RadioButton
-                android:id="@+id/radio_button_verify_certification"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginTop="70dp"
-                android:background="@drawable/radio_button_selector"
-                android:button="@null"
-                android:checked="@{vm.radioButtonClick == RadioType.NICE}"
-                android:clickable="false"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </RadioGroup>
 
         <Button
             android:id="@+id/btn_next"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_margin="20dp"
             android:background="@drawable/confirm_button_background"
