@@ -15,6 +15,8 @@ class MainViewModel : ViewModel() {
     val radioButtonClick: LiveData<RadioType>
         get() = _radioButtonClick
 
+    val switchValue = MutableLiveData(false)
+
     fun setAgreeAll(isCheck: Boolean) {
         agreeOne.value = isCheck
         agreeTwo.value = isCheck
