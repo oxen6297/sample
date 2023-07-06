@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.example.sampletwo.viewmodels.MainViewModel.RadioType" />
+
         <variable
             name="vm"
             type="com.example.sampletwo.viewmodels.MainViewModel" />
@@ -25,6 +27,7 @@
             android:layout_height="6dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="56dp"
+            android:importantForAccessibility="no"
             android:src="@drawable/info_screen_page_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,6 +36,7 @@
             android:id="@+id/img_now_page"
             android:layout_width="20dp"
             android:layout_height="6dp"
+            android:importantForAccessibility="no"
             android:src="@drawable/info_screen_select_page_background"
             app:layout_constraintEnd_toEndOf="@+id/img_whole_page"
             app:layout_constraintStart_toStartOf="@+id/img_whole_page"
@@ -70,7 +74,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/btn_cancel_background"
-            android:onClick="@{()->vm.onClickRadioButton()}"
+            android:onClick="@{()->vm.onClickRadioButton(RadioType.MOBILE)}"
             app:layout_constraintTop_toBottomOf="@+id/text_verify_way">
 
             <TextView
@@ -108,7 +112,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/btn_cancel_background"
-            android:onClick="@{()->vm.onClickRadioButton()}"
+            android:onClick="@{()->vm.onClickRadioButton(RadioType.NICE)}"
             app:layout_constraintTop_toBottomOf="@+id/layout_possible_verify_mobile">
 
             <TextView
@@ -152,6 +156,7 @@
                 android:layout_height="24dp"
                 android:background="@drawable/radio_button_selector"
                 android:button="@null"
+                android:checked="@{vm.radioButtonClick == RadioType.MOBILE}"
                 android:clickable="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -163,6 +168,7 @@
                 android:layout_marginTop="70dp"
                 android:background="@drawable/radio_button_selector"
                 android:button="@null"
+                android:checked="@{vm.radioButtonClick == RadioType.NICE}"
                 android:clickable="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

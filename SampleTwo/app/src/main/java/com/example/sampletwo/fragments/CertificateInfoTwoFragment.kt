@@ -17,7 +17,6 @@ class CertificateInfoTwoFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
-        observingData()
         setUpBinding()
     }
 
@@ -31,17 +30,6 @@ class CertificateInfoTwoFragment :
                     R.id.action_certificationInfoTwoFragment_to_questionCertificationFragment
                 )
             }
-        }
-    }
-
-    private fun observingData() {
-        viewModel.radioButtonClick.observe(viewLifecycleOwner, ::radioButtonWatcher)
-    }
-
-    private fun radioButtonWatcher(onOff: Boolean) {
-        binding.apply {
-            radioButtonVerifyMobile.isChecked = onOff
-            radioButtonVerifyCertification.isChecked = !onOff
         }
     }
 }

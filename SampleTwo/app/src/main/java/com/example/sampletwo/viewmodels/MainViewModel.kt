@@ -1,5 +1,6 @@
 package com.example.sampletwo.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -10,7 +11,9 @@ class MainViewModel : ViewModel() {
     val agreeFour = MutableLiveData(false)
     val agreeAll = MutableLiveData(false)
 
-    val radioButtonClick = MutableLiveData(true)
+    private val _radioButtonClick = MutableLiveData(RadioType.MOBILE)
+    val radioButtonClick: LiveData<RadioType>
+        get() = _radioButtonClick
 
     fun setAgreeAll(isCheck: Boolean) {
         agreeOne.value = isCheck
@@ -27,7 +30,14 @@ class MainViewModel : ViewModel() {
         return agreeOne.value ?: false && agreeTwo.value ?: false && agreeThree.value ?: false
     }
 
-    fun onClickRadioButton() {
-        radioButtonClick.value = !(radioButtonClick.value ?: true)
+    fun onClickRadioButton(type: RadioType) {
+        when (type) {
+            RadioType.NICE -> _radioButtonClick.value = RadioType.NICE
+            RadioType.MOBILE -> _radioButtonClick.value = RadioType.MOBILE
+        }
+    }
+
+    enum class RadioType {
+        MOBILE, NICE
     }
 }
