@@ -13,10 +13,12 @@ class CertificateInfoTwoFragment :
     BaseFragmentDataBinding<MainViewModel, FragmentCertificateInfoTwoBinding>(R.layout.fragment_certificate_info_two) {
 
     override val viewModel: MainViewModel by viewModels()
+    private lateinit var wayToVerify: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
+        observeData()
         setUpBinding()
     }
 
@@ -27,9 +29,17 @@ class CertificateInfoTwoFragment :
             }
             btnNext.setOnClickListener {
                 findNavController().navigate(
-                    R.id.action_certificationInfoTwoFragment_to_questionCertificationFragment
+                    CertificateInfoTwoFragmentDirections.actionCertificationInfoTwoFragmentToQuestionCertificationFragment(wayToVerify)
                 )
             }
         }
+    }
+
+    private fun observeData() {
+        viewModel.radioButtonClick.observe(viewLifecycleOwner, ::wayToVerifyWatcher)
+    }
+
+    private fun wayToVerifyWatcher(type: MainViewModel.RadioType) {
+        wayToVerify = type.name
     }
 }
