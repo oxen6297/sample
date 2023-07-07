@@ -1,7 +1,9 @@
 package com.example.sampletwo.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sampletwo.adapter.ViewPagerAdapter
 import com.example.sampletwo.databinding.FragmentCertificateBinding
@@ -10,6 +12,15 @@ import com.example.sampletwo.extension.convertDpToPixel
 class CertificateFragment :
     BaseFragment<FragmentCertificateBinding>(FragmentCertificateBinding::inflate) {
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val backPressedCallBack = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                activity?.finishAffinity()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(backPressedCallBack)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val viewpagerAdapter = ViewPagerAdapter(requireActivity())
