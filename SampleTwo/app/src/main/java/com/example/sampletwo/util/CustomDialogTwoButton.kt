@@ -11,15 +11,19 @@ import androidx.lifecycle.MutableLiveData
 import com.example.sampletwo.R
 
 @SuppressLint("InflateParams")
-class CustomDialogTwoButton(context: Context, private val switch: MutableLiveData<Boolean>) {
+class CustomDialogTwoButton(context: Context, private val switch: MutableLiveData<Boolean>) :
+    AlertDialog(context) {
 
     private val view = LayoutInflater.from(context).inflate(R.layout.custom_dialog_two_button, null)
     private val agreeBtn = view.findViewById<Button>(R.id.btn_agree)
     private val notAgreeBtn = view.findViewById<Button>(R.id.btn_not_agree)
-    private val dialog = AlertDialog.Builder(context).setView(view).create()
+    private val dialog = Builder(context).setView(view).create()
 
     init {
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.apply {
+            setCancelable(false)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
     }
 
     fun setDialog() {

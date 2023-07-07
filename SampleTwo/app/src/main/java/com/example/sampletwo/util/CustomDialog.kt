@@ -10,13 +10,19 @@ import android.widget.Button
 import com.example.sampletwo.R
 
 @SuppressLint("InflateParams")
-class CustomDialog(context: Context, layoutResource: Int) {
-    private val view = LayoutInflater.from(context).inflate(layoutResource, null)
+class CustomDialog(context: Context, layoutResource: Int) : AlertDialog(context) {
+    private val view by lazy {
+        LayoutInflater.from(context).inflate(layoutResource, null)
+    }
+
     private val confirmBtn = view.findViewById<Button>(R.id.btn_confirm)
-    private val dialog = AlertDialog.Builder(context).setView(view).create()
+    private val dialog = Builder(context).setView(view).create()
 
     init {
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.apply {
+            setCancelable(false)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
     }
 
     fun setDialog() {
