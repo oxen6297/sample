@@ -1,5 +1,6 @@
 package com.example.sampletwo.fragments
 
+import android.content.Context
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
@@ -13,7 +14,7 @@ class CertificateInfoTwoFragment :
     override val viewModel: MainViewModel by viewModels()
     private lateinit var wayToVerify: String
 
-    override fun setUpBinding() {
+    override fun setUpBinding(context: Context) {
         binding.vm = viewModel
         observeData()
         binding.apply {
