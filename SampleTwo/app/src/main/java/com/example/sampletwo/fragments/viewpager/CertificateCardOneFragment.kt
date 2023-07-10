@@ -1,10 +1,11 @@
-package com.example.sampletwo.fragments
+package com.example.sampletwo.fragments.viewpager
 
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentCertificateCardOneBinding
+import com.example.sampletwo.fragments.BaseFragment
 
 class CertificateCardOneFragment :
     BaseFragment<FragmentCertificateCardOneBinding>(FragmentCertificateCardOneBinding::inflate) {
