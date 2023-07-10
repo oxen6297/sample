@@ -8,7 +8,9 @@ import com.example.sampletwo.databinding.ActivityMainScreenBinding
 import com.example.sampletwo.extension.visibilityGone
 import com.example.sampletwo.extension.visibilityVisible
 import com.example.sampletwo.util.CustomDialog
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainScreenActivity :
     BaseActivity<ActivityMainScreenBinding>(ActivityMainScreenBinding::inflate) {
     override fun onCreate(savedInstanceState: Bundle?) {
