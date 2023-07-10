@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Typeface
 import android.os.Bundle
 import android.provider.MediaStore
@@ -14,13 +15,16 @@ import android.text.style.StyleSpan
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentCertificateInfoThreeBinding
 import com.example.sampletwo.extension.showToast
+import com.example.sampletwo.util.BitmapConverter
 import com.example.sampletwo.util.IndentLeadingMarginSpan
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
 
+@Suppress("DEPRECATION")
 class CertificateInfoThreeFragment :
     BaseFragment<FragmentCertificateInfoThreeBinding>(FragmentCertificateInfoThreeBinding::inflate) {
 
@@ -77,7 +81,7 @@ class CertificateInfoThreeFragment :
                 text = builder
             }
             btnCamera.setOnClickListener {
-//                requestTedPermission()
+//                requestTedPermission(context)
                 requestPermission()
             }
         }
@@ -87,7 +91,13 @@ class CertificateInfoThreeFragment :
         cameraLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 if (it.resultCode == RESULT_OK) {
-                    //사진 처리
+                    val bitmap = it.data?.extras?.get("data") as Bitmap
+                    val bitmapArgs = BitmapConverter().bitmapToString(bitmap)
+                    findNavController().navigate(
+                        CertificateInfoThreeFragmentDirections.actionCertificateInfoThreeFragmentToSignUpFragment(
+                            bitmapArgs
+                        )
+                    )
                 }
             }
     }
@@ -98,7 +108,7 @@ class CertificateInfoThreeFragment :
     }
 
     /**
-        일반 권한 요청입니다.
+    일반 권한 요청 입니다.
      **/
     private fun requestPermission() {
         val permissionList = Manifest.permission.CAMERA
@@ -114,9 +124,9 @@ class CertificateInfoThreeFragment :
     }
 
     /**
-        테드퍼미션 사용한 권한 요청입니다.
+    테드 퍼미션 라이브러리를 사용한 권한 요청 입니다.
      **/
-    private fun requestTedPermission() {
+    private fun requestTedPermission(context: Context) {
         TedPermission.create()
             .setPermissionListener(object : PermissionListener {
                 override fun onPermissionGranted() {
@@ -124,7 +134,7 @@ class CertificateInfoThreeFragment :
                 }
 
                 override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-
+                    context.showToast("권한을 허용해주세요.")
                 }
             })
             .setDeniedMessage("권한을 허용해주세요.")
