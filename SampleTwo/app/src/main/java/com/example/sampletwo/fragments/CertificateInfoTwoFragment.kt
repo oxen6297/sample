@@ -1,7 +1,5 @@
 package com.example.sampletwo.fragments
 
-import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
@@ -15,21 +13,18 @@ class CertificateInfoTwoFragment :
     override val viewModel: MainViewModel by viewModels()
     private lateinit var wayToVerify: String
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setUpBinding() {
         binding.vm = viewModel
         observeData()
-        setUpBinding()
-    }
-
-    private fun setUpBinding() {
         binding.apply {
             appBar.imgBack.setOnClickListener {
                 findNavController().popBackStack()
             }
             btnNext.setOnClickListener {
                 findNavController().navigate(
-                    CertificateInfoTwoFragmentDirections.actionCertificationInfoTwoFragmentToQuestionCertificationFragment(wayToVerify)
+                    CertificateInfoTwoFragmentDirections.actionCertificationInfoTwoFragmentToQuestionCertificationFragment(
+                        wayToVerify
+                    )
                 )
             }
         }
