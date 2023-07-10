@@ -1,5 +1,6 @@
 package com.example.sampletwo.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,8 +28,8 @@ abstract class BaseFragmentDataBinding<V : ViewModel, T : ViewDataBinding>(@Layo
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = this
-        setUpBinding()
+        setUpBinding(view.context)
     }
 
-    abstract fun setUpBinding()
+    abstract fun setUpBinding(context: Context)
 }
