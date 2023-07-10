@@ -97,12 +97,12 @@
     </fragment>
     <fragment
         android:id="@+id/certificateCardOneFragment"
-        android:name="com.example.sampletwo.fragments.CertificateCardOneFragment"
+        android:name="com.example.sampletwo.fragments.viewpager.CertificateCardOneFragment"
         android:label="fragment_certificate_card_one"
         tools:layout="@layout/fragment_certificate_card_one"/>
     <fragment
         android:id="@+id/certificateCardTwoFragment"
-        android:name="com.example.sampletwo.fragments.CertificateCardTwoFragment"
+        android:name="com.example.sampletwo.fragments.viewpager.CertificateCardTwoFragment"
         android:label="fragment_certificate_card_two"
         tools:layout="@layout/fragment_certificate_card_two" />
     <fragment
