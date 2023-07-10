@@ -80,6 +80,11 @@
     <string name="agree_push_content">“공무원 연금증” 앱에서\n서비스 이용에 필요한 안내사항을\n푸시 알림으로 전송합니다.\n\n앱 푸시 수신에 동의하시겠습니까?</string>
     <string name="agree">동의</string>
     <string name="not_agree">미동의</string>
+    <string name="sign_up_name">이름을 입력해주세요.</string>
+    <string name="sign_up_certification_number">연금증서번호를 입력해주세요.</string>
+    <string name="sign_up_birth">생년월일을 입력해주세요.</string>
+    <string name="sign_up_recent_company">최종 근무처를 입력해주세요.</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
