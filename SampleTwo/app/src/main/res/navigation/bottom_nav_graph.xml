@@ -90,7 +90,11 @@
         android:id="@+id/certificateInfoThreeFragment"
         android:name="com.example.sampletwo.fragments.CertificateInfoThreeFragment"
         android:label="fragment_certificate_info_three"
-        tools:layout="@layout/fragment_certificate_info_three" />
+        tools:layout="@layout/fragment_certificate_info_three" >
+        <action
+            android:id="@+id/action_certificateInfoThreeFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
     <fragment
         android:id="@+id/certificateCardOneFragment"
         android:name="com.example.sampletwo.fragments.CertificateCardOneFragment"
@@ -101,5 +105,15 @@
         android:name="com.example.sampletwo.fragments.CertificateCardTwoFragment"
         android:label="fragment_certificate_card_two"
         tools:layout="@layout/fragment_certificate_card_two" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.sampletwo.fragments.SignUpFragment"
+        android:label="SignUpFragment" >
+        <argument android:name="image"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_signUpFragment_to_certificateFragment"
+            app:destination="@id/certificateFragment" />
+    </fragment>
 
 </navigation>
