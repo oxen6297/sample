@@ -18,5 +18,9 @@
     <color name="box_background_color">#FCFCFC</color>
     <color name="certificate_card_btn_color">#6F81F3</color>
     <color name="dialog_background_color">#0000004D</color>
+    <color name="elevation_color">#1AECECEC</color>
     <color name="red">#E94949</color>
+    <color name="blue">#33A1DB</color>
+    <color name="yellow">#F0B400</color>
+    <color name="dark_gray">#555555</color>
 </resources>
