@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.CertificateViewpagerItemListBinding
 import com.example.sampletwo.datastore.UserInfo
-import com.example.sampletwo.extension.visibilityGone
+import com.example.sampletwo.extension.hide
 import com.example.sampletwo.util.BitmapConverter
 import java.text.SimpleDateFormat
 
@@ -21,7 +21,7 @@ class CertificateViewPagerAdapter(
     RecyclerView.Adapter<CertificateViewPagerAdapter.ViewPagerViewHolder>() {
 
     @SuppressLint("SimpleDateFormat")
-    inner class ViewPagerViewHolder(val binding: CertificateViewpagerItemListBinding) :
+    class ViewPagerViewHolder(val binding: CertificateViewpagerItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: UserInfo) {
             binding.apply {
@@ -30,14 +30,6 @@ class CertificateViewPagerAdapter(
                 textBirthInfo.text = StringBuilder(item.birth).insert(4, ".").insert(7, ".")
                 textStartCertificateInfo.text =
                     SimpleDateFormat("yyyy.MM").format(item.certificateDate)
-
-                layoutRotate.setOnClickListener {
-                    clickListener(
-                        layoutCardFront.visibility == View.VISIBLE,
-                        layoutCardFront,
-                        layoutCardBack
-                    )
-                }
             }
         }
     }
@@ -48,12 +40,19 @@ class CertificateViewPagerAdapter(
             parent,
             false
         )
-        return ViewPagerViewHolder(binding)
+        return ViewPagerViewHolder(binding,)
     }
 
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
         holder.bind(userInfo)
         holder.binding.apply {
+            layoutRotate.setOnClickListener {
+                clickListener(
+                    layoutCardFront.visibility == View.VISIBLE,
+                    layoutCardFront,
+                    layoutCardBack
+                )
+            }
             when (position) {
                 0 -> {
                     textReceiver.text = context.getString(R.string.receiver)
@@ -70,8 +69,8 @@ class CertificateViewPagerAdapter(
                     imgCardTop.setBackgroundResource(R.drawable.cart_top_blue_background)
                     textReceiverBack.text = context.getString(R.string.employee)
                     textCertificateNumber.text = context.getString(R.string.employee_number)
-                    layoutStartCertificate.visibilityGone()
-                    layoutRecentCompany.visibilityGone()
+                    layoutStartCertificate.hide()
+                    layoutRecentCompany.hide()
                 }
 
                 2 -> {
@@ -79,11 +78,11 @@ class CertificateViewPagerAdapter(
                     layoutCardFront.setBackgroundResource(R.drawable.card_04_front)
                     imgCardTop.setBackgroundResource(R.drawable.card_top_black_background)
                     textCertificateBack.text = context.getString(R.string.verify)
-                    textReceiver.visibilityGone()
-                    textReceiverBack.visibilityGone()
-                    layoutStartCertificate.visibilityGone()
-                    layoutRecentCompany.visibilityGone()
-                    layoutCertificateNumber.visibilityGone()
+                    textReceiver.hide()
+                    textReceiverBack.hide()
+                    layoutStartCertificate.hide()
+                    layoutRecentCompany.hide()
+                    layoutCertificateNumber.hide()
                 }
             }
         }
