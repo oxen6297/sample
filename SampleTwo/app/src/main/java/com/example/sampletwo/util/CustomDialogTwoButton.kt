@@ -6,35 +6,58 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
-import androidx.lifecycle.MutableLiveData
-import com.example.sampletwo.R
+import android.widget.TextView
 
 @SuppressLint("InflateParams")
-class CustomDialogTwoButton(context: Context, private val switch: MutableLiveData<Boolean>) :
-    AlertDialog(context) {
+class CustomDialogTwoButton(context: Context, layoutResource: Int) : AlertDialog(context) {
 
-    private val view = LayoutInflater.from(context).inflate(R.layout.custom_dialog_two_button, null)
-    private val agreeBtn = view.findViewById<Button>(R.id.btn_agree)
-    private val notAgreeBtn = view.findViewById<Button>(R.id.btn_not_agree)
-    private val dialog = Builder(context).setView(view).create()
+    private val view by lazy {
+        LayoutInflater.from(context).inflate(layoutResource, null)
+    }
+    private val dialog by lazy {
+        Builder(context).setView(view).create()
+    }
+    lateinit var confirmBtn: Button
+    lateinit var cancelBtn: Button
+    lateinit var textTitle: TextView
+    lateinit var textContent: TextView
 
-    init {
+    fun initView() {
         dialog.apply {
             setCancelable(false)
             window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
     }
 
-    fun setDialog() {
-        dialog.show()
-        agreeBtn.setOnClickListener {
-            switch.value = true
-            dialog.dismiss()
-        }
-        notAgreeBtn.setOnClickListener {
-            switch.value = false
-            dialog.dismiss()
+    fun setViewComponent(
+        confirmButtonId: Int,
+        cancelBtnId: Int,
+        textTitleId: Int,
+        textContentId: Int
+    ) {
+        confirmBtn = view.findViewById(confirmButtonId)
+        cancelBtn = view.findViewById(cancelBtnId)
+        textTitle = view.findViewById(textTitleId)
+        textContent = view.findViewById(textContentId)
+    }
+
+    fun confirmBtn(confirmClickListener: (View) -> Unit) {
+        confirmBtn.setOnClickListener {
+            confirmClickListener(it)
+            dismissDialog()
         }
     }
+
+    fun cancelBtn(cancelClickListener: (View) -> Unit) {
+        cancelBtn.setOnClickListener {
+            cancelClickListener(it)
+            dismissDialog()
+        }
+    }
+
+    fun showDialog() = dialog.show()
+
+    private fun dismissDialog() = dialog.dismiss()
 }
