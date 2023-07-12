@@ -7,28 +7,39 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.widget.Button
-import com.example.sampletwo.R
+import android.widget.TextView
 
 @SuppressLint("InflateParams")
 class CustomDialog(context: Context, layoutResource: Int) : AlertDialog(context) {
+
     private val view by lazy {
         LayoutInflater.from(context).inflate(layoutResource, null)
     }
+    private val dialog by lazy {
+        Builder(context).setView(view).create()
+    }
+    lateinit var confirmBtn: Button
+    lateinit var textContent: TextView
 
-    private val confirmBtn = view.findViewById<Button>(R.id.btn_confirm)
-    private val dialog = Builder(context).setView(view).create()
-
-    init {
+    fun initView(){
         dialog.apply {
             setCancelable(false)
             window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
     }
 
-    fun setDialog() {
-        dialog.show()
+    fun setViewComponent(buttonId: Int, textContentId: Int) {
+        confirmBtn = view.findViewById(buttonId)
+        textContent = view.findViewById(textContentId)
+    }
+
+    fun confirmBtn(){
         confirmBtn.setOnClickListener {
-            dialog.dismiss()
+            dismissDialog()
         }
     }
+
+    fun showDialog() = dialog.show()
+
+    private fun dismissDialog() = dialog.dismiss()
 }
