@@ -96,6 +96,10 @@
     <string name="recent_company">최종근무처</string>
     <string name="employee_number">고객번호</string>
     <string name="verify">본인인증</string>
+    <string name="permission_title">권한을 거부하셨습니다.</string>
+    <string name="permission_content">앱 설정에서 권한 변경이 가능합니다.</string>
+    <string name="dialog_cancel">닫기</string>
+    <string name="go_setting">설정으로 가기</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

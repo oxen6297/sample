@@ -7,8 +7,10 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.Settings
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
@@ -18,11 +20,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentCertificateInfoThreeBinding
-import com.example.sampletwo.extension.showToast
+import com.example.sampletwo.extension.customDialogTwoButton
 import com.example.sampletwo.util.BitmapConverter
 import com.example.sampletwo.util.IndentLeadingMarginSpan
-import com.gun0912.tedpermission.PermissionListener
-import com.gun0912.tedpermission.normal.TedPermission
 
 @Suppress("DEPRECATION")
 class CertificateInfoThreeFragment :
@@ -103,8 +103,9 @@ class CertificateInfoThreeFragment :
     }
 
     private fun cameraLauncher() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        cameraLauncher.launch(intent)
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply {
+            cameraLauncher.launch(this)
+        }
     }
 
     /**
@@ -119,26 +120,38 @@ class CertificateInfoThreeFragment :
         requestPermissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) {
                 if (it) cameraLauncher()
-                else context.showToast("권한을 허용해주세요.")
+                else {
+                    context.customDialogTwoButton(
+                        R.string.go_setting,
+                        R.string.dialog_cancel,
+                        R.string.permission_title,
+                        R.string.permission_content,
+                        {
+                            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                                data = Uri.parse("package:" + context.packageName)
+                                startActivity(this)
+                            }
+                        })
+                }
             }
     }
 
     /**
     테드 퍼미션 라이브러리를 사용한 권한 요청 입니다.
      **/
-    private fun requestTedPermission(context: Context) {
-        TedPermission.create()
-            .setPermissionListener(object : PermissionListener {
-                override fun onPermissionGranted() {
-                    cameraLauncher()
-                }
-
-                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-                    context.showToast("권한을 허용해주세요.")
-                }
-            })
-            .setDeniedMessage("권한을 허용해주세요.")
-            .setPermissions(Manifest.permission.CAMERA)
-            .check()
-    }
+//    private fun requestTedPermission(context: Context) {
+//        TedPermission.create()
+//            .setPermissionListener(object : PermissionListener {
+//                override fun onPermissionGranted() {
+//                    cameraLauncher()
+//                }
+//
+//                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+//                    context.showToast("권한을 허용해주세요.")
+//                }
+//            })
+//            .setDeniedMessage("권한을 허용해주세요.")
+//            .setPermissions(Manifest.permission.CAMERA)
+//            .check()
+//    }
 }
