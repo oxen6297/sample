@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentShowMoreBinding
-import com.example.sampletwo.util.CustomDialogTwoButton
+import com.example.sampletwo.extension.customDialogTwoButton
 import com.example.sampletwo.viewmodels.MainViewModel
 
 class ShowMoreFragment : BaseFragment<FragmentShowMoreBinding>(FragmentShowMoreBinding::inflate) {
@@ -17,7 +17,7 @@ class ShowMoreFragment : BaseFragment<FragmentShowMoreBinding>(FragmentShowMoreB
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        val backPressedCallBack = object :OnBackPressedCallback(true){
+        val backPressedCallBack = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 activity?.finishAffinity()
             }
@@ -32,10 +32,19 @@ class ShowMoreFragment : BaseFragment<FragmentShowMoreBinding>(FragmentShowMoreB
     }
 
     private fun setUpBinding(context: Context) {
-        val customDialogTwoButton = CustomDialogTwoButton(context, viewModel.switchValue)
         binding.apply {
             layoutActivateNotification.setOnClickListener {
-                customDialogTwoButton.setDialog()
+                context.customDialogTwoButton(
+                    R.string.agree,
+                    R.string.not_agree,
+                    R.string.agree_push,
+                    R.string.agree_push_content,
+                    {
+                        viewModel.switchValue.value = true
+                    }
+                ) {
+                    viewModel.switchValue.value = false
+                }
             }
             layoutGoCertificate.setOnClickListener {
                 findNavController().navigate(R.id.action_showMoreFragment_to_certificateInfoFragment)
