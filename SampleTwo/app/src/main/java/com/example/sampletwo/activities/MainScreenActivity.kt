@@ -5,9 +5,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.ActivityMainScreenBinding
-import com.example.sampletwo.extension.visibilityGone
-import com.example.sampletwo.extension.visibilityVisible
-import com.example.sampletwo.util.CustomDialog
+import com.example.sampletwo.extension.customDialog
+import com.example.sampletwo.extension.hide
+import com.example.sampletwo.extension.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,12 +25,12 @@ class MainScreenActivity :
             when (destination.id) {
                 R.id.qrLoginFragment -> {
                     controller.popBackStack()
-                    CustomDialog(this, R.layout.custom_dialog).setDialog()
-                    binding.bottomNavMainScreen.visibilityVisible()
+                    customDialog(R.string.dialog_certificate_text,R.string.confirm_btn_text)
+                    binding.bottomNavMainScreen.show()
                 }
-                R.id.certificateFragment -> binding.bottomNavMainScreen.visibilityVisible()
-                R.id.showMoreFragment -> binding.bottomNavMainScreen.visibilityVisible()
-                else -> binding.bottomNavMainScreen.visibilityGone()
+                R.id.certificateFragment -> binding.bottomNavMainScreen.show()
+                R.id.showMoreFragment -> binding.bottomNavMainScreen.show()
+                else -> binding.bottomNavMainScreen.hide()
             }
         }
     }
