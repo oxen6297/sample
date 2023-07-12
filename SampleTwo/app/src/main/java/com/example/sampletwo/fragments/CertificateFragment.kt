@@ -10,9 +10,9 @@ import com.example.sampletwo.R
 import com.example.sampletwo.adapter.CertificateViewPagerAdapter
 import com.example.sampletwo.adapter.ViewPagerAdapter
 import com.example.sampletwo.databinding.FragmentCertificateBinding
-import com.example.sampletwo.extension.convertDpToPixel
-import com.example.sampletwo.extension.visibilityGone
-import com.example.sampletwo.extension.visibilityVisible
+import com.example.sampletwo.extension.dpToPx
+import com.example.sampletwo.extension.hide
+import com.example.sampletwo.extension.show
 import com.example.sampletwo.viewmodels.DataStoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,14 +32,14 @@ class CertificateFragment :
         requireActivity().onBackPressedDispatcher.addCallback(backPressedCallBack)
     }
 
-    override fun setUpBinding(context: Context) {
-        observeData(context)
+    override fun setUpBinding(view: View) {
+        observeData(view.context)
         viewModel.readData()
     }
 
     private fun observeData(context: Context) =
         viewModel.userInfo.observe(viewLifecycleOwner) { userInfo ->
-            val value: Int = context.convertDpToPixel(30)
+            val value: Int = context.dpToPx(30)
             val viewpagerAdapter =
                 if (userInfo.certificateDate == 0L) ViewPagerAdapter(requireActivity())
                 else CertificateViewPagerAdapter(userInfo, context, ::itemRotateClickListener)
@@ -60,16 +60,16 @@ class CertificateFragment :
     private fun itemRotateClickListener(isFront: Boolean, front: View, back: View) {
         if (isFront) {
             back.apply {
-                visibilityVisible()
+                show()
                 setAnimation(this, R.animator.rotate_reverse_animation)
             }
-            front.visibilityGone()
+            front.hide()
         } else {
             front.apply {
                 setAnimation(this, R.animator.rotate_animation)
-                visibilityVisible()
+                show()
             }
-            back.visibilityGone()
+            back.hide()
         }
     }
 
