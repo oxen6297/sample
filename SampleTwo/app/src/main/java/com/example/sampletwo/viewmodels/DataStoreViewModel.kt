@@ -19,9 +19,18 @@ class DataStoreViewModel @Inject constructor(private val dataStoreRepository: Da
     val signUpRecentCompany = MutableLiveData<String>()
     val signUpImage = MutableLiveData<String>()
 
+    val isBlank = MutableLiveData(false)
+
     private val _userInfo = MutableLiveData<UserInfo>()
     val userInfo: MutableLiveData<UserInfo>
         get() = _userInfo
+
+    fun setIsBlank() {
+        isBlank.value = signUpName.value?.isNotBlank() ?: false &&
+                signUpCertificationNumber.value?.isNotBlank() ?: false &&
+                signUpBirth.value?.isNotBlank() ?: false &&
+                signUpRecentCompany.value?.isNotBlank() ?: false
+    }
 
     fun saveData() {
         viewModelScope.launch {
