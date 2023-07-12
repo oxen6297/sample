@@ -1,6 +1,6 @@
 package com.example.sampletwo.fragments
 
-import android.content.Context
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -15,7 +15,7 @@ class SignUpFragment : BaseFragmentDataBinding<FragmentSignUpBinding>(R.layout.f
     private val viewModel: DataStoreViewModel by viewModels()
     private val signUpFragmentArgs: SignUpFragmentArgs by navArgs()
 
-    override fun setUpBinding(context: Context) {
+    override fun setUpBinding(view: View) {
         viewModel.signUpImage.value = signUpFragmentArgs.image
         binding.apply {
             vm = viewModel

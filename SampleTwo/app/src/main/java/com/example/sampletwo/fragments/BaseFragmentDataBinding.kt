@@ -1,6 +1,5 @@
 package com.example.sampletwo.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,8 +25,8 @@ abstract class BaseFragmentDataBinding<T : ViewDataBinding>(@LayoutRes private v
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = this
-        setUpBinding(view.context)
+        setUpBinding(view)
     }
 
-    abstract fun setUpBinding(context: Context)
+    abstract fun setUpBinding(view: View)
 }

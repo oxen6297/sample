@@ -1,6 +1,6 @@
 package com.example.sampletwo.fragments
 
-import android.content.Context
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
@@ -13,7 +13,7 @@ class CertificateInfoTwoFragment :
 
     private val viewModel: MainViewModel by viewModels()
 
-    override fun setUpBinding(context: Context) {
+    override fun setUpBinding(view: View) {
         binding.vm = viewModel
         binding.apply {
             appBar.imgBack.setOnClickListener {
