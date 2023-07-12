@@ -32,13 +32,11 @@ class CertificateViewPagerAdapter(
                     SimpleDateFormat("yyyy.MM").format(item.certificateDate)
 
                 layoutRotate.setOnClickListener {
-                    if (adapterPosition != 100){
-                        clickListener(
-                            layoutCardFront.visibility == View.VISIBLE,
-                            layoutCardFront,
-                            layoutCardBack
-                        )
-                    }
+                    clickListener(
+                        layoutCardFront.visibility == View.VISIBLE,
+                        layoutCardFront,
+                        layoutCardBack
+                    )
                 }
             }
         }
