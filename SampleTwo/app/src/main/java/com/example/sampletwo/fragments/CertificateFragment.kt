@@ -18,9 +18,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CertificateFragment :
-    BaseFragmentDataBinding<DataStoreViewModel, FragmentCertificateBinding>(R.layout.fragment_certificate) {
+    BaseFragmentDataBinding<FragmentCertificateBinding>(R.layout.fragment_certificate) {
 
-    override val viewModel: DataStoreViewModel by viewModels()
+    private val viewModel: DataStoreViewModel by viewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
