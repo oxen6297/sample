@@ -12,11 +12,9 @@ class CertificateInfoTwoFragment :
     BaseFragmentDataBinding<MainViewModel, FragmentCertificateInfoTwoBinding>(R.layout.fragment_certificate_info_two) {
 
     override val viewModel: MainViewModel by viewModels()
-    private lateinit var wayToVerify: String
 
     override fun setUpBinding(context: Context) {
         binding.vm = viewModel
-        observeData()
         binding.apply {
             appBar.imgBack.setOnClickListener {
                 findNavController().popBackStack()
@@ -24,18 +22,10 @@ class CertificateInfoTwoFragment :
             btnNext.setOnClickListener {
                 findNavController().navigate(
                     CertificateInfoTwoFragmentDirections.actionCertificationInfoTwoFragmentToQuestionCertificationFragment(
-                        wayToVerify
+                        viewModel.radioButtonClick.value?.name.toString()
                     )
                 )
             }
         }
-    }
-
-    private fun observeData() {
-        viewModel.radioButtonClick.observe(viewLifecycleOwner, ::wayToVerifyWatcher)
-    }
-
-    private fun wayToVerifyWatcher(type: MainViewModel.RadioType) {
-        wayToVerify = type.name
     }
 }
