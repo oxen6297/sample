@@ -152,7 +152,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/text_name_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -173,7 +173,7 @@
                 android:background="#D6D6D6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name" />
+                app:layout_constraintTop_toBottomOf="@+id/text_name_back" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_certificate_number"
