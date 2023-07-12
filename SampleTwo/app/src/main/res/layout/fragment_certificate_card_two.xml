@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.CertificateCardTwoFragment">
+    tools:context=".fragments.viewpager.CertificateCardTwoFragment">
 
     <FrameLayout
-        android:id="@+id/layout_card_one"
+        android:id="@+id/layout_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="68dp"
@@ -29,7 +29,7 @@
         android:textColor="@color/white"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/layout_card_one"
-        app:layout_constraintTop_toTopOf="@+id/layout_card_one" />
+        app:layout_constraintStart_toStartOf="@id/layout_card"
+        app:layout_constraintTop_toTopOf="@+id/layout_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
