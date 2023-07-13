@@ -80,8 +80,10 @@ class CertificateFragment :
     }
 
     private fun rotateCard(view: View, animationResource: Int): Animator {
+        val displayDensity = view.context.resources.displayMetrics.density
         return AnimatorInflater.loadAnimator(requireContext(), animationResource).apply {
             setTarget(view)
+            view.cameraDistance = displayDensity * 8000
             start()
         }
     }
