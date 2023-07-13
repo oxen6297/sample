@@ -17,8 +17,7 @@ class CertificateViewPagerAdapter(
     private val userInfo: UserInfo,
     private val context: Context,
     private val clickListener: (Boolean, View, View) -> Unit
-) :
-    RecyclerView.Adapter<CertificateViewPagerAdapter.ViewPagerViewHolder>() {
+) : RecyclerView.Adapter<CertificateViewPagerAdapter.ViewPagerViewHolder>() {
 
     @SuppressLint("SimpleDateFormat")
     class ViewPagerViewHolder(val binding: CertificateViewpagerItemListBinding) :
@@ -40,7 +39,7 @@ class CertificateViewPagerAdapter(
             parent,
             false
         )
-        return ViewPagerViewHolder(binding,)
+        return ViewPagerViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {

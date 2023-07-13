@@ -1,9 +1,11 @@
 package com.example.sampletwo.fragments
 
+import android.animation.Animator
 import android.animation.AnimatorInflater
 import android.content.Context
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.core.animation.doOnEnd
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sampletwo.R
@@ -60,21 +62,25 @@ class CertificateFragment :
     private fun itemRotateClickListener(isFront: Boolean, front: View, back: View) {
         if (isFront) {
             back.apply {
+                rotateCard(this, R.animator.rotate_reverse_animation)
                 show()
-                setAnimation(this, R.animator.rotate_reverse_animation)
             }
-            front.hide()
+            front.apply {
+                rotateCard(this, R.animator.rotate_out_animation).doOnEnd { hide() }
+            }
         } else {
             front.apply {
-                setAnimation(this, R.animator.rotate_animation)
+                rotateCard(this, R.animator.rotate_animation)
                 show()
             }
-            back.hide()
+            back.apply {
+                rotateCard(this, R.animator.rotate_reverse_out_animation).doOnEnd { hide() }
+            }
         }
     }
 
-    private fun setAnimation(view: View, animationResource: Int) {
-        AnimatorInflater.loadAnimator(requireContext(), animationResource).apply {
+    private fun rotateCard(view: View, animationResource: Int): Animator {
+        return AnimatorInflater.loadAnimator(requireContext(), animationResource).apply {
             setTarget(view)
             start()
         }
