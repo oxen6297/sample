@@ -85,7 +85,7 @@
     <string name="not_agree">미동의</string>
     <string name="sign_up_name">이름을 입력해주세요.</string>
     <string name="sign_up_certification_number">연금증서번호를 입력해주세요.</string>
-    <string name="sign_up_birth">생년월일을 입력해주세요.</string>
+    <string name="sign_up_birth">생년월일 8자리를 입력해주세요.</string>
     <string name="sign_up_recent_company">최종 근무처를 입력해주세요.</string>
     <string name="employee">재직자</string>
     <string name="verify_certification">본인인증\n증명서</string>

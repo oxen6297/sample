@@ -28,7 +28,8 @@ class DataStoreViewModel @Inject constructor(private val dataStoreRepository: Da
     fun setIsBlank() {
         isBlank.value = signUpName.value?.isNotBlank() ?: false &&
                 signUpCertificationNumber.value?.isNotBlank() ?: false &&
-                signUpBirth.value?.isNotBlank() ?: false &&
+                signUpBirth.value?.isNotBlank() ?: false  &&
+                signUpBirth.value?.length == 8 &&
                 signUpRecentCompany.value?.isNotBlank() ?: false
     }
 

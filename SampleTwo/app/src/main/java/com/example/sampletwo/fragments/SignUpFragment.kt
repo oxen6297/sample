@@ -19,9 +19,9 @@ class SignUpFragment : BaseFragmentDataBinding<FragmentSignUpBinding>(R.layout.f
         viewModel.signUpImage.value = signUpFragmentArgs.image
         binding.apply {
             vm = viewModel
+            observeBlankData()
             btnConfirm.setOnClickListener {
                 viewModel.setIsBlank()
-                observeBlankData()
             }
         }
     }
@@ -32,9 +32,8 @@ class SignUpFragment : BaseFragmentDataBinding<FragmentSignUpBinding>(R.layout.f
 
     private fun confirmBtnClick(clickable: Boolean) {
         if (clickable) {
-            binding.btnConfirm.isClickable = true
             viewModel.saveData()
             findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToCertificateFragment())
-        } else binding.btnConfirm.isClickable = false
+        }
     }
 }
