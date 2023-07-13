@@ -23,10 +23,9 @@ fun Context.customDialog(textViewText: Int, btnText: Int): CustomDialog {
     return CustomDialog(this, R.layout.custom_dialog).apply {
         initView()
         setViewComponent(R.id.btn_confirm, R.id.text_dialog_certificate)
-        showDialog()
-        textContent.text = getString(textViewText)
-        confirmBtn.text = getString(btnText)
+        setViewText(textViewText, btnText)
         confirmBtn()
+        showDialog()
     }
 }
 
@@ -41,12 +40,9 @@ fun Context.customDialogTwoButton(
     return CustomDialogTwoButton(this, R.layout.custom_dialog_two_button).apply {
         initView()
         setViewComponent(R.id.btn_confirm, R.id.btn_cancel, R.id.text_title, R.id.text_content)
-        showDialog()
-        confirmBtn.text = getString(confirmBtnText)
-        cancelBtn.text = getString(cancelBtnText)
-        textTitle.text = getString(titleText)
-        textContent.text = getString(contentText)
+        setViewText(confirmBtnText, cancelBtnText, titleText, contentText)
         cancelBtn(clickCancel)
         confirmBtn(clickConfirm)
+        showDialog()
     }
 }

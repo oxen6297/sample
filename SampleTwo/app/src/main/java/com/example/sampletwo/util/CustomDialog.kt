@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 
 @SuppressLint("InflateParams")
-class CustomDialog(context: Context, layoutResource: Int) : AlertDialog(context) {
+class CustomDialog(private val context: Context, layoutResource: Int) : AlertDialog(context) {
 
     private val view by lazy {
         LayoutInflater.from(context).inflate(layoutResource, null)
@@ -31,6 +31,11 @@ class CustomDialog(context: Context, layoutResource: Int) : AlertDialog(context)
     fun setViewComponent(buttonId: Int, textContentId: Int) {
         confirmBtn = view.findViewById(buttonId)
         textContent = view.findViewById(textContentId)
+    }
+
+    fun setViewText(textViewText: Int, btnText: Int){
+        confirmBtn.text = context.getString(btnText)
+        textContent.text = context.getString(textViewText)
     }
 
     fun confirmBtn(){

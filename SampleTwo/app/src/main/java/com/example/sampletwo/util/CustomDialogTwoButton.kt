@@ -11,7 +11,8 @@ import android.widget.Button
 import android.widget.TextView
 
 @SuppressLint("InflateParams")
-class CustomDialogTwoButton(context: Context, layoutResource: Int) : AlertDialog(context) {
+class CustomDialogTwoButton(private val context: Context, layoutResource: Int) :
+    AlertDialog(context) {
 
     private val view by lazy {
         LayoutInflater.from(context).inflate(layoutResource, null)
@@ -41,6 +42,13 @@ class CustomDialogTwoButton(context: Context, layoutResource: Int) : AlertDialog
         cancelBtn = view.findViewById(cancelBtnId)
         textTitle = view.findViewById(textTitleId)
         textContent = view.findViewById(textContentId)
+    }
+
+    fun setViewText(confirmBtnText: Int, cancelBtnText: Int, titleText: Int, contentText: Int) {
+        confirmBtn.text = context.getString(confirmBtnText)
+        cancelBtn.text = context.getString(cancelBtnText)
+        textTitle.text = context.getString(titleText)
+        textContent.text = context.getString(contentText)
     }
 
     fun confirmBtn(confirmClickListener: (View) -> Unit) {
