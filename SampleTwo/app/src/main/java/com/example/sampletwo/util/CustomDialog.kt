@@ -6,6 +6,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 
@@ -21,7 +22,7 @@ class CustomDialog(private val context: Context, layoutResource: Int) : AlertDia
     lateinit var confirmBtn: Button
     lateinit var textContent: TextView
 
-    fun initView(){
+    fun initView() {
         dialog.apply {
             setCancelable(false)
             window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -33,13 +34,14 @@ class CustomDialog(private val context: Context, layoutResource: Int) : AlertDia
         textContent = view.findViewById(textContentId)
     }
 
-    fun setViewText(textViewText: Int, btnText: Int){
+    fun setViewText(textViewText: Int, btnText: Int) {
         confirmBtn.text = context.getString(btnText)
         textContent.text = context.getString(textViewText)
     }
 
-    fun confirmBtn(){
+    fun confirmBtn(confirmClickListener: (View) -> Unit) {
         confirmBtn.setOnClickListener {
+            confirmClickListener(it)
             dismissDialog()
         }
     }

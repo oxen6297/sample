@@ -19,12 +19,16 @@ fun Context.dpToPx(dp: Int): Int {
     return (density * dp).toInt()
 }
 
-fun Context.customDialog(textViewText: Int, btnText: Int): CustomDialog {
+fun Context.customDialog(
+    textViewText: Int,
+    btnText: Int,
+    clickConfirm: (View) -> Unit = {}
+): CustomDialog {
     return CustomDialog(this, R.layout.custom_dialog).apply {
         initView()
         setViewComponent(R.id.btn_confirm, R.id.text_dialog_certificate)
         setViewText(textViewText, btnText)
-        confirmBtn()
+        confirmBtn(clickConfirm)
         showDialog()
     }
 }
