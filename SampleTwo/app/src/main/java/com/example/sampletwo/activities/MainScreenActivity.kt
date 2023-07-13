@@ -5,8 +5,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.ActivityMainScreenBinding
-import com.example.sampletwo.extension.customDialog
 import com.example.sampletwo.extension.hide
+import com.example.sampletwo.extension.qrPopUp
 import com.example.sampletwo.extension.show
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,10 +24,12 @@ class MainScreenActivity :
         navController.addOnDestinationChangedListener { controller, destination, _ ->
             when (destination.id) {
                 R.id.qrLoginFragment -> {
-                    controller.popBackStack()
-                    customDialog(R.string.dialog_certificate_text,R.string.confirm_btn_text)
-                    binding.bottomNavMainScreen.show()
+                    qrPopUp {
+                        controller.popBackStack()
+                        binding.bottomNavMainScreen.show()
+                    }
                 }
+
                 R.id.certificateFragment -> binding.bottomNavMainScreen.show()
                 R.id.showMoreFragment -> binding.bottomNavMainScreen.show()
                 else -> binding.bottomNavMainScreen.hide()
