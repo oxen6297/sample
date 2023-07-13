@@ -5,6 +5,7 @@ import android.view.View
 import com.example.sampletwo.R
 import com.example.sampletwo.util.CustomDialog
 import com.example.sampletwo.util.CustomDialogTwoButton
+import com.example.sampletwo.util.SingleClickListener
 
 fun View.hide() {
     visibility = View.GONE
@@ -49,4 +50,8 @@ fun Context.customDialogTwoButton(
         confirmBtn(clickConfirm)
         showDialog()
     }
+}
+
+fun View.singleClickListener(onSingleClick: (View) -> Unit) {
+    setOnClickListener(SingleClickListener(onSingleClick))
 }

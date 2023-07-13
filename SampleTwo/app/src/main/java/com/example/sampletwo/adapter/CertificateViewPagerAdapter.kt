@@ -10,6 +10,7 @@ import com.example.sampletwo.R
 import com.example.sampletwo.databinding.CertificateViewpagerItemListBinding
 import com.example.sampletwo.datastore.UserInfo
 import com.example.sampletwo.extension.hide
+import com.example.sampletwo.extension.singleClickListener
 import com.example.sampletwo.util.BitmapConverter
 import java.text.SimpleDateFormat
 
@@ -45,7 +46,7 @@ class CertificateViewPagerAdapter(
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
         holder.bind(userInfo)
         holder.binding.apply {
-            layoutRotate.setOnClickListener {
+            layoutRotate.singleClickListener {
                 clickListener(
                     layoutCardFront.visibility == View.VISIBLE,
                     layoutCardFront,
