@@ -12,6 +12,7 @@
             android:id="@+id/viewpager_certificate_card"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/box_background_color"
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
