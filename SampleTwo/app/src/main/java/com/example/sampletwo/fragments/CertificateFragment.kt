@@ -12,6 +12,7 @@ import com.example.sampletwo.R
 import com.example.sampletwo.adapter.CertificateViewPagerAdapter
 import com.example.sampletwo.adapter.ViewPagerAdapter
 import com.example.sampletwo.databinding.FragmentCertificateBinding
+import com.example.sampletwo.datastore.UserInfo
 import com.example.sampletwo.extension.dpToPx
 import com.example.sampletwo.extension.hide
 import com.example.sampletwo.extension.show
@@ -20,9 +21,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CertificateFragment :
-    BaseFragmentDataBinding<FragmentCertificateBinding>(R.layout.fragment_certificate) {
+    BaseFragmentDataBinding<FragmentCertificateBinding, DataStoreViewModel>(R.layout.fragment_certificate) {
 
-    private val viewModel: DataStoreViewModel by viewModels()
+    override val viewModel: DataStoreViewModel by viewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -39,15 +40,16 @@ class CertificateFragment :
         viewModel.readData()
     }
 
-    private fun observeData(context: Context) =
+    private fun observeData(context: Context) {
         viewModel.userInfo.observe(viewLifecycleOwner) { userInfo ->
             val value: Int = context.dpToPx(30)
-            val viewpagerAdapter =
-                if (userInfo.certificateDate == 0L) ViewPagerAdapter(requireActivity())
-                else CertificateViewPagerAdapter(userInfo, ::itemRotateClickListener)
-
             binding.viewpagerCertificateCard.apply {
-                adapter = viewpagerAdapter
+                adapter =
+                    if (userInfo.certificateDate == 0L) ViewPagerAdapter(requireActivity())
+                    else CertificateViewPagerAdapter(userInfo, ::itemRotateClickListener).apply {
+                        submitList(arrayOfNulls<UserInfo>(3).toList())
+                    }
+
                 clipToPadding = false
                 clipChildren = false
                 offscreenPageLimit = 1
@@ -58,6 +60,7 @@ class CertificateFragment :
                 }
             }
         }
+    }
 
     private fun itemRotateClickListener(isFront: Boolean, front: View, back: View) {
         if (isFront) {
