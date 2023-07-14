@@ -85,14 +85,14 @@ class CertificateViewPagerAdapter(
             }
         }
     }
-}
 
-class DiaryDiffCallback : DiffUtil.ItemCallback<UserInfo>() {
-    override fun areItemsTheSame(oldItem: UserInfo, newItem: UserInfo): Boolean {
-        return oldItem.certificateDate == newItem.certificateDate
-    }
+    class DiaryDiffCallback : DiffUtil.ItemCallback<UserInfo>() {
+        override fun areItemsTheSame(oldItem: UserInfo, newItem: UserInfo): Boolean {
+            return oldItem.certificateDate == newItem.certificateDate
+        }
 
-    override fun areContentsTheSame(oldItem: UserInfo, newItem: UserInfo): Boolean {
-        return oldItem == newItem
+        override fun areContentsTheSame(oldItem: UserInfo, newItem: UserInfo): Boolean {
+            return oldItem == newItem
+        }
     }
 }
