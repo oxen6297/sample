@@ -19,7 +19,8 @@
 
         <include
             android:id="@+id/app_bar"
-            layout="@layout/app_bar" />
+            layout="@layout/app_bar"
+            android:onClick="@{()->vm.goBack()}" />
 
         <ImageView
             android:id="@+id/img_whole_page"
@@ -182,6 +183,7 @@
             android:layout_height="50dp"
             android:layout_margin="20dp"
             android:background="@drawable/confirm_button_background"
+            android:onClick="@{()->vm.goQuestionFragment()}"
             android:text="@string/next"
             android:textColor="@color/white"
             android:textSize="16sp"

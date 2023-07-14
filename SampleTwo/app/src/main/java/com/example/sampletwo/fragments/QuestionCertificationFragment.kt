@@ -1,29 +1,23 @@
 package com.example.sampletwo.fragments
 
-import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentQuestionCertificationBinding
+import com.example.sampletwo.viewmodels.MainViewModel
 
 class QuestionCertificationFragment :
-    BaseFragment<FragmentQuestionCertificationBinding>(FragmentQuestionCertificationBinding::inflate) {
+    BaseFragmentDataBinding<FragmentQuestionCertificationBinding, MainViewModel>(R.layout.fragment_question_certification) {
+
+    override val viewModel: MainViewModel by viewModels()
 
     private val args: QuestionCertificationFragmentArgs by navArgs()
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+    override fun setUpBinding(view: View) {
         binding.apply {
+            vm = viewModel
             textHowVerify.text = args.way
-            appBar.imgBack.setOnClickListener {
-                findNavController().popBackStack()
-            }
-            btnCancel.setOnClickListener {
-                findNavController().navigate(R.id.action_questionCertificationFragment_to_certificateFragment)
-            }
-            btnNext.setOnClickListener {
-                findNavController().navigate(R.id.action_questionCertificationFragment_to_completeVerifyFragment)
-            }
         }
     }
 }

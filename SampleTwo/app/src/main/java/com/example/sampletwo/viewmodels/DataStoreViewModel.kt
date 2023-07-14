@@ -1,17 +1,18 @@
 package com.example.sampletwo.viewmodels
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sampletwo.datastore.DataStoreRepository
 import com.example.sampletwo.datastore.UserInfo
+import com.example.sampletwo.fragments.CertificateInfoThreeFragmentDirections
+import com.example.sampletwo.fragments.SignUpFragmentDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DataStoreViewModel @Inject constructor(private val dataStoreRepository: DataStoreRepository) :
-    ViewModel() {
+    BaseViewModel() {
 
     val signUpName = MutableLiveData<String>()
     val signUpCertificationNumber = MutableLiveData<String>()
@@ -19,21 +20,23 @@ class DataStoreViewModel @Inject constructor(private val dataStoreRepository: Da
     val signUpRecentCompany = MutableLiveData<String>()
     val signUpImage = MutableLiveData<String>()
 
-    val isBlank = MutableLiveData(false)
+    private val isBlank = MutableLiveData(false)
+
+    val bitmap = MutableLiveData<String>()
 
     private val _userInfo = MutableLiveData<UserInfo>()
     val userInfo: MutableLiveData<UserInfo>
         get() = _userInfo
 
-    fun setIsBlank() {
+    private fun setIsBlank() {
         isBlank.value = signUpName.value?.isNotBlank() ?: false &&
                 signUpCertificationNumber.value?.isNotBlank() ?: false &&
-                signUpBirth.value?.isNotBlank() ?: false  &&
+                signUpBirth.value?.isNotBlank() ?: false &&
                 signUpBirth.value?.length == 8 &&
                 signUpRecentCompany.value?.isNotBlank() ?: false
     }
 
-    fun saveData() {
+    private fun saveData() {
         viewModelScope.launch {
             dataStoreRepository.saveUserInfo(
                 UserInfo(
@@ -52,6 +55,26 @@ class DataStoreViewModel @Inject constructor(private val dataStoreRepository: Da
             dataStoreRepository.readUserInfo().collect {
                 _userInfo.postValue(it)
             }
+        }
+    }
+
+    fun goSignUpFragment() {
+        navigate(
+            CertificateInfoThreeFragmentDirections.actionCertificateInfoThreeFragmentToSignUpFragment(
+                bitmap.value.toString()
+            )
+        )
+    }
+
+    fun goCertificateFragment() {
+        setIsBlank()
+        clickable()
+    }
+
+    private fun clickable(){
+        if (isBlank.value == true) {
+            saveData()
+            navigate(SignUpFragmentDirections.actionSignUpFragmentToCertificateFragment())
         }
     }
 }

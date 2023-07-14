@@ -2,9 +2,12 @@ package com.example.sampletwo.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.sampletwo.fragments.CertificateInfoFragmentDirections
+import com.example.sampletwo.fragments.CertificateInfoTwoFragmentDirections
+import com.example.sampletwo.fragments.CompleteVerifyFragmentDirections
+import com.example.sampletwo.fragments.QuestionCertificationFragmentDirections
 
-class MainViewModel : ViewModel() {
+class MainViewModel : BaseViewModel() {
     val agreeOne = MutableLiveData(false)
     val agreeTwo = MutableLiveData(false)
     val agreeThree = MutableLiveData(false)
@@ -37,6 +40,30 @@ class MainViewModel : ViewModel() {
             RadioType.NICE -> _radioButtonClick.value = RadioType.NICE
             RadioType.MOBILE -> _radioButtonClick.value = RadioType.MOBILE
         }
+    }
+
+    fun goCertificateInfoTwoFragment() {
+        navigate(CertificateInfoFragmentDirections.actionCertificateInfoFragmentToCertificationInfoTwoFragment())
+    }
+
+    fun goQuestionFragment() {
+        navigate(
+            CertificateInfoTwoFragmentDirections.actionCertificationInfoTwoFragmentToQuestionCertificationFragment(
+                radioButtonClick.value.toString()
+            )
+        )
+    }
+
+    fun goCertificateInfoThreeFragment() {
+        navigate(CompleteVerifyFragmentDirections.actionCompleteVerifyFragmentToCertificateInfoThreeFragment())
+    }
+
+    fun goCompleteVerifyFragment() {
+        navigate(QuestionCertificationFragmentDirections.actionQuestionCertificationFragmentToCompleteVerifyFragment())
+    }
+
+    fun cancel() {
+        navigate(QuestionCertificationFragmentDirections.actionQuestionCertificationFragmentToCertificateFragment())
     }
 
     enum class RadioType {

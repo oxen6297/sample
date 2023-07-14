@@ -32,7 +32,8 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="Autofill" />
 
         <EditText
             android:id="@+id/edit_certification_number"
@@ -49,7 +50,8 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_name" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_name"
+            tools:ignore="Autofill" />
 
         <EditText
             android:id="@+id/edit_birth"
@@ -67,7 +69,8 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_certification_number" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_certification_number"
+            tools:ignore="Autofill" />
 
         <EditText
             android:id="@+id/edit_recent_company"
@@ -84,7 +87,8 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_birth" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_birth"
+            tools:ignore="Autofill" />
 
         <Button
             android:id="@+id/btn_confirm"
@@ -93,6 +97,7 @@
             android:layout_margin="20dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/confirm_button_background"
+            android:onClick="@{()->vm.goCertificateFragment()}"
             android:outlineProvider="none"
             android:text="@string/confirm_btn_text"
             android:textColor="@color/white"

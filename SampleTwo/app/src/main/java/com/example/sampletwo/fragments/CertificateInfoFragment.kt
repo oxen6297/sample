@@ -1,26 +1,17 @@
 package com.example.sampletwo.fragments
 
-import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.viewModels
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentCertificateInfoBinding
+import com.example.sampletwo.viewmodels.MainViewModel
 
 class CertificateInfoFragment :
-    BaseFragment<FragmentCertificateInfoBinding>(FragmentCertificateInfoBinding::inflate) {
+    BaseFragmentDataBinding<FragmentCertificateInfoBinding, MainViewModel>(R.layout.fragment_certificate_info) {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override val viewModel: MainViewModel by viewModels()
 
-        binding.apply {
-            appBar.imgBack.setOnClickListener {
-                findNavController().popBackStack()
-            }
-            btnNext.setOnClickListener {
-                findNavController().navigate(
-                    R.id.action_certificateInfoFragment_to_certificationInfoTwoFragment
-                )
-            }
-        }
+    override fun setUpBinding(view: View) {
+        binding.vm = viewModel
     }
 }

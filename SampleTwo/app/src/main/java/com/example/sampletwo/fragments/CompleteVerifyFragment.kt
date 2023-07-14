@@ -1,19 +1,17 @@
 package com.example.sampletwo.fragments
 
-import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.viewModels
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentCompleteVerifyBinding
+import com.example.sampletwo.viewmodels.MainViewModel
 
 class CompleteVerifyFragment :
-    BaseFragment<FragmentCompleteVerifyBinding>(FragmentCompleteVerifyBinding::inflate) {
+    BaseFragmentDataBinding<FragmentCompleteVerifyBinding, MainViewModel>(R.layout.fragment_complete_verify) {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override val viewModel: MainViewModel by viewModels()
 
-        binding.btnConfirm.setOnClickListener {
-            findNavController().navigate(R.id.action_completeVerifyFragment_to_certificateInfoThreeFragment)
-        }
+    override fun setUpBinding(view: View) {
+        binding.vm = viewModel
     }
 }

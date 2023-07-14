@@ -2,30 +2,17 @@ package com.example.sampletwo.fragments
 
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentCertificateInfoTwoBinding
 import com.example.sampletwo.viewmodels.MainViewModel
 
 
 class CertificateInfoTwoFragment :
-    BaseFragmentDataBinding<FragmentCertificateInfoTwoBinding>(R.layout.fragment_certificate_info_two) {
+    BaseFragmentDataBinding<FragmentCertificateInfoTwoBinding, MainViewModel>(R.layout.fragment_certificate_info_two) {
 
-    private val viewModel: MainViewModel by viewModels()
+    override val viewModel: MainViewModel by viewModels()
 
     override fun setUpBinding(view: View) {
         binding.vm = viewModel
-        binding.apply {
-            appBar.imgBack.setOnClickListener {
-                findNavController().popBackStack()
-            }
-            btnNext.setOnClickListener {
-                findNavController().navigate(
-                    CertificateInfoTwoFragmentDirections.actionCertificationInfoTwoFragmentToQuestionCertificationFragment(
-                        viewModel.radioButtonClick.value?.name.toString()
-                    )
-                )
-            }
-        }
     }
 }

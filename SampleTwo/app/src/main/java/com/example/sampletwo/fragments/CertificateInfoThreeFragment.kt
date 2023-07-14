@@ -1,14 +1,12 @@
 package com.example.sampletwo.fragments
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Typeface
 import android.net.Uri
-import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
 import android.text.SpannableStringBuilder
@@ -17,27 +15,31 @@ import android.text.style.StyleSpan
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.viewModels
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentCertificateInfoThreeBinding
 import com.example.sampletwo.extension.customDialogTwoButton
 import com.example.sampletwo.util.BitmapConverter
 import com.example.sampletwo.util.IndentLeadingMarginSpan
+import com.example.sampletwo.viewmodels.DataStoreViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 @Suppress("DEPRECATION")
 class CertificateInfoThreeFragment :
-    BaseFragment<FragmentCertificateInfoThreeBinding>(FragmentCertificateInfoThreeBinding::inflate) {
+    BaseFragmentDataBinding<FragmentCertificateInfoThreeBinding, DataStoreViewModel>(R.layout.fragment_certificate_info_three) {
 
-    private lateinit var cameraLauncher: ActivityResultLauncher<Intent>
-    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
+    override val viewModel: DataStoreViewModel by viewModels()
 
-    @SuppressLint("ResourceAsColor")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setUpBinding(view: View) {
+        binding.vm = viewModel
         initRequestPermissionLauncher(view.context)
         initCameraLauncher()
         setUpBinding(view.context)
     }
+
+    private lateinit var cameraLauncher: ActivityResultLauncher<Intent>
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
 
     private fun setUpBinding(context: Context) {
         val blueColor = context.getColor(R.color.confirm_btn_color)
@@ -81,7 +83,6 @@ class CertificateInfoThreeFragment :
                 text = builder
             }
             btnCamera.setOnClickListener {
-//                requestTedPermission(context)
                 requestPermission()
             }
         }
@@ -91,13 +92,11 @@ class CertificateInfoThreeFragment :
         cameraLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 if (it.resultCode == RESULT_OK) {
-                    val bitmap = it.data?.extras?.get("data") as Bitmap
-                    val bitmapArgs = BitmapConverter().bitmapToString(bitmap)
-                    findNavController().navigate(
-                        CertificateInfoThreeFragmentDirections.actionCertificateInfoThreeFragmentToSignUpFragment(
-                            bitmapArgs
-                        )
-                    )
+                    viewModel.run {
+                        bitmap.value =
+                            BitmapConverter().bitmapToString(it.data?.extras?.get("data") as Bitmap)
+                        viewModel.goSignUpFragment()
+                    }
                 }
             }
     }
@@ -108,9 +107,6 @@ class CertificateInfoThreeFragment :
         }
     }
 
-    /**
-    일반 권한 요청 입니다.
-     **/
     private fun requestPermission() {
         val permissionList = Manifest.permission.CAMERA
         requestPermissionLauncher.launch(permissionList)
@@ -135,23 +131,4 @@ class CertificateInfoThreeFragment :
                 }
             }
     }
-
-    /**
-    테드 퍼미션 라이브러리를 사용한 권한 요청 입니다.
-     **/
-//    private fun requestTedPermission(context: Context) {
-//        TedPermission.create()
-//            .setPermissionListener(object : PermissionListener {
-//                override fun onPermissionGranted() {
-//                    cameraLauncher()
-//                }
-//
-//                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-//                    context.showToast("권한을 허용해주세요.")
-//                }
-//            })
-//            .setDeniedMessage("권한을 허용해주세요.")
-//            .setPermissions(Manifest.permission.CAMERA)
-//            .check()
-//    }
 }
