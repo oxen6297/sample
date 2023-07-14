@@ -7,7 +7,7 @@ import com.example.sampletwo.databinding.FragmentCompleteVerifyBinding
 import com.example.sampletwo.viewmodels.MainViewModel
 
 class CompleteVerifyFragment :
-    BaseFragmentDataBinding<FragmentCompleteVerifyBinding, MainViewModel>(R.layout.fragment_complete_verify) {
+    BaseFragment<FragmentCompleteVerifyBinding, MainViewModel>(R.layout.fragment_complete_verify) {
 
     override val viewModel: MainViewModel by viewModels()
 

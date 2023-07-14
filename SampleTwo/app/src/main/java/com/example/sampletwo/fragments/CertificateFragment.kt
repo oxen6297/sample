@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CertificateFragment :
-    BaseFragmentDataBinding<FragmentCertificateBinding, DataStoreViewModel>(R.layout.fragment_certificate) {
+    BaseFragment<FragmentCertificateBinding, DataStoreViewModel>(R.layout.fragment_certificate) {
 
     override val viewModel: DataStoreViewModel by viewModels()
 

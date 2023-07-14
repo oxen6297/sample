@@ -8,7 +8,7 @@ import com.example.sampletwo.databinding.FragmentQuestionCertificationBinding
 import com.example.sampletwo.viewmodels.MainViewModel
 
 class QuestionCertificationFragment :
-    BaseFragmentDataBinding<FragmentQuestionCertificationBinding, MainViewModel>(R.layout.fragment_question_certification) {
+    BaseFragment<FragmentQuestionCertificationBinding, MainViewModel>(R.layout.fragment_question_certification) {
 
     override val viewModel: MainViewModel by viewModels()
 

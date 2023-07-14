@@ -2,10 +2,12 @@ package com.example.sampletwo.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.sampletwo.fragments.CertificateFragmentDirections
 import com.example.sampletwo.fragments.CertificateInfoFragmentDirections
 import com.example.sampletwo.fragments.CertificateInfoTwoFragmentDirections
 import com.example.sampletwo.fragments.CompleteVerifyFragmentDirections
 import com.example.sampletwo.fragments.QuestionCertificationFragmentDirections
+import com.example.sampletwo.fragments.ShowMoreFragmentDirections
 
 class MainViewModel : BaseViewModel() {
     val agreeOne = MutableLiveData(false)
@@ -64,6 +66,14 @@ class MainViewModel : BaseViewModel() {
 
     fun cancel() {
         navigate(QuestionCertificationFragmentDirections.actionQuestionCertificationFragmentToCertificateFragment())
+    }
+
+    fun goCertificateInfoFragment(){
+        navigate(CertificateFragmentDirections.actionCertificateFragmentToCertificateInfoFragment())
+    }
+
+    fun getCertificateInfoFragment(){
+        navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToCertificateInfoFragment())
     }
 
     enum class RadioType {

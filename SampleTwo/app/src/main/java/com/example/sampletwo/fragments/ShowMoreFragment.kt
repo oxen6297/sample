@@ -1,19 +1,23 @@
 package com.example.sampletwo.fragments
 
 import android.content.Context
-import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentShowMoreBinding
 import com.example.sampletwo.extension.customDialogTwoButton
 import com.example.sampletwo.viewmodels.MainViewModel
 
-class ShowMoreFragment : BaseFragment<FragmentShowMoreBinding>(FragmentShowMoreBinding::inflate) {
+class ShowMoreFragment : BaseFragment<FragmentShowMoreBinding,MainViewModel>(R.layout.fragment_show_more) {
 
-    private val viewModel: MainViewModel by viewModels()
+    override val viewModel: MainViewModel by viewModels()
+
+    override fun setUpBinding(view: View) {
+        binding.vm = viewModel
+        observeData()
+        setUpBinding(view.context)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -23,12 +27,6 @@ class ShowMoreFragment : BaseFragment<FragmentShowMoreBinding>(FragmentShowMoreB
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(backPressedCallBack)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        observeData()
-        setUpBinding(view.context)
     }
 
     private fun setUpBinding(context: Context) {
@@ -45,9 +43,6 @@ class ShowMoreFragment : BaseFragment<FragmentShowMoreBinding>(FragmentShowMoreB
                 ) {
                     viewModel.switchValue.value = false
                 }
-            }
-            layoutGoCertificate.setOnClickListener {
-                findNavController().navigate(R.id.action_showMoreFragment_to_certificateInfoFragment)
             }
         }
     }

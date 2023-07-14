@@ -27,7 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 @Suppress("DEPRECATION")
 class CertificateInfoThreeFragment :
-    BaseFragmentDataBinding<FragmentCertificateInfoThreeBinding, DataStoreViewModel>(R.layout.fragment_certificate_info_three) {
+    BaseFragment<FragmentCertificateInfoThreeBinding, DataStoreViewModel>(R.layout.fragment_certificate_info_three) {
 
     override val viewModel: DataStoreViewModel by viewModels()
 

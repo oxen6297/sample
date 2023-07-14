@@ -1,14 +1,18 @@
 package com.example.sampletwo.fragments
 
-import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
+import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentQrLoginBinding
+import com.example.sampletwo.viewmodels.MainViewModel
 
 
-class QrLoginFragment : BaseFragment<FragmentQrLoginBinding>(FragmentQrLoginBinding::inflate) {
+class QrLoginFragment :
+    BaseFragment<FragmentQrLoginBinding, MainViewModel>(R.layout.fragment_qr_login) {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override val viewModel: MainViewModel by viewModels()
+
+    override fun setUpBinding(view: View) {
 
     }
 }

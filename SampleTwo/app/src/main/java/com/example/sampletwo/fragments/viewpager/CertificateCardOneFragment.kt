@@ -1,20 +1,18 @@
 package com.example.sampletwo.fragments.viewpager
 
-import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.viewModels
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentCertificateCardOneBinding
 import com.example.sampletwo.fragments.BaseFragment
+import com.example.sampletwo.viewmodels.MainViewModel
 
 class CertificateCardOneFragment :
-    BaseFragment<FragmentCertificateCardOneBinding>(FragmentCertificateCardOneBinding::inflate) {
+    BaseFragment<FragmentCertificateCardOneBinding, MainViewModel>(R.layout.fragment_certificate_card_one) {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override val viewModel: MainViewModel by viewModels()
 
-        binding.btnGetIssue.setOnClickListener {
-            findNavController().navigate(R.id.action_certificateFragment_to_certificateInfoFragment)
-        }
+    override fun setUpBinding(view: View) {
+        binding.vm = viewModel
     }
 }

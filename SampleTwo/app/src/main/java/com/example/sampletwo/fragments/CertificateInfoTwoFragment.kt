@@ -8,7 +8,7 @@ import com.example.sampletwo.viewmodels.MainViewModel
 
 
 class CertificateInfoTwoFragment :
-    BaseFragmentDataBinding<FragmentCertificateInfoTwoBinding, MainViewModel>(R.layout.fragment_certificate_info_two) {
+    BaseFragment<FragmentCertificateInfoTwoBinding, MainViewModel>(R.layout.fragment_certificate_info_two) {
 
     override val viewModel: MainViewModel by viewModels()
 

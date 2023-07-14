@@ -10,7 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SignUpFragment :
-    BaseFragmentDataBinding<FragmentSignUpBinding, DataStoreViewModel>(R.layout.fragment_sign_up) {
+    BaseFragment<FragmentSignUpBinding, DataStoreViewModel>(R.layout.fragment_sign_up) {
 
     override val viewModel: DataStoreViewModel by viewModels()
     private val signUpFragmentArgs: SignUpFragmentArgs by navArgs()
