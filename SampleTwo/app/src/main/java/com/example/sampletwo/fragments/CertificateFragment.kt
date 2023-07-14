@@ -38,6 +38,11 @@ class CertificateFragment :
     override fun setUpBinding(view: View) {
         observeData(view.context)
         viewModel.readData()
+        binding.apply {
+            imgCancel.setOnClickListener {
+                layoutTooltip.hide()
+            }
+        }
     }
 
     private fun observeData(context: Context) {
