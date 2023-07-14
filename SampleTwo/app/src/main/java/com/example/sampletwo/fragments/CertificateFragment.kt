@@ -44,7 +44,7 @@ class CertificateFragment :
             val value: Int = context.dpToPx(30)
             val viewpagerAdapter =
                 if (userInfo.certificateDate == 0L) ViewPagerAdapter(requireActivity())
-                else CertificateViewPagerAdapter(userInfo, context, ::itemRotateClickListener)
+                else CertificateViewPagerAdapter(userInfo, ::itemRotateClickListener)
 
             binding.viewpagerCertificateCard.apply {
                 adapter = viewpagerAdapter

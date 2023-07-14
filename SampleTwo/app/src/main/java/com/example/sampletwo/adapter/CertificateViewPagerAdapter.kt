@@ -1,7 +1,6 @@
 package com.example.sampletwo.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,6 @@ import java.text.SimpleDateFormat
 
 class CertificateViewPagerAdapter(
     private val userInfo: UserInfo,
-    private val context: Context,
     private val clickListener: (Boolean, View, View) -> Unit
 ) : RecyclerView.Adapter<CertificateViewPagerAdapter.ViewPagerViewHolder>() {
 
@@ -55,29 +53,29 @@ class CertificateViewPagerAdapter(
             }
             when (position) {
                 0 -> {
-                    textReceiver.text = context.getString(R.string.receiver)
-                    textCertificate.text = context.getString(R.string.certificate_card_one)
+                    textReceiver.text = root.context.getString(R.string.receiver)
+                    textCertificate.text = root.context.getString(R.string.certificate_card_one)
                     layoutCardFront.setBackgroundResource(R.drawable.card_02_front)
                     imgCardTop.setBackgroundResource(R.drawable.cart_top_yellow_background)
-                    textReceiverBack.text = context.getString(R.string.receiver)
+                    textReceiverBack.text = root.context.getString(R.string.receiver)
                 }
 
                 1 -> {
-                    textReceiver.text = context.getString(R.string.employee)
-                    textCertificate.text = context.getString(R.string.certificate_card_one)
+                    textReceiver.text = root.context.getString(R.string.employee)
+                    textCertificate.text = root.context.getString(R.string.certificate_card_one)
                     layoutCardFront.setBackgroundResource(R.drawable.card_01_front)
                     imgCardTop.setBackgroundResource(R.drawable.cart_top_blue_background)
-                    textReceiverBack.text = context.getString(R.string.employee)
-                    textCertificateNumber.text = context.getString(R.string.employee_number)
+                    textReceiverBack.text = root.context.getString(R.string.employee)
+                    textCertificateNumber.text = root.context.getString(R.string.employee_number)
                     layoutStartCertificate.hide()
                     layoutRecentCompany.hide()
                 }
 
                 2 -> {
-                    textCertificate.text = context.getString(R.string.verify_certification)
+                    textCertificate.text = root.context.getString(R.string.verify_certification)
                     layoutCardFront.setBackgroundResource(R.drawable.card_04_front)
                     imgCardTop.setBackgroundResource(R.drawable.card_top_black_background)
-                    textCertificateBack.text = context.getString(R.string.verify)
+                    textCertificateBack.text = root.context.getString(R.string.verify)
                     textReceiver.hide()
                     textReceiverBack.hide()
                     layoutStartCertificate.hide()
