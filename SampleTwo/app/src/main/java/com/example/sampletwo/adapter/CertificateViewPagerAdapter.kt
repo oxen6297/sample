@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.CertificateViewpagerItemListBinding
@@ -16,34 +18,30 @@ import java.text.SimpleDateFormat
 class CertificateViewPagerAdapter(
     private val userInfo: UserInfo,
     private val clickListener: (Boolean, View, View) -> Unit
-) : RecyclerView.Adapter<CertificateViewPagerAdapter.ViewPagerViewHolder>() {
-
-    @SuppressLint("SimpleDateFormat")
-    class ViewPagerViewHolder(val binding: CertificateViewpagerItemListBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: UserInfo) {
-            binding.apply {
-                user = item
-                imgPhoto.setImageBitmap(BitmapConverter().stringToBitmap(item.image))
-                textBirthInfo.text = StringBuilder(item.birth).insert(4, ".").insert(7, ".")
-                textStartCertificateInfo.text =
-                    SimpleDateFormat("yyyy.MM").format(item.certificateDate)
-            }
-        }
-    }
+) : ListAdapter<UserInfo, CertificateViewPagerAdapter.ViewPagerViewHolder>(DiaryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerViewHolder {
         val binding = CertificateViewpagerItemListBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         return ViewPagerViewHolder(binding)
     }
 
+    class ViewPagerViewHolder(val binding: CertificateViewpagerItemListBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    @SuppressLint("SimpleDateFormat")
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
-        holder.bind(userInfo)
         holder.binding.apply {
+            user = userInfo
+            executePendingBindings()
+            imgPhoto.setImageBitmap(BitmapConverter().stringToBitmap(userInfo.image))
+            textBirthInfo.text = StringBuilder(userInfo.birth).insert(4, ".").insert(7, ".")
+            textStartCertificateInfo.text =
+                SimpleDateFormat("yyyy.MM").format(userInfo.certificateDate)
+
             layoutRotate.singleClickListener {
                 clickListener(
                     layoutCardFront.visibility == View.VISIBLE,
@@ -51,6 +49,7 @@ class CertificateViewPagerAdapter(
                     layoutCardBack
                 )
             }
+
             when (position) {
                 0 -> {
                     textReceiver.text = root.context.getString(R.string.receiver)
@@ -66,7 +65,8 @@ class CertificateViewPagerAdapter(
                     layoutCardFront.setBackgroundResource(R.drawable.card_01_front)
                     imgCardTop.setBackgroundResource(R.drawable.cart_top_blue_background)
                     textReceiverBack.text = root.context.getString(R.string.employee)
-                    textCertificateNumber.text = root.context.getString(R.string.employee_number)
+                    textCertificateNumber.text =
+                        root.context.getString(R.string.employee_number)
                     layoutStartCertificate.hide()
                     layoutRecentCompany.hide()
                 }
@@ -85,6 +85,14 @@ class CertificateViewPagerAdapter(
             }
         }
     }
+}
 
-    override fun getItemCount(): Int = 3
+class DiaryDiffCallback : DiffUtil.ItemCallback<UserInfo>() {
+    override fun areItemsTheSame(oldItem: UserInfo, newItem: UserInfo): Boolean {
+        return oldItem.certificateDate == newItem.certificateDate
+    }
+
+    override fun areContentsTheSame(oldItem: UserInfo, newItem: UserInfo): Boolean {
+        return oldItem == newItem
+    }
 }
