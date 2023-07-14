@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat
 class CertificateViewPagerAdapter(
     private val userInfo: UserInfo,
     private val clickListener: (Boolean, View, View) -> Unit
-) : ListAdapter<UserInfo, CertificateViewPagerAdapter.ViewPagerViewHolder>(DiaryDiffCallback()) {
+) : ListAdapter<UserInfo, CertificateViewPagerAdapter.ViewPagerViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerViewHolder {
         val binding = CertificateViewpagerItemListBinding.inflate(
@@ -86,7 +86,7 @@ class CertificateViewPagerAdapter(
         }
     }
 
-    class DiaryDiffCallback : DiffUtil.ItemCallback<UserInfo>() {
+    class DiffCallback : DiffUtil.ItemCallback<UserInfo>() {
         override fun areItemsTheSame(oldItem: UserInfo, newItem: UserInfo): Boolean {
             return oldItem.certificateDate == newItem.certificateDate
         }
