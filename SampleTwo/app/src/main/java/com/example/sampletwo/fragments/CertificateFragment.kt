@@ -50,8 +50,10 @@ class CertificateFragment :
             val value: Int = context.dpToPx(30)
             binding.viewpagerCertificateCard.apply {
                 adapter =
-                    if (userInfo.certificateDate == 0L) ViewPagerAdapter(requireActivity())
-                    else CertificateViewPagerAdapter(userInfo, ::itemRotateClickListener).apply {
+                    if (userInfo.certificateDate == 0L) {
+                        binding.layoutTooltip.hide()
+                        ViewPagerAdapter(requireActivity())
+                    } else CertificateViewPagerAdapter(userInfo, ::itemRotateClickListener).apply {
                         submitList(arrayOfNulls<UserInfo>(3).toList())
                     }
 
