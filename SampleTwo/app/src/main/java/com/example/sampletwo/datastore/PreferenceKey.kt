@@ -6,3 +6,5 @@ const val CERTIFICATE_NUMBER = "certificateNumber"
 const val BIRTH = "birth"
 const val CERTIFICATE_DATE = "certificateDate"
 const val RECENT_COMPANY = "recentCompany"
+
+const val IS_CANCEL = "isCancel"

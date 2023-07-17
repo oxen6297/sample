@@ -6,24 +6,38 @@ import android.content.Context
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.core.animation.doOnEnd
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sampletwo.R
 import com.example.sampletwo.adapter.CertificateViewPagerAdapter
 import com.example.sampletwo.adapter.ViewPagerAdapter
 import com.example.sampletwo.databinding.FragmentCertificateBinding
-import com.example.sampletwo.datastore.UserInfo
+import com.example.sampletwo.datastore.IS_CANCEL
+import com.example.sampletwo.datastore.model.TooltipCancel
+import com.example.sampletwo.datastore.model.UserInfo
 import com.example.sampletwo.extension.dpToPx
 import com.example.sampletwo.extension.hide
 import com.example.sampletwo.extension.show
 import com.example.sampletwo.viewmodels.DataStoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CertificateFragment :
     BaseFragment<FragmentCertificateBinding, DataStoreViewModel>(R.layout.fragment_certificate) {
 
     override val viewModel: DataStoreViewModel by viewModels()
+
+    companion object {
+        private val Context.dataStore by preferencesDataStore("cancelTooltip")
+        private val isCancel = booleanPreferencesKey(IS_CANCEL)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -40,7 +54,7 @@ class CertificateFragment :
         viewModel.readData()
         binding.apply {
             imgCancel.setOnClickListener {
-                layoutTooltip.hide()
+                saveTooltip(view.context)
             }
         }
     }
@@ -54,6 +68,7 @@ class CertificateFragment :
                         binding.layoutTooltip.hide()
                         ViewPagerAdapter(requireActivity())
                     } else CertificateViewPagerAdapter(userInfo, ::itemRotateClickListener).apply {
+                        readTooltip(context)
                         submitList(arrayOfNulls<UserInfo>(3).toList())
                     }
 
@@ -95,6 +110,25 @@ class CertificateFragment :
             setTarget(view)
             view.cameraDistance = displayDensity * 8000
             start()
+        }
+    }
+
+    private fun saveTooltip(context: Context) {
+        CoroutineScope(Dispatchers.Main).launch {
+            context.dataStore.edit { cancelTooltip ->
+                cancelTooltip[isCancel] = true
+            }
+        }
+    }
+
+    private fun readTooltip(context: Context) {
+        CoroutineScope(Dispatchers.Main).launch {
+            context.dataStore.data.map { cancelTooltip ->
+                TooltipCancel(cancelTooltip[isCancel] ?: false)
+            }.collect {
+                if (it.isCanceled) binding.layoutTooltip.hide()
+                else binding.layoutTooltip.show()
+            }
         }
     }
 }
