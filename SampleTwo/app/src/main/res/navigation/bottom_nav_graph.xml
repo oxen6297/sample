@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_showMoreFragment_to_certificateInfoFragment"
             app:destination="@id/certificateInfoFragment" />
+        <action
+            android:id="@+id/action_showMoreFragment_to_myInfoFragment"
+            app:destination="@id/myInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/certificateInfoFragment"
@@ -115,5 +118,9 @@
             android:id="@+id/action_signUpFragment_to_certificateFragment"
             app:destination="@id/certificateFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/myInfoFragment"
+        android:name="com.example.sampletwo.fragments.MyInfoFragment"
+        android:label="MyInfoFragment" />
 
 </navigation>

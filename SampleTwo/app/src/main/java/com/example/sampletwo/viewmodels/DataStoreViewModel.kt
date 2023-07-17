@@ -28,6 +28,8 @@ class DataStoreViewModel @Inject constructor(private val dataStoreRepository: Da
     val userInfo: MutableLiveData<UserInfo>
         get() = _userInfo
 
+    val switchValue = MutableLiveData(false)
+
     private fun setIsBlank() {
         isBlank.value = signUpName.value?.isNotBlank() ?: false &&
                 signUpCertificationNumber.value?.isNotBlank() ?: false &&
@@ -71,7 +73,7 @@ class DataStoreViewModel @Inject constructor(private val dataStoreRepository: Da
         clickable()
     }
 
-    private fun clickable(){
+    private fun clickable() {
         if (isBlank.value == true) {
             saveData()
             navigate(SignUpFragmentDirections.actionSignUpFragmentToCertificateFragment())

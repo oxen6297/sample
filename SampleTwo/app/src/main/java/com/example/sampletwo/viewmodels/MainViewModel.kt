@@ -7,7 +7,6 @@ import com.example.sampletwo.fragments.CertificateInfoFragmentDirections
 import com.example.sampletwo.fragments.CertificateInfoTwoFragmentDirections
 import com.example.sampletwo.fragments.CompleteVerifyFragmentDirections
 import com.example.sampletwo.fragments.QuestionCertificationFragmentDirections
-import com.example.sampletwo.fragments.ShowMoreFragmentDirections
 
 class MainViewModel : BaseViewModel() {
     val agreeOne = MutableLiveData(false)
@@ -19,8 +18,6 @@ class MainViewModel : BaseViewModel() {
     private val _radioButtonClick = MutableLiveData(RadioType.MOBILE)
     val radioButtonClick: LiveData<RadioType>
         get() = _radioButtonClick
-
-    val switchValue = MutableLiveData(false)
 
     fun setAgreeAll(isCheck: Boolean) {
         agreeOne.value = isCheck
@@ -70,10 +67,6 @@ class MainViewModel : BaseViewModel() {
 
     fun goCertificateInfoFragment(){
         navigate(CertificateFragmentDirections.actionCertificateFragmentToCertificateInfoFragment())
-    }
-
-    fun getCertificateInfoFragment(){
-        navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToCertificateInfoFragment())
     }
 
     enum class RadioType {

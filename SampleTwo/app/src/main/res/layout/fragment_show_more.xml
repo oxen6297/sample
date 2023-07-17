@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.example.sampletwo.viewmodels.MainViewModel" />
+            type="com.example.sampletwo.viewmodels.DataStoreViewModel" />
 
     </data>
 
@@ -33,7 +33,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="36dp"
                     android:gravity="center_vertical"
-                    android:onClick="@{()->vm.getCertificateInfoFragment()}"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -67,21 +66,60 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_go_certificate" />
 
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layout_did"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_go_certificate">
+
+                    <TextView
+                        android:id="@+id/text_did"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/did_background"
+                        android:paddingStart="4dp"
+                        android:paddingTop="1dp"
+                        android:paddingEnd="4dp"
+                        android:paddingBottom="1dp"
+                        android:text="@string/did"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        tools:ignore="SmallSp" />
+
+                    <TextView
+                        android:id="@+id/text_did_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_marginEnd="110dp"
+                        android:text="@string/did_content"
+                        android:textColor="@color/medium_gray"
+                        android:textSize="13sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
                 <View
                     android:id="@+id/divider_one"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginTop="35dp"
-                    android:background="#E8E8E8"
+                    android:background="#F1F1F1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_go_certificate_content" />
+                    app:layout_constraintTop_toBottomOf="@+id/layout_did" />
 
                 <TextView
                     android:id="@+id/text_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="22dp"
                     android:text="@string/password"
                     android:textColor="@color/medium_gray"
                     android:textSize="13sp"
@@ -153,22 +191,74 @@
                     android:id="@+id/divider_two"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_marginTop="25dp"
-                    android:background="#E8E8E8"
+                    android:layout_marginTop="22dp"
+                    android:background="#F1F1F1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_activate_biometric" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_set_card_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider_two">
+
+                    <TextView
+                        android:id="@+id/text_set_card_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/reset_card_image"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/text_recapture_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/recapture_identity_card"
+                        android:textColor="@color/medium_gray"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_set_card_image"
+                        app:layout_constraintStart_toEndOf="@+id/text_set_card_image"
+                        app:layout_constraintTop_toTopOf="@+id/text_set_card_image" />
+
+                    <Button
+                        android:id="@+id/btn_set_image"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/ico_chevron_right"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_set_card_image"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/text_set_card_image" />
+
+                    <View
+                        android:id="@+id/divider_three"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="22dp"
+                        android:background="#F1F1F1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_set_card_image" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/text_set_notification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="22dp"
                     android:text="@string/set_notification"
                     android:textColor="@color/medium_gray"
                     android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider_two" />
+                    app:layout_constraintTop_toBottomOf="@+id/layout_set_card_image" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_activate_notification"
@@ -206,8 +296,8 @@
                     android:id="@+id/divider_four"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_marginTop="25dp"
-                    android:background="#E8E8E8"
+                    android:layout_marginTop="22dp"
+                    android:background="#F1F1F1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_activate_notification" />
@@ -216,7 +306,7 @@
                     android:id="@+id/text_info_app"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="22dp"
                     android:text="@string/app_info"
                     android:textColor="@color/medium_gray"
                     android:textSize="13sp"
@@ -224,12 +314,43 @@
                     app:layout_constraintTop_toBottomOf="@+id/divider_four" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layout_notice"
+                    android:id="@+id/layout_certificate_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_info_app">
+
+                    <TextView
+                        android:id="@+id/text_certificate_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/certificate_list"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/btn_certificate_list"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/ico_chevron_right"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_certificate_list"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/text_certificate_list" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_notice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="29dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_certificate_list">
 
                     <TextView
                         android:id="@+id/text_notice"
@@ -418,8 +539,8 @@
                     android:id="@+id/divider_five"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_marginTop="25dp"
-                    android:background="#E8E8E8"
+                    android:layout_marginTop="22dp"
+                    android:background="#F1F1F1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_reset_app" />
