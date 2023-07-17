@@ -7,7 +7,7 @@
 
         <variable
             name="user"
-            type="com.example.sampletwo.datastore.UserInfo" />
+            type="com.example.sampletwo.datastore.model.UserInfo" />
 
     </data>
 

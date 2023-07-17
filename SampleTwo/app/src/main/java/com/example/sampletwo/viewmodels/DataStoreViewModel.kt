@@ -3,7 +3,7 @@ package com.example.sampletwo.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.sampletwo.datastore.DataStoreRepository
-import com.example.sampletwo.datastore.UserInfo
+import com.example.sampletwo.datastore.model.UserInfo
 import com.example.sampletwo.fragments.CertificateInfoThreeFragmentDirections
 import com.example.sampletwo.fragments.SignUpFragmentDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,8 +25,7 @@ class DataStoreViewModel @Inject constructor(private val dataStoreRepository: Da
     val bitmap = MutableLiveData<String>()
 
     private val _userInfo = MutableLiveData<UserInfo>()
-    val userInfo: MutableLiveData<UserInfo>
-        get() = _userInfo
+    val userInfo: MutableLiveData<UserInfo> get() = _userInfo
 
     val switchValue = MutableLiveData(false)
 

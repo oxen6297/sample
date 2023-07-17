@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentShowMoreBinding
-import com.example.sampletwo.datastore.UserInfo
+import com.example.sampletwo.datastore.model.UserInfo
 import com.example.sampletwo.extension.customDialogTwoButton
 import com.example.sampletwo.extension.hide
 import com.example.sampletwo.extension.show

@@ -1,4 +1,4 @@
-package com.example.sampletwo.datastore
+package com.example.sampletwo.datastore.model
 
 data class UserInfo(
     val image: String,

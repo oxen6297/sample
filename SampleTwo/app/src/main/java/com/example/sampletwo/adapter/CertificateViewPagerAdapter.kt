@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.CertificateViewpagerItemListBinding
-import com.example.sampletwo.datastore.UserInfo
+import com.example.sampletwo.datastore.model.UserInfo
 import com.example.sampletwo.extension.hide
 import com.example.sampletwo.extension.singleClickListener
 import com.example.sampletwo.util.BitmapConverter

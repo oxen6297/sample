@@ -7,7 +7,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentMyInfoBinding
-import com.example.sampletwo.datastore.UserInfo
+import com.example.sampletwo.datastore.model.UserInfo
 import com.example.sampletwo.util.BitmapConverter
 import com.example.sampletwo.viewmodels.DataStoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
