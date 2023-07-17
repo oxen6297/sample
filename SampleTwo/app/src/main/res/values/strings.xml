@@ -42,6 +42,12 @@
     <string name="dialog_certificate_text">공무원연금증 발급이후\n이용하실 수 있습니다.</string>
     <string name="get_certificate">연금증 발급하기</string>
     <string name="get_certificate_content">증명서를 발급하기 위해 본인인증이 필요합니다.</string>
+    <string name="did">DID</string>
+    <string name="did_content">did:infra:01:123_A1_12qwertyuiopasdfghjklzxcvbnmas</string>
+    <string name="my_info">내 정보 보기</string>
+    <string name="reset_card_image">연금증 사진 설정</string>
+    <string name="recapture_identity_card">(신분증 재촬영)</string>
+    <string name="certificate_list">인증이력</string>
     <string name="password">비밀번호</string>
     <string name="set_password">비밀번호 설정</string>
     <string name="activate_biometric">생체인증 활성화</string>
