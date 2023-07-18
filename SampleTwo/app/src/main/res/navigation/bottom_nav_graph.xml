@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_showMoreFragment_to_myInfoFragment"
             app:destination="@id/myInfoFragment" />
+        <action
+            android:id="@+id/action_showMoreFragment_to_passwordFragment"
+            app:destination="@id/passwordFragment" />
     </fragment>
     <fragment
         android:id="@+id/certificateInfoFragment"
@@ -122,5 +125,9 @@
         android:id="@+id/myInfoFragment"
         android:name="com.example.sampletwo.fragments.MyInfoFragment"
         android:label="MyInfoFragment" />
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="com.example.sampletwo.fragments.PasswordFragment"
+        android:label="PasswordFragment" />
 
 </navigation>

@@ -73,6 +73,9 @@ class ShowMoreFragment :
                 layoutGoCertificate.setOnClickListener {
                     findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToMyInfoFragment())
                 }
+                layoutSetPassword.setOnClickListener {
+                    findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToPasswordFragment())
+                }
             } else {
                 layoutGoCertificate.setOnClickListener {
                     findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToCertificateInfoFragment())
