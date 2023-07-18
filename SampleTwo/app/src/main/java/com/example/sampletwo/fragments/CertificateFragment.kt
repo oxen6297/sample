@@ -16,6 +16,10 @@ import com.example.sampletwo.adapter.CertificateViewPagerAdapter
 import com.example.sampletwo.adapter.ViewPagerAdapter
 import com.example.sampletwo.databinding.FragmentCertificateBinding
 import com.example.sampletwo.datastore.IS_CANCEL
+import com.example.sampletwo.datastore.ONE_IS_FRONT
+import com.example.sampletwo.datastore.TWO_IS_FRONT
+import com.example.sampletwo.datastore.Three_IS_FRONT
+import com.example.sampletwo.datastore.model.CardState
 import com.example.sampletwo.datastore.model.TooltipCancel
 import com.example.sampletwo.datastore.model.UserInfo
 import com.example.sampletwo.extension.dpToPx
@@ -35,8 +39,12 @@ class CertificateFragment :
     override val viewModel: DataStoreViewModel by viewModels()
 
     companion object {
-        private val Context.dataStore by preferencesDataStore("cancelTooltip")
+        private val Context.dataStoreTooltip by preferencesDataStore("cancelTooltip")
+        private val Context.dataStoreCardState by preferencesDataStore("cardState")
         private val isCancel = booleanPreferencesKey(IS_CANCEL)
+        private val pageOne = booleanPreferencesKey(ONE_IS_FRONT)
+        private val pageTwo = booleanPreferencesKey(TWO_IS_FRONT)
+        private val pageThree = booleanPreferencesKey(Three_IS_FRONT)
     }
 
     override fun onAttach(context: Context) {
@@ -50,6 +58,7 @@ class CertificateFragment :
     }
 
     override fun setUpBinding(view: View) {
+        readCardState(view.context)
         observeData(view.context)
         viewModel.readData()
         binding.apply {
@@ -67,11 +76,16 @@ class CertificateFragment :
                     if (userInfo.certificateDate == 0L) {
                         binding.layoutTooltip.hide()
                         ViewPagerAdapter(requireActivity())
-                    } else CertificateViewPagerAdapter(userInfo, ::itemRotateClickListener).apply {
+                    } else CertificateViewPagerAdapter(
+                        userInfo,
+                        ::itemRotateClickListener,
+                        viewModel.cardOne.value ?: false,
+                        viewModel.cardTwo.value ?: false,
+                        viewModel.cardThree.value ?: false
+                    ).apply {
                         readTooltip(context)
                         submitList(arrayOfNulls<UserInfo>(3).toList())
                     }
-
                 clipToPadding = false
                 clipChildren = false
                 offscreenPageLimit = 1
@@ -84,11 +98,12 @@ class CertificateFragment :
         }
     }
 
-    private fun itemRotateClickListener(isFront: Boolean, front: View, back: View) {
+    private fun itemRotateClickListener(isFront: Boolean, front: View, back: View, position: Int) {
         if (isFront) {
             back.apply {
                 rotateCard(this, R.animator.rotate_reverse_animation)
                 show()
+                setCardState(position, true)
             }
             front.apply {
                 rotateCard(this, R.animator.rotate_out_animation).doOnEnd { hide() }
@@ -97,9 +112,20 @@ class CertificateFragment :
             front.apply {
                 rotateCard(this, R.animator.rotate_animation)
                 show()
+                setCardState(position, false)
             }
             back.apply {
                 rotateCard(this, R.animator.rotate_reverse_out_animation).doOnEnd { hide() }
+            }
+        }
+    }
+
+    private fun setCardState(position: Int, isFront: Boolean) {
+        viewModel.apply {
+            when (position) {
+                0 -> cardOne.value = isFront
+                1 -> cardTwo.value = isFront
+                2 -> cardThree.value = isFront
             }
         }
     }
@@ -113,22 +139,57 @@ class CertificateFragment :
         }
     }
 
-    private fun saveTooltip(context: Context) {
+    private fun saveCardState(context: Context) {
+        CoroutineScope(Dispatchers.IO).launch {
+            context.dataStoreCardState.edit { preference ->
+                viewModel.apply {
+                    preference[pageOne] = cardOne.value ?: false
+                    preference[pageTwo] = cardTwo.value ?: false
+                    preference[pageThree] = cardThree.value ?: false
+                }
+            }
+        }
+    }
+
+    private fun readCardState(context: Context) {
         CoroutineScope(Dispatchers.Main).launch {
-            context.dataStore.edit { cancelTooltip ->
-                cancelTooltip[isCancel] = true
+            context.dataStoreCardState.data.map { preference ->
+                CardState(
+                    preference[pageOne] ?: false,
+                    preference[pageTwo] ?: false,
+                    preference[pageThree] ?: false
+                )
+            }.collect { cardState ->
+                viewModel.apply {
+                    cardOne.value = cardState.pageOne
+                    cardTwo.value = cardState.pageTwo
+                    cardThree.value = cardState.pageThree
+                }
             }
         }
     }
 
     private fun readTooltip(context: Context) {
         CoroutineScope(Dispatchers.Main).launch {
-            context.dataStore.data.map { cancelTooltip ->
-                TooltipCancel(cancelTooltip[isCancel] ?: false)
-            }.collect {
-                if (it.isCanceled) binding.layoutTooltip.hide()
+            context.dataStoreTooltip.data.map { preference ->
+                TooltipCancel(preference[isCancel] ?: false)
+            }.collect { toolTipCancel ->
+                if (toolTipCancel.isCanceled) binding.layoutTooltip.hide()
                 else binding.layoutTooltip.show()
             }
         }
+    }
+
+    private fun saveTooltip(context: Context) {
+        CoroutineScope(Dispatchers.Main).launch {
+            context.dataStoreTooltip.edit { preference ->
+                preference[isCancel] = true
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        saveCardState(requireContext())
     }
 }

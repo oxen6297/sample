@@ -8,3 +8,6 @@ const val CERTIFICATE_DATE = "certificateDate"
 const val RECENT_COMPANY = "recentCompany"
 
 const val IS_CANCEL = "isCancel"
+const val ONE_IS_FRONT = "oneIsFront"
+const val TWO_IS_FRONT = "twoIsFront"
+const val Three_IS_FRONT = "threeIsFront"

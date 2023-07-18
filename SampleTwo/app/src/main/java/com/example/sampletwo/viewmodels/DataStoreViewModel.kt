@@ -1,5 +1,6 @@
 package com.example.sampletwo.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.sampletwo.datastore.DataStoreRepository
@@ -25,9 +26,28 @@ class DataStoreViewModel @Inject constructor(private val dataStoreRepository: Da
     val bitmap = MutableLiveData<String>()
 
     private val _userInfo = MutableLiveData<UserInfo>()
-    val userInfo: MutableLiveData<UserInfo> get() = _userInfo
+    val userInfo: LiveData<UserInfo> get() = _userInfo
 
     val switchValue = MutableLiveData(false)
+
+    val cardOne = MutableLiveData(false)
+    val cardTwo = MutableLiveData(false)
+    val cardThree = MutableLiveData(false)
+
+    private val password: MutableList<Int?> = mutableListOf()
+    private val _passwordList = MutableLiveData(MutableList<Int?>(6) { null })
+    val passwordList: LiveData<MutableList<Int?>> get() = _passwordList
+
+    fun clickNumberBtn(numText: Int) {
+        password.add(numText)
+        _passwordList.value = password
+    }
+
+    fun clickDelete() {
+        password.removeAt(password.lastIndex)
+        _passwordList.value = password
+    }
+
 
     private fun setIsBlank() {
         isBlank.value = signUpName.value?.isNotBlank() ?: false &&
