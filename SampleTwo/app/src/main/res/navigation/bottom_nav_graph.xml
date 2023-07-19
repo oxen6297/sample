@@ -9,7 +9,7 @@
         android:id="@+id/certificateFragment"
         android:name="com.example.sampletwo.fragments.CertificateFragment"
         android:label="fragment_certificate"
-        tools:layout="@layout/fragment_certificate" >
+        tools:layout="@layout/fragment_certificate">
         <action
             android:id="@+id/action_certificateFragment_to_certificateInfoFragment"
             app:destination="@id/certificateInfoFragment" />
@@ -23,7 +23,7 @@
         android:id="@+id/showMoreFragment"
         android:name="com.example.sampletwo.fragments.ShowMoreFragment"
         android:label="fragment_show_more"
-        tools:layout="@layout/fragment_show_more" >
+        tools:layout="@layout/fragment_show_more">
         <action
             android:id="@+id/action_showMoreFragment_to_certificateInfoFragment"
             app:destination="@id/certificateInfoFragment" />
@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_showMoreFragment_to_passwordFragment"
             app:destination="@id/passwordFragment" />
+        <action
+            android:id="@+id/action_showMoreFragment_to_noticeFragment"
+            app:destination="@id/noticeFragment" />
     </fragment>
     <fragment
         android:id="@+id/certificateInfoFragment"
@@ -45,7 +48,7 @@
             app:enterAnim="@anim/enter_from_right"
             app:exitAnim="@anim/exit_to_left"
             app:popEnterAnim="@anim/enter_from_left"
-            app:popExitAnim="@anim/exit_to_right"/>
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
     <fragment
         android:id="@+id/certificationInfoTwoFragment"
@@ -71,13 +74,14 @@
             app:enterAnim="@anim/enter_from_right"
             app:exitAnim="@anim/exit_to_left"
             app:popEnterAnim="@anim/enter_from_left"
-            app:popExitAnim="@anim/exit_to_right"/>
+            app:popExitAnim="@anim/exit_to_right" />
         <action
             android:id="@+id/action_questionCertificationFragment_to_certificateFragment"
             app:destination="@id/certificateFragment" />
-        <argument android:name="way"
-            app:argType="string"
-            android:defaultValue="MOBILE"/>
+        <argument
+            android:name="way"
+            android:defaultValue="MOBILE"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/completeVerifyFragment"
@@ -90,13 +94,13 @@
             app:enterAnim="@anim/enter_from_right"
             app:exitAnim="@anim/exit_to_left"
             app:popEnterAnim="@anim/enter_from_left"
-            app:popExitAnim="@anim/exit_to_right"/>
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
     <fragment
         android:id="@+id/certificateInfoThreeFragment"
         android:name="com.example.sampletwo.fragments.CertificateInfoThreeFragment"
         android:label="fragment_certificate_info_three"
-        tools:layout="@layout/fragment_certificate_info_three" >
+        tools:layout="@layout/fragment_certificate_info_three">
         <action
             android:id="@+id/action_certificateInfoThreeFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -105,7 +109,7 @@
         android:id="@+id/certificateCardOneFragment"
         android:name="com.example.sampletwo.fragments.viewpager.CertificateCardOneFragment"
         android:label="fragment_certificate_card_one"
-        tools:layout="@layout/fragment_certificate_card_one"/>
+        tools:layout="@layout/fragment_certificate_card_one" />
     <fragment
         android:id="@+id/certificateCardTwoFragment"
         android:name="com.example.sampletwo.fragments.viewpager.CertificateCardTwoFragment"
@@ -114,8 +118,9 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.sampletwo.fragments.SignUpFragment"
-        android:label="SignUpFragment" >
-        <argument android:name="image"
+        android:label="SignUpFragment">
+        <argument
+            android:name="image"
             app:argType="string" />
         <action
             android:id="@+id/action_signUpFragment_to_certificateFragment"
@@ -129,5 +134,9 @@
         android:id="@+id/passwordFragment"
         android:name="com.example.sampletwo.fragments.PasswordFragment"
         android:label="PasswordFragment" />
+    <fragment
+        android:id="@+id/noticeFragment"
+        android:name="com.example.sampletwo.fragments.NoticeFragment"
+        android:label="NoticeFragment"/>
 
 </navigation>

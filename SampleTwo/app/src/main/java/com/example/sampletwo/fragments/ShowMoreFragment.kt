@@ -24,7 +24,7 @@ class ShowMoreFragment :
         super.onAttach(context)
         val backPressedCallBack = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                activity?.finishAffinity()
+                findNavController().popBackStack()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(backPressedCallBack)
@@ -80,6 +80,9 @@ class ShowMoreFragment :
                 layoutGoCertificate.setOnClickListener {
                     findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToCertificateInfoFragment())
                 }
+            }
+            layoutNotice.setOnClickListener {
+                findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToNoticeFragment())
             }
         }
     }
