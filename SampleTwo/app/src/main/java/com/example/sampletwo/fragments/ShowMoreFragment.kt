@@ -57,8 +57,8 @@ class ShowMoreFragment :
 
     private fun observeData() {
         viewModel.apply {
-            viewModel.switchValue.observe(viewLifecycleOwner, ::agreeWatcher)
-            viewModel.userInfo.observe(viewLifecycleOwner, ::userInfoWatcher)
+            switchValue.observe(viewLifecycleOwner, ::agreeWatcher)
+            userInfo.observe(viewLifecycleOwner, ::userInfoWatcher)
         }
     }
 
