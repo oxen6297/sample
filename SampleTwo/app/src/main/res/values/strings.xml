@@ -120,6 +120,12 @@
     <string name="eight">8</string>
     <string name="nine">9</string>
     <string name="zero">0</string>
+    <string name="question_use_biometric">생체인증을\n사용하시겠어요?</string>
+    <string name="use_biometric_content">생체인증 등록후\n간편하게 로그인하세요!</string>
+    <string name="do_later">나중에 하기</string>
+    <string name="use">사용하기</string>
+    <string name="complete_setting">설정이 완료되었습니다.</string>
+    <string name="complete_setting_content">앱 설정은 더보기 화면에서\n언제든지 변경할 수 있습니다.</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
