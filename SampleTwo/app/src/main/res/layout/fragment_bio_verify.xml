@@ -34,6 +34,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_biometric" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_fingerprint"
+            android:layout_width="210dp"
+            android:layout_height="74dp"
+            android:layout_marginTop="153dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_biometric_content"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/fingerprint" />
+
         <Button
             android:id="@+id/btn_skip"
             android:layout_width="0dp"
