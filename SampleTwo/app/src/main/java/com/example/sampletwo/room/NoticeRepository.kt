@@ -1,7 +1,9 @@
 package com.example.sampletwo.room
 
+import javax.inject.Inject
 
-class NoticeRepository (private val db: NoticeDatabase) {
+
+class NoticeRepository @Inject constructor(private val db: NoticeDatabase) {
 
     fun getRecentNotice(): NoticeEntity? = db.noticeDao().getRecentNotice()
 
