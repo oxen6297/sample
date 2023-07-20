@@ -133,10 +133,30 @@
     <fragment
         android:id="@+id/passwordFragment"
         android:name="com.example.sampletwo.fragments.PasswordFragment"
-        android:label="PasswordFragment" />
+        android:label="PasswordFragment" >
+        <action
+            android:id="@+id/action_passwordFragment_to_bioVerifyFragment"
+            app:destination="@id/bioVerifyFragment" />
+    </fragment>
     <fragment
         android:id="@+id/noticeFragment"
         android:name="com.example.sampletwo.fragments.NoticeFragment"
         android:label="NoticeFragment"/>
+    <fragment
+        android:id="@+id/bioVerifyFragment"
+        android:name="com.example.sampletwo.fragments.BioVerifyFragment"
+        android:label="BioVerifyFragment" >
+        <action
+            android:id="@+id/action_bioVerifyFragment_to_completeSettingFragment"
+            app:destination="@id/completeSettingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/completeSettingFragment"
+        android:name="com.example.sampletwo.fragments.CompleteSettingFragment"
+        android:label="CompleteSettingFragment" >
+        <action
+            android:id="@+id/action_completeSettingFragment_to_showMoreFragment"
+            app:destination="@id/showMoreFragment" />
+    </fragment>
 
 </navigation>
