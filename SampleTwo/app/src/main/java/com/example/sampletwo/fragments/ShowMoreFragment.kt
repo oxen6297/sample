@@ -84,6 +84,9 @@ class ShowMoreFragment :
             layoutNotice.setOnClickListener {
                 findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToNoticeFragment())
             }
+            layoutMap.setOnClickListener {
+                findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToMapFragment())
+            }
         }
     }
 
