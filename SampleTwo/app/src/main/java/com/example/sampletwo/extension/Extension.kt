@@ -2,6 +2,7 @@ package com.example.sampletwo.extension
 
 import android.content.Context
 import android.view.View
+import android.widget.Toast
 import com.example.sampletwo.R
 import com.example.sampletwo.util.CustomDialog
 import com.example.sampletwo.util.CustomDialogTwoButton
@@ -58,4 +59,8 @@ fun Context.customDialogTwoButton(
 
 fun View.singleClickListener(onSingleClick: (View) -> Unit) {
     setOnClickListener(SingleClickListener(onSingleClick))
+}
+
+fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, message, duration).show()
 }
