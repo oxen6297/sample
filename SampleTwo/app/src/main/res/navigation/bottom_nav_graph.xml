@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_showMoreFragment_to_noticeFragment"
             app:destination="@id/noticeFragment" />
+        <action
+            android:id="@+id/action_showMoreFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
     </fragment>
     <fragment
         android:id="@+id/certificateInfoFragment"
@@ -158,5 +161,9 @@
             android:id="@+id/action_completeSettingFragment_to_showMoreFragment"
             app:destination="@id/showMoreFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.sampletwo.fragments.MapFragment"
+        android:label="MapFragment" />
 
 </navigation>
