@@ -2,7 +2,6 @@ package com.example.sampletwo.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -10,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.NoticeItemListBinding
 import com.example.sampletwo.extension.hide
+import com.example.sampletwo.extension.isShow
 import com.example.sampletwo.extension.show
 import com.example.sampletwo.room.NoticeEntity
 
@@ -33,7 +33,7 @@ class NoticeAdapter : ListAdapter<NoticeEntity, NoticeAdapter.ViewHolder>(DiffCa
         holder.binding.apply {
             notice = noticeEntity
             layoutTitleTimeBtn.setOnClickListener {
-                if (textNoticeContent.visibility == View.VISIBLE) {
+                if (textNoticeContent.isShow()) {
                     textNoticeContent.hide()
                     textNoticeTitle.apply {
                         setTextColor(root.context.getColor(R.color.black))

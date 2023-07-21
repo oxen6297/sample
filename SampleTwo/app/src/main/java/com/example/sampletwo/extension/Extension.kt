@@ -15,6 +15,10 @@ fun View.show() {
     visibility = View.VISIBLE
 }
 
+fun View.isShow(): Boolean {
+    return visibility == View.VISIBLE
+}
+
 fun Context.dpToPx(dp: Int): Int {
     val density = resources.displayMetrics.density
     return (density * dp).toInt()

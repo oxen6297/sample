@@ -12,6 +12,7 @@ import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentPasswordBinding
 import com.example.sampletwo.datastore.PASSWORD
 import com.example.sampletwo.extension.hide
+import com.example.sampletwo.extension.isShow
 import com.example.sampletwo.extension.show
 import com.example.sampletwo.viewmodels.DataStoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,14 +59,14 @@ class PasswordFragment :
             }
 
             viewLifecycleOwner.lifecycleScope.launch {
-                if (password[5] != null && textPassword.visibility == View.VISIBLE) {
+                if (password[5] != null && textPassword.isShow()) {
                     savePassword(password.joinToString())
                     textPassword.hide()
                     textConfirmPassword.show()
                     viewModel.initPassword()
-                } else if (password[5] != null && textConfirmPassword.visibility == View.VISIBLE && readPassword() != password.joinToString()) {
+                } else if (password[5] != null && textConfirmPassword.isShow() && readPassword() != password.joinToString()) {
                     textNotCorrectPassword.show()
-                } else if (password[5] != null && textConfirmPassword.visibility == View.VISIBLE && readPassword() == password.joinToString()) {
+                } else if (password[5] != null && textConfirmPassword.isShow() && readPassword() == password.joinToString()) {
                     textNotCorrectPassword.hide()
                     findNavController().navigate(PasswordFragmentDirections.actionPasswordFragmentToBioVerifyFragment())
                 }

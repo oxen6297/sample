@@ -11,6 +11,7 @@ import com.example.sampletwo.R
 import com.example.sampletwo.databinding.CertificateViewpagerItemListBinding
 import com.example.sampletwo.datastore.model.UserInfo
 import com.example.sampletwo.extension.hide
+import com.example.sampletwo.extension.isShow
 import com.example.sampletwo.extension.show
 import com.example.sampletwo.extension.singleClickListener
 import com.example.sampletwo.util.BitmapConverter
@@ -58,7 +59,7 @@ class CertificateViewPagerAdapter(
 
             layoutRotate.singleClickListener {
                 clickListener(
-                    layoutCardFront.visibility == View.VISIBLE,
+                    layoutCardFront.isShow(),
                     layoutCardFront,
                     layoutCardBack,
                     position
