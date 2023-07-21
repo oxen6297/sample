@@ -59,6 +59,7 @@
     <string name="new_text">NEW</string>
     <string name="faq">자주묻는질문(FAQ)</string>
     <string name="information_terms">이용약관</string>
+    <string name="map">지도</string>
     <string name="app_version">앱버전</string>
     <string name="app_version_number">1.0.0</string>
     <string name="re_set_app">앱 재설정</string>
