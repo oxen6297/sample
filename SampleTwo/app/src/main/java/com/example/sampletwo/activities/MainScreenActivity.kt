@@ -2,11 +2,8 @@ package com.example.sampletwo.activities
 
 import android.Manifest
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -14,8 +11,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.ActivityMainScreenBinding
-import com.example.sampletwo.extension.customDialogTwoButton
 import com.example.sampletwo.extension.hide
+import com.example.sampletwo.extension.permissionPopUp
 import com.example.sampletwo.extension.qrPopUp
 import com.example.sampletwo.extension.show
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,18 +58,7 @@ class MainScreenActivity :
     private fun initRequestPermissionLauncher(context: Context) {
         requestPermissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-                if (!it) context.customDialogTwoButton(
-                    R.string.go_setting,
-                    R.string.dialog_cancel,
-                    R.string.permission_title,
-                    R.string.permission_content,
-                    {
-                        Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                            data = Uri.parse("package:" + context.packageName)
-                            startActivity(this)
-                        }
-                    })
-
+                if (!it) context.permissionPopUp()
             }
     }
 }

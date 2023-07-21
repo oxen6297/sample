@@ -6,9 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Typeface
-import android.net.Uri
 import android.provider.MediaStore
-import android.provider.Settings
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
@@ -18,7 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentCertificateInfoThreeBinding
-import com.example.sampletwo.extension.customDialogTwoButton
+import com.example.sampletwo.extension.permissionPopUp
 import com.example.sampletwo.util.BitmapConverter
 import com.example.sampletwo.util.IndentLeadingMarginSpan
 import com.example.sampletwo.viewmodels.DataStoreViewModel
@@ -116,19 +114,7 @@ class CertificateInfoThreeFragment :
         requestPermissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) {
                 if (it) cameraLauncher()
-                else {
-                    context.customDialogTwoButton(
-                        R.string.go_setting,
-                        R.string.dialog_cancel,
-                        R.string.permission_title,
-                        R.string.permission_content,
-                        {
-                            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                                data = Uri.parse("package:" + context.packageName)
-                                startActivity(this)
-                            }
-                        })
-                }
+                else context.permissionPopUp()
             }
     }
 }
