@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -19,10 +22,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleTwo"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="bf0v80ymd4" />
+
         <activity
             android:name=".activities.MainScreenActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.InformationPageThreeActivity"
             android:exported="false" />
