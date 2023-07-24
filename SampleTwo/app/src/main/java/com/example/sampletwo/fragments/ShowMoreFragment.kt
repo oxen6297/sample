@@ -1,8 +1,12 @@
 package com.example.sampletwo.fragments
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
@@ -11,10 +15,13 @@ import com.example.sampletwo.datastore.model.UserInfo
 import com.example.sampletwo.extension.customDialogTwoButton
 import com.example.sampletwo.extension.hide
 import com.example.sampletwo.extension.show
+import com.example.sampletwo.util.CipherUtil
 import com.example.sampletwo.viewmodels.DataStoreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
+@RequiresApi(Build.VERSION_CODES.O)
 class ShowMoreFragment :
     BaseFragment<FragmentShowMoreBinding, DataStoreViewModel>(R.layout.fragment_show_more) {
 
@@ -39,6 +46,15 @@ class ShowMoreFragment :
 
     private fun setUpBinding(context: Context) {
         binding.apply {
+            layoutNotice.setOnClickListener {
+                findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToNoticeFragment())
+            }
+            layoutMap.setOnClickListener {
+                findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToMapFragment())
+            }
+            layoutSetPassword.setOnClickListener {
+                findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToPasswordFragment())
+            }
             layoutActivateNotification.setOnClickListener {
                 context.customDialogTwoButton(
                     R.string.agree,
@@ -50,6 +66,17 @@ class ShowMoreFragment :
                     }
                 ) {
                     viewModel.switchValue.value = false
+                }
+            }
+            layoutScheme.setOnClickListener {
+                val encryptText = CipherUtil().encrypt("testText")
+                val urlScheme = "sample://samplehost?text=$encryptText"
+                Intent().apply {
+                    action = Intent.ACTION_VIEW
+                    addCategory(Intent.CATEGORY_BROWSABLE)
+                    addCategory(Intent.CATEGORY_DEFAULT)
+                    data = Uri.parse(urlScheme)
+                    startActivity(this)
                 }
             }
         }
@@ -73,19 +100,10 @@ class ShowMoreFragment :
                 layoutGoCertificate.setOnClickListener {
                     findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToMyInfoFragment())
                 }
-                layoutSetPassword.setOnClickListener {
-                    findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToPasswordFragment())
-                }
             } else {
                 layoutGoCertificate.setOnClickListener {
                     findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToCertificateInfoFragment())
                 }
-            }
-            layoutNotice.setOnClickListener {
-                findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToNoticeFragment())
-            }
-            layoutMap.setOnClickListener {
-                findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToMapFragment())
             }
         }
     }
