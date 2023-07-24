@@ -9,10 +9,10 @@ import androidx.room.Query
 interface NoticeDao {
 
     @Query("SELECT * FROM NoticeEntity ORDER BY id DESC LIMIT 1")
-    fun getRecentNotice(): NoticeEntity?
+    suspend fun getRecentNotice(): NoticeEntity?
 
     @Query("SELECT * FROM NoticeEntity ORDER BY id")
-    fun getNotice(): List<NoticeEntity>
+    suspend fun getNotice(): List<NoticeEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addNotice(noticeEntity: NoticeEntity)
