@@ -10,12 +10,12 @@ import android.text.SpannableStringBuilder
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentMapBinding
 import com.example.sampletwo.extension.permissionPopUp
+import com.example.sampletwo.extension.queryTextListener
 import com.example.sampletwo.extension.showToast
 import com.example.sampletwo.viewmodels.DataStoreViewModel
 import com.google.firebase.annotations.concurrent.UiThread
@@ -55,17 +55,10 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
                 setQuery("", false)
                 true
             }
-            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    naverMap.locationTrackingMode = LocationTrackingMode.None
-                    getCoordinatesFromAddress(view.context, query.toString())
-                    return false
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    return false
-                }
-            })
+            queryTextListener { query ->
+                naverMap.locationTrackingMode = LocationTrackingMode.None
+                getCoordinatesFromAddress(view.context, query)
+            }
         }
     }
 

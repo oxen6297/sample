@@ -3,6 +3,7 @@ package com.example.sampletwo.extension
 import android.content.Context
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import com.example.sampletwo.R
 import com.example.sampletwo.util.CustomDialog
 import com.example.sampletwo.util.CustomDialogTwoButton
@@ -63,4 +64,17 @@ fun View.singleClickListener(onSingleClick: (View) -> Unit) {
 
 fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, message, duration).show()
+}
+
+fun SearchView.queryTextListener(search: (String) -> Unit) {
+    setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            search(query.toString())
+            return false
+        }
+
+        override fun onQueryTextChange(newText: String?): Boolean {
+            return false
+        }
+    })
 }
