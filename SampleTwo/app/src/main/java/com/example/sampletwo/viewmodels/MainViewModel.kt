@@ -35,10 +35,7 @@ class MainViewModel : BaseViewModel() {
     }
 
     fun onClickRadioButton(type: RadioType) {
-        when (type) {
-            RadioType.NICE -> _radioButtonClick.value = RadioType.NICE
-            RadioType.MOBILE -> _radioButtonClick.value = RadioType.MOBILE
-        }
+        _radioButtonClick.value = type
     }
 
     fun goCertificateInfoTwoFragment() {
@@ -65,7 +62,7 @@ class MainViewModel : BaseViewModel() {
         navigate(QuestionCertificationFragmentDirections.actionQuestionCertificationFragmentToCertificateFragment())
     }
 
-    fun goCertificateInfoFragment(){
+    fun goCertificateInfoFragment() {
         navigate(CertificateFragmentDirections.actionCertificateFragmentToCertificateInfoFragment())
     }
 
