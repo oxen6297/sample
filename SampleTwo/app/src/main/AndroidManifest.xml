@@ -22,6 +22,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleTwo"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.URLSchemeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="sample" android:host="samplehost" />
+            </intent-filter>
+        </activity>
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="bf0v80ymd4" />
