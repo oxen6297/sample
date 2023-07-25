@@ -13,3 +13,6 @@ const val TWO_IS_FRONT = "twoIsFront"
 const val Three_IS_FRONT = "threeIsFront"
 
 const val PASSWORD = "password"
+
+const val SECRET_KEY = "01234567890123450123456789012345"
+const val IV = "0123456789012345"

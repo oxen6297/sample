@@ -2,6 +2,8 @@ package com.example.sampletwo.util
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.example.sampletwo.datastore.IV
+import com.example.sampletwo.datastore.SECRET_KEY
 import java.nio.charset.StandardCharsets
 import java.util.Base64
 import javax.crypto.Cipher
@@ -27,10 +29,5 @@ class CipherUtil {
         cipher.init(Cipher.DECRYPT_MODE, key, iv)
         val decrypted: ByteArray = cipher.doFinal(Base64.getDecoder().decode(cipherText))
         return String(decrypted, StandardCharsets.UTF_8)
-    }
-
-    companion object{
-        private const val SECRET_KEY = "01234567890123450123456789012345"
-        private const val IV = "0123456789012345"
     }
 }
