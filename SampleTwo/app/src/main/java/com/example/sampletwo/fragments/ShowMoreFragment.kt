@@ -55,6 +55,11 @@ class ShowMoreFragment :
             layoutSetPassword.setOnClickListener {
                 findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToPasswordFragment())
             }
+            layoutGoCertificate.setOnClickListener {
+                if (viewModel.userInfo.value?.certificateDate == 0L) {
+                    findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToCertificateInfoFragment())
+                } else findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToMyInfoFragment())
+            }
             layoutActivateNotification.setOnClickListener {
                 context.customDialogTwoButton(
                     R.string.agree,
@@ -97,13 +102,6 @@ class ShowMoreFragment :
                 layoutSetCardImage.show()
                 layoutCertificateList.show()
                 textGoCertificate.text = userInfo.name
-                layoutGoCertificate.setOnClickListener {
-                    findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToMyInfoFragment())
-                }
-            } else {
-                layoutGoCertificate.setOnClickListener {
-                    findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToCertificateInfoFragment())
-                }
             }
         }
     }
