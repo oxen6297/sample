@@ -31,7 +31,7 @@ class ShowMoreFragment :
         super.onAttach(context)
         val backPressedCallBack = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                findNavController().popBackStack()
+                activity?.finishAffinity()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(backPressedCallBack)
