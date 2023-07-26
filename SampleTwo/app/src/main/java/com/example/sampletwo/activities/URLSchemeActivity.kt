@@ -19,7 +19,7 @@ class URLSchemeActivity :
         val data: Uri? = intent?.data
         if (action == Intent.ACTION_VIEW) {
             val text = data?.getQueryParameter("text")
-            val deCryptText = CipherUtil().decrypt(text)
+            val deCryptText = CipherUtil(this).decrypt(text)
             binding.textScheme.text = deCryptText
         }
     }

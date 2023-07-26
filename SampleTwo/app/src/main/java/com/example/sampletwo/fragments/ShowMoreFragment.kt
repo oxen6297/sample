@@ -74,7 +74,7 @@ class ShowMoreFragment :
                 }
             }
             layoutScheme.setOnClickListener {
-                val encryptText = CipherUtil().encrypt("testText")
+                val encryptText = CipherUtil(context).encrypt("testText")
                 val urlScheme = "sample://samplehost?text=$encryptText"
                 Intent().apply {
                     action = Intent.ACTION_VIEW
