@@ -25,7 +25,7 @@ class NoticeFragment :
         super.onAttach(context)
         val backPressedCallBack = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                activity?.supportFragmentManager?.popBackStack()
+                findNavController().popBackStack()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(backPressedCallBack)
