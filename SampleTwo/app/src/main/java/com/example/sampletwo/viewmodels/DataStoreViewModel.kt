@@ -34,31 +34,6 @@ class DataStoreViewModel @Inject constructor(private val dataStoreRepository: Da
     val cardTwo = MutableLiveData(false)
     val cardThree = MutableLiveData(false)
 
-    private val password = MutableList<Int?>(6) { null }
-    private val _passwordList = MutableLiveData(MutableList<Int?>(6) { null })
-    val passwordList: LiveData<MutableList<Int?>> get() = _passwordList
-
-    fun clickNumberBtn(numText: Int) {
-        val nullIndex = password.indexOfFirst { it == null }
-        if (nullIndex != -1) {
-            password[nullIndex] = numText
-            _passwordList.value = password
-        }
-    }
-
-    fun clickDelete() {
-        val notNullIndex = password.indexOfLast { it != null }
-        if (notNullIndex != -1) {
-            password[notNullIndex] = null
-            _passwordList.value = password
-        }
-    }
-
-    fun initPassword() {
-        password.fill(null)
-        _passwordList.value = password
-    }
-
     private fun setIsBlank() {
         isBlank.value = signUpName.value?.isNotBlank() ?: false &&
                 signUpCertificationNumber.value?.isNotBlank() ?: false &&

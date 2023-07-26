@@ -14,17 +14,15 @@ import com.example.sampletwo.datastore.PASSWORD
 import com.example.sampletwo.extension.hide
 import com.example.sampletwo.extension.isShow
 import com.example.sampletwo.extension.show
-import com.example.sampletwo.viewmodels.DataStoreViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import com.example.sampletwo.viewmodels.PasswordViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
 class PasswordFragment :
-    BaseFragment<FragmentPasswordBinding, DataStoreViewModel>(R.layout.fragment_password) {
+    BaseFragment<FragmentPasswordBinding, PasswordViewModel>(R.layout.fragment_password) {
 
-    override val viewModel: DataStoreViewModel by viewModels()
+    override val viewModel: PasswordViewModel by viewModels()
 
     companion object {
         private val Context.dataStorePassword by preferencesDataStore("password")
