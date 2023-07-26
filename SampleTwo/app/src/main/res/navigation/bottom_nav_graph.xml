@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_showMoreFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_showMoreFragment_to_verifyFragment"
+            app:destination="@id/verifyFragment" />
     </fragment>
     <fragment
         android:id="@+id/certificateInfoFragment"
@@ -165,5 +168,9 @@
         android:id="@+id/mapFragment"
         android:name="com.example.sampletwo.fragments.MapFragment"
         android:label="MapFragment" />
+    <fragment
+        android:id="@+id/verifyFragment"
+        android:name="com.example.sampletwo.fragments.VerifyFragment"
+        android:label="VerifyFragment" />
 
 </navigation>
