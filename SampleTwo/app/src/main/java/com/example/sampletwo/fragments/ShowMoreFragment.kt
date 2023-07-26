@@ -56,7 +56,7 @@ class ShowMoreFragment :
                 findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToPasswordFragment())
             }
             layoutGoCertificate.setOnClickListener {
-                if (viewModel.userInfo.value?.certificateDate == 0L) {
+                if (viewModel.userInfo.value == null) {
                     findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToCertificateInfoFragment())
                 } else findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToMyInfoFragment())
             }
@@ -94,9 +94,9 @@ class ShowMoreFragment :
         }
     }
 
-    private fun userInfoWatcher(userInfo: UserInfo) {
+    private fun userInfoWatcher(userInfo: UserInfo?) {
         binding.apply {
-            if (userInfo.certificateDate != 0L) {
+            if (userInfo != null) {
                 textGoCertificateContent.hide()
                 layoutDid.show()
                 layoutSetCardImage.show()

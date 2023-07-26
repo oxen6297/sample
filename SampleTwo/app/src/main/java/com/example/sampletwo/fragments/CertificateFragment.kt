@@ -92,7 +92,7 @@ class CertificateFragment :
             val value: Int = context.dpToPx(30)
             binding.viewpagerCertificateCard.apply {
                 adapter =
-                    if (userInfo.certificateDate == 0L) {
+                    if (userInfo == null) {
                         binding.layoutTooltip.hide()
                         ViewPagerAdapter(requireActivity())
                     } else CertificateViewPagerAdapter(

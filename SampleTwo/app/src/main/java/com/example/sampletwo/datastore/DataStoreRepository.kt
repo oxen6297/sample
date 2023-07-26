@@ -23,8 +23,9 @@ class DataStoreRepository(private val context: Context) : UserInfoService {
         }
     }
 
-    override suspend fun readUserInfo(): Flow<UserInfo> = context.dataStore.data.map { userInfo ->
-        UserInfo(
+    override suspend fun readUserInfo(): Flow<UserInfo?> = context.dataStore.data.map { userInfo ->
+        if (userInfo.asMap().values.isEmpty()) null
+        else UserInfo(
             image = userInfo[image] ?: "",
             name = userInfo[name] ?: "",
             certificateNumber = userInfo[certificateNumber] ?: "",
