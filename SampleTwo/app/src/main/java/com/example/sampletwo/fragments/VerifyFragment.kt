@@ -59,7 +59,7 @@ class VerifyFragment :
                         try {
                             startActivity(intent)
                         } catch (e: ActivityNotFoundException) {
-                            if (intent.getPackage() == "") {
+                            if (intent.getPackage().isNullOrBlank()) {
                                 startActivity(
                                     Intent(
                                         Intent.ACTION_VIEW,
