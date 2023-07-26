@@ -2,9 +2,9 @@ package com.example.sampletwo.fragments
 
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.view.KeyEvent
 import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
@@ -12,7 +12,6 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebView.setWebContentsDebuggingEnabled
 import android.webkit.WebViewClient
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.sampletwo.R
@@ -32,19 +31,6 @@ class VerifyFragment :
     BaseFragment<FragmentVerifyBinding, MainViewModel>(R.layout.fragment_verify) {
 
     override val viewModel: MainViewModel by viewModels()
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val backPressedCallBack = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                binding.webView.apply {
-                    if (canGoBack()) goBack()
-                    else findNavController().popBackStack()
-                }
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(backPressedCallBack)
-    }
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun setUpBinding(view: View) {
@@ -83,13 +69,24 @@ class VerifyFragment :
                             }
                         }
                         true
-                    } else {
-                        view?.loadUrl(url)
-                        false
-                    }
+                    } else false
                 }
             }
             loadUrl("https://dev.adtcapsmobilecard.co.kr/nice/checkplus_main?os_type=1&app_type=A")
+            setOnKeyListener { _, keyCode, event ->
+                if (event.action != KeyEvent.ACTION_DOWN) return@setOnKeyListener true
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    if (canGoBack()) goBack()
+                    else findNavController().popBackStack()
+                    return@setOnKeyListener true
+                }
+                return@setOnKeyListener false
+            }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.webView.destroy()
     }
 }
