@@ -6,6 +6,7 @@ import android.content.Context.LOCATION_SERVICE
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.LocationManager
+import android.os.Build
 import android.text.SpannableStringBuilder
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
@@ -27,6 +28,9 @@ import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.util.FusedLocationSource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layout.fragment_map),
@@ -62,18 +66,6 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
         }
     }
 
-    @Suppress("DEPRECATION")
-    private fun getCoordinatesFromAddress(context: Context, address: String) {
-        Geocoder(context).getFromLocationName(address, 1)?.forEach {
-            setCamera(it.latitude, it.longitude)
-            marker.apply {
-                position = LatLng(it.latitude, it.longitude)
-                captionText = address
-                map = naverMap
-            }
-        }
-    }
-
     @UiThread
     override fun onMapReady(p0: NaverMap) {
         naverMap = p0
@@ -88,9 +80,35 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
         }
     }
 
-    private fun setCamera(latitude: Double, longitude: Double) =
-        naverMap.moveCamera(CameraUpdate.scrollTo(LatLng(latitude, longitude)))
+    @Suppress("DEPRECATION")
+    private fun getCoordinatesFromAddress(context: Context, address: String) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Geocoder(context).getFromLocationName(address, 1) { addresses ->
+                addresses.forEach {
+                    setCamera(it.latitude, it.longitude)
+                    setMarker(it.latitude, it.longitude, address)
+                }
+            }
+        } else {
+            Geocoder(context).getFromLocationName(address, 1)?.forEach {
+                setCamera(it.latitude, it.longitude)
+                setMarker(it.latitude, it.longitude, address)
+            }
+        }
+    }
 
+    private fun setMarker(latitude: Double, longitude: Double, address: String) {
+        marker.apply {
+            position = LatLng(latitude, longitude)
+            captionText = address
+            map = naverMap
+        }
+    }
+
+    private fun setCamera(latitude: Double, longitude: Double) =
+        CoroutineScope(Dispatchers.Main).launch {
+            naverMap.moveCamera(CameraUpdate.scrollTo(LatLng(latitude, longitude)))
+        }
 
     private fun initMap() {
         val fm = childFragmentManager
@@ -105,14 +123,15 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
         if (ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED &&
+            ) != PackageManager.PERMISSION_GRANTED ||
             ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.ACCESS_COARSE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            ) != PackageManager.PERMISSION_GRANTED
+        ) requestPermission()
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             context.showToast("위치 정보를 활성화 시켜주세요.")
-        } else requestPermission()
+        }
     }
 
     private fun initRequestLauncher(context: Context) {
