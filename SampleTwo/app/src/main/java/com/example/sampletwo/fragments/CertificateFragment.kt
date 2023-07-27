@@ -71,6 +71,17 @@ class CertificateFragment :
             imgCancel.setOnClickListener {
                 saveTooltip(view.context)
             }
+            viewpagerCertificateCard.apply {
+                val value: Int = view.context.dpToPx(30)
+                clipToPadding = false
+                clipChildren = false
+                offscreenPageLimit = 1
+                getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+                setPageTransformer { page, position ->
+                    if (position <= 0) page.translationY = -position * value
+                    else if (position > 0) page.translationY = position * value
+                }
+            }
         }
     }
 
@@ -89,30 +100,18 @@ class CertificateFragment :
 
     private fun observeData(context: Context) {
         viewModel.userInfo.observe(viewLifecycleOwner) { userInfo ->
-            val value: Int = context.dpToPx(30)
-            binding.viewpagerCertificateCard.apply {
-                adapter =
-                    if (userInfo == null) {
-                        binding.layoutTooltip.hide()
-                        ViewPagerAdapter(requireActivity())
-                    } else CertificateViewPagerAdapter(
-                        userInfo,
-                        ::itemRotateClickListener,
-                        viewModel.cardOne.value ?: false,
-                        viewModel.cardTwo.value ?: false,
-                        viewModel.cardThree.value ?: false
-                    ).apply {
-                        readTooltip(context)
-                        submitList(arrayOfNulls<UserInfo>(3).toList())
-                    }
-                clipToPadding = false
-                clipChildren = false
-                offscreenPageLimit = 1
-                getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-                setPageTransformer { page, position ->
-                    if (position <= 0) page.translationY = -position * value
-                    else if (position > 0) page.translationY = position * value
-                }
+            binding.viewpagerCertificateCard.adapter = if (userInfo == null) {
+                binding.layoutTooltip.hide()
+                ViewPagerAdapter(requireActivity())
+            } else CertificateViewPagerAdapter(
+                userInfo,
+                ::itemRotateClickListener,
+                viewModel.cardOne.value ?: false,
+                viewModel.cardTwo.value ?: false,
+                viewModel.cardThree.value ?: false
+            ).apply {
+                readTooltip(context)
+                submitList(arrayOfNulls<UserInfo>(3).toList())
             }
         }
     }
