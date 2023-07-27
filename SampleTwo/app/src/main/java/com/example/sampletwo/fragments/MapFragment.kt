@@ -41,9 +41,6 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
     private lateinit var locationSources: FusedLocationSource
     private lateinit var marker: Marker
     private lateinit var naverMap: NaverMap
-    private val locationManager by lazy {
-        requireActivity().getSystemService(LOCATION_SERVICE) as LocationManager
-    }
 
     override fun setUpBinding(view: View) {
         initMap()
@@ -120,6 +117,8 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
     }
 
     private fun checkPermission(context: Context) {
+        val locationManager =
+            requireActivity().getSystemService(LOCATION_SERVICE) as LocationManager
         if (ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.ACCESS_FINE_LOCATION
