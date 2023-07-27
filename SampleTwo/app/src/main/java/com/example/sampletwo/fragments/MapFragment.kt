@@ -24,10 +24,10 @@ import com.example.sampletwo.extension.permissionPopUp
 import com.example.sampletwo.extension.queryTextListener
 import com.example.sampletwo.extension.showToast
 import com.example.sampletwo.viewmodels.DataStoreViewModel
+import com.google.android.gms.location.LocationServices
 import com.google.firebase.annotations.concurrent.UiThread
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
-import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
@@ -51,17 +51,15 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
         super.onAttach(context)
         val backPressedCallBack = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                findNavController().popBackStack()
+                    findNavController().popBackStack()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(backPressedCallBack)
     }
 
     override fun setUpBinding(view: View) {
-        if (!checkNetworkState(view.context)) view.context.showToast("네트워크 연결 상태를 확인해주세요.")
         initMap()
         initRequestLauncher(view.context)
-        checkPermission(view.context)
         binding.searchView.apply {
             clearFocus()
             queryHint = SpannableStringBuilder("주소지를 입력해주세요.")
@@ -71,7 +69,6 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
                 true
             }
             queryTextListener { query ->
-                naverMap.locationTrackingMode = LocationTrackingMode.None
                 getCoordinatesFromAddress(view.context, query)
             }
         }
@@ -84,11 +81,8 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
         naverMap.apply {
             locationOverlay.isVisible = true
             locationSource = FusedLocationSource(this@MapFragment, 1000)
-            addOnLocationChangeListener { location ->
-                locationTrackingMode = LocationTrackingMode.Face
-                setCamera(location.latitude, location.longitude)
-            }
         }
+        checkPermission(requireContext())
     }
 
     @Suppress("DEPRECATION")
@@ -97,13 +91,11 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 Geocoder(context).getFromLocationName(address, 1) { addresses ->
                     addresses.forEach {
-                        setCamera(it.latitude, it.longitude)
                         setMarker(it.latitude, it.longitude, address)
                     }
                 }
             } else {
                 Geocoder(context).getFromLocationName(address, 1)?.forEach {
-                    setCamera(it.latitude, it.longitude)
                     setMarker(it.latitude, it.longitude, address)
                 }
             }
@@ -118,12 +110,10 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
             captionText = address
             map = naverMap
         }
-    }
-
-    private fun setCamera(latitude: Double, longitude: Double) =
         CoroutineScope(Dispatchers.Main).launch {
             naverMap.moveCamera(CameraUpdate.scrollTo(LatLng(latitude, longitude)))
         }
+    }
 
     private fun initMap() {
         val fm = childFragmentManager
@@ -135,19 +125,27 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
     }
 
     private fun checkPermission(context: Context) {
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         val locationManager =
             requireActivity().getSystemService(LOCATION_SERVICE) as LocationManager
         if (ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED ||
+            ) == PackageManager.PERMISSION_GRANTED &&
             ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) requestPermission()
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationClient.lastLocation.addOnSuccessListener {
+                setMarker(it.latitude, it.longitude, "현재위치")
+            }
+        } else requestPermission()
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             context.showToast("위치 정보를 활성화 시켜주세요.")
+        }
+        if (!checkNetworkState(context)) {
+            context.showToast("네트워크 연결 상태를 확인해주세요.")
         }
     }
 
@@ -179,5 +177,4 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
             else -> false
         }
     }
-
 }
