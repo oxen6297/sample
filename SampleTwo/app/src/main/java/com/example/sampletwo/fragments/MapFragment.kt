@@ -6,13 +6,18 @@ import android.content.Context.LOCATION_SERVICE
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.LocationManager
+import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.text.SpannableStringBuilder
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentMapBinding
 import com.example.sampletwo.extension.permissionPopUp
@@ -31,6 +36,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 @AndroidEntryPoint
 class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layout.fragment_map),
@@ -38,16 +44,24 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
 
     override val viewModel: DataStoreViewModel by viewModels()
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Array<String>>
-    private lateinit var locationSources: FusedLocationSource
     private lateinit var marker: Marker
     private lateinit var naverMap: NaverMap
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val backPressedCallBack = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(backPressedCallBack)
+    }
+
     override fun setUpBinding(view: View) {
+        if (!checkNetworkState(view.context)) view.context.showToast("네트워크 연결 상태를 확인해주세요.")
         initMap()
-        locationSources = FusedLocationSource(this, 1000)
         initRequestLauncher(view.context)
         checkPermission(view.context)
-
         binding.searchView.apply {
             clearFocus()
             queryHint = SpannableStringBuilder("주소지를 입력해주세요.")
@@ -69,7 +83,7 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
         marker = Marker()
         naverMap.apply {
             locationOverlay.isVisible = true
-            locationSource = locationSources
+            locationSource = FusedLocationSource(this@MapFragment, 1000)
             addOnLocationChangeListener { location ->
                 locationTrackingMode = LocationTrackingMode.Face
                 setCamera(location.latitude, location.longitude)
@@ -79,18 +93,22 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
 
     @Suppress("DEPRECATION")
     private fun getCoordinatesFromAddress(context: Context, address: String) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            Geocoder(context).getFromLocationName(address, 1) { addresses ->
-                addresses.forEach {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                Geocoder(context).getFromLocationName(address, 1) { addresses ->
+                    addresses.forEach {
+                        setCamera(it.latitude, it.longitude)
+                        setMarker(it.latitude, it.longitude, address)
+                    }
+                }
+            } else {
+                Geocoder(context).getFromLocationName(address, 1)?.forEach {
                     setCamera(it.latitude, it.longitude)
                     setMarker(it.latitude, it.longitude, address)
                 }
             }
-        } else {
-            Geocoder(context).getFromLocationName(address, 1)?.forEach {
-                setCamera(it.latitude, it.longitude)
-                setMarker(it.latitude, it.longitude, address)
-            }
+        } catch (e: IOException) {
+            context.showToast("네트워크 연결 상태를 확인해주세요.")
         }
     }
 
@@ -147,4 +165,19 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
         )
         requestPermissionLauncher.launch(permissionList)
     }
+
+    private fun checkNetworkState(context: Context): Boolean {
+        val connectivityManager: ConnectivityManager =
+            context.getSystemService(ConnectivityManager::class.java)
+        val network: Network = connectivityManager.activeNetwork ?: return false
+        val actNetwork: NetworkCapabilities =
+            connectivityManager.getNetworkCapabilities(network) ?: return false
+
+        return when {
+            actNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            actNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            else -> false
+        }
+    }
+
 }
