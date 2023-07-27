@@ -2,7 +2,6 @@ package com.example.sampletwo.fragments
 
 import android.animation.Animator
 import android.animation.AnimatorInflater
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import androidx.activity.OnBackPressedCallback
@@ -26,7 +25,6 @@ import com.example.sampletwo.datastore.model.UserInfo
 import com.example.sampletwo.extension.dpToPx
 import com.example.sampletwo.extension.hide
 import com.example.sampletwo.extension.show
-import com.example.sampletwo.room.NoticeEntity
 import com.example.sampletwo.viewmodels.DataStoreViewModel
 import com.example.sampletwo.viewmodels.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -85,15 +83,14 @@ class CertificateFragment :
         }
     }
 
-    private fun observeNotice() = roomViewModel.recentNotice.observe(this, ::noticeWatcher)
-
-    @SuppressLint("SimpleDateFormat")
-    private fun noticeWatcher(noticeEntity: NoticeEntity?) {
-        binding.apply {
-            noticeEntity?.let {
-                textNoticeTitle.text = it.title
-                textNoticeContent.text = it.content
-                textNoticeTime.text = it.time
+    private fun observeNotice() {
+        roomViewModel.recentNotice.observe(viewLifecycleOwner) { noticeEntity ->
+            binding.apply {
+                noticeEntity?.let {
+                    textNoticeTitle.text = it.title
+                    textNoticeContent.text = it.content
+                    textNoticeTime.text = it.time
+                }
             }
         }
     }
