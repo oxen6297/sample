@@ -1,6 +1,7 @@
 package com.example.sampletwo.fragments
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Context.LOCATION_SERVICE
 import android.content.pm.PackageManager
@@ -30,6 +31,7 @@ import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.util.FusedLocationSource
+import com.naver.maps.map.util.MarkerIcons
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -92,10 +94,13 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun setMarker(latitude: Double, longitude: Double, address: String) {
         marker.apply {
             position = LatLng(latitude, longitude)
             captionText = address
+            captionOffset = 10
+            icon = MarkerIcons.BLUE
             map = naverMap
         }
         CoroutineScope(Dispatchers.Main).launch {
