@@ -1,8 +1,6 @@
 package com.example.sampletwo.fragments
 
-import android.content.Context
 import android.view.View
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -20,16 +18,6 @@ class NoticeFragment :
 
     override val viewModel: RoomViewModel by viewModels()
     private val noticeAdapter = NoticeAdapter()
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val backPressedCallBack = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                findNavController().popBackStack()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(backPressedCallBack)
-    }
 
     override fun setUpBinding(view: View) {
         binding.recyclerviewNotice.adapter = noticeAdapter

@@ -12,12 +12,10 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.text.SpannableStringBuilder
 import android.view.View
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.example.sampletwo.R
 import com.example.sampletwo.databinding.FragmentMapBinding
 import com.example.sampletwo.extension.permissionPopUp
@@ -47,23 +45,13 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
     private lateinit var marker: Marker
     private lateinit var naverMap: NaverMap
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val backPressedCallBack = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                    findNavController().popBackStack()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(backPressedCallBack)
-    }
-
     override fun setUpBinding(view: View) {
         initMap()
         initRequestLauncher(view.context)
         binding.searchView.apply {
-            clearFocus()
             queryHint = SpannableStringBuilder("주소지를 입력해주세요.")
             isIconified = false
+            clearFocus()
             setOnCloseListener {
                 setQuery("", false)
                 true

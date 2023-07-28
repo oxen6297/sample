@@ -27,18 +27,9 @@ class ShowMoreFragment :
 
     override val viewModel: DataStoreViewModel by viewModels()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val backPressedCallBack = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                activity?.finishAffinity()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(backPressedCallBack)
-    }
-
     override fun setUpBinding(view: View) {
         binding.vm = viewModel
+        backPressed()
         observeData()
         viewModel.readData()
         setUpBinding(view.context)
@@ -111,5 +102,17 @@ class ShowMoreFragment :
 
     private fun agreeWatcher(onOff: Boolean) {
         binding.switchActivateNotification.isChecked = onOff
+    }
+
+    private fun backPressed() {
+        val backPressedCallBack = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                activity?.finishAffinity()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            backPressedCallBack
+        )
     }
 }

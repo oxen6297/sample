@@ -49,17 +49,8 @@ class CertificateFragment :
         private val pageThree = booleanPreferencesKey(Three_IS_FRONT)
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val backPressedCallBack = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                activity?.finishAffinity()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(backPressedCallBack)
-    }
-
     override fun setUpBinding(view: View) {
+        backPressed()
         observeNotice()
         roomViewModel.getRecentNotice()
         readCardState(view.context)
@@ -201,6 +192,18 @@ class CertificateFragment :
                 preference[isCancel] = true
             }
         }
+    }
+
+    private fun backPressed() {
+        val backPressedCallBack = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                activity?.finishAffinity()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            backPressedCallBack
+        )
     }
 
     override fun onStop() {
