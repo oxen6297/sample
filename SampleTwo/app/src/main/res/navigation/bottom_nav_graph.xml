@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_showMoreFragment_to_verifyFragment"
             app:destination="@id/verifyFragment" />
+        <action
+            android:id="@+id/action_showMoreFragment_to_pagingFragment"
+            app:destination="@id/pagingFragment" />
     </fragment>
     <fragment
         android:id="@+id/certificateInfoFragment"
@@ -172,5 +175,9 @@
         android:id="@+id/verifyFragment"
         android:name="com.example.sampletwo.fragments.VerifyFragment"
         android:label="VerifyFragment" />
+    <fragment
+        android:id="@+id/pagingFragment"
+        android:name="com.example.sampletwo.fragments.PagingFragment"
+        android:label="PagingFragment" />
 
 </navigation>

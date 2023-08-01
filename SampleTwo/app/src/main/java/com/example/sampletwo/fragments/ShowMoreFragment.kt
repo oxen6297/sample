@@ -49,6 +49,9 @@ class ShowMoreFragment :
             layoutVerify.setOnClickListener {
                 findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToVerifyFragment())
             }
+            layoutPaging.setOnClickListener {
+                findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToPagingFragment())
+            }
             layoutGoCertificate.setOnClickListener {
                 if (viewModel.userInfo.value == null) {
                     findNavController().navigate(ShowMoreFragmentDirections.actionShowMoreFragmentToCertificateInfoFragment())
