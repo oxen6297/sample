@@ -15,6 +15,8 @@ import com.example.sampletwo.extension.hide
 import com.example.sampletwo.extension.permissionPopUp
 import com.example.sampletwo.extension.qrPopUp
 import com.example.sampletwo.extension.show
+import com.example.sampletwo.extension.showToast
+import com.example.sampletwo.util.NetworkConnection
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,10 +26,17 @@ class MainScreenActivity :
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        NetworkConnection(this).observe(this) {
+            if (it) showToast("네트워크가 연결되었습니다.")
+            else showToast("네트워크 연결을 확인해주세요.")
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             initRequestPermissionLauncher(this)
             requestPermission()
         }
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container_view_main_screen) as NavHostFragment
         val navController = navHostFragment.navController
