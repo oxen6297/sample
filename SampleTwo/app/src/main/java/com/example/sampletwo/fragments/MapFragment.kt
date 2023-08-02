@@ -7,9 +7,6 @@ import android.content.Context.LOCATION_SERVICE
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.LocationManager
-import android.net.ConnectivityManager
-import android.net.Network
-import android.net.NetworkCapabilities
 import android.os.Build
 import android.text.SpannableStringBuilder
 import android.view.View
@@ -137,9 +134,6 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             context.showToast("위치 정보를 활성화 시켜주세요.")
         }
-        if (!checkNetworkState(context)) {
-            context.showToast("네트워크 연결 상태를 확인해주세요.")
-        }
     }
 
     private fun initRequestLauncher(context: Context) {
@@ -155,19 +149,5 @@ class MapFragment : BaseFragment<FragmentMapBinding, DataStoreViewModel>(R.layou
             Manifest.permission.ACCESS_FINE_LOCATION
         )
         requestPermissionLauncher.launch(permissionList)
-    }
-
-    private fun checkNetworkState(context: Context): Boolean {
-        val connectivityManager: ConnectivityManager =
-            context.getSystemService(ConnectivityManager::class.java)
-        val network: Network = connectivityManager.activeNetwork ?: return false
-        val actNetwork: NetworkCapabilities =
-            connectivityManager.getNetworkCapabilities(network) ?: return false
-
-        return when {
-            actNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            actNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            else -> false
-        }
     }
 }
