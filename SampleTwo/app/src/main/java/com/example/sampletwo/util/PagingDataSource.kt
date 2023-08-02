@@ -2,6 +2,7 @@ package com.example.sampletwo.util
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.example.sampletwo.extension.toList
 import com.example.sampletwo.retrofit.model.NorthData
 import com.example.sampletwo.retrofit.service.APIService
 
@@ -26,12 +27,15 @@ class PagingDataSource(private val apiService: APIService) : PagingSource<Int, N
                 END_YMD
             )
 
+            val item = response.body()?.items?.toList<NorthData>()?: emptyList()
+
             LoadResult.Page(
-                data = response.body()?.items ?: emptyList(),
+                data = item,
                 prevKey = null,
-                nextKey = if (response.body()?.items?.size == 50) page + 1 else null
+                nextKey = if (item.size == 50) page + 1 else null
             )
         } catch (e: Exception) {
+            e.printStackTrace()
             LoadResult.Error(e)
         }
     }
