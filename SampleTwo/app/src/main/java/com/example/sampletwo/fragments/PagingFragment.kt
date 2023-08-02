@@ -5,8 +5,8 @@ import android.content.Context
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.lifecycle.viewModelScope
 import com.example.sampletwo.R
 import com.example.sampletwo.adapter.PagingAdapter
 import com.example.sampletwo.databinding.FragmentPagingBinding
@@ -25,13 +25,13 @@ class PagingFragment :
 
     override fun setUpBinding(view: View) {
         binding.recyclerviewPaging.adapter = pagingAdapter
-        viewModel.getData()
         observeData(view.context)
+        viewModel.getData()
     }
 
     @SuppressLint("SetTextI18n")
     private fun observeData(context: Context) {
-        viewModel.viewModelScope.launch {
+        lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.data.collectLatest {
                     handleData(binding.progressbar, context, it) { data ->
