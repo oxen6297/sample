@@ -1,6 +1,7 @@
 package com.example.sampletwo.retrofit.service
 
-import com.example.sampletwo.retrofit.model.ApiData
+import com.example.sampletwo.retrofit.model.ApiModel
+import com.example.sampletwo.retrofit.model.NorthData
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -15,5 +16,5 @@ interface APIService {
         @Query("excman") excMan: String,
         @Query("bgng_ymd") bgngYmd: String,
         @Query("end_ymd") endYmd: String,
-    ): Response<ApiData>
+    ): Response<ApiModel<NorthData>>
 }

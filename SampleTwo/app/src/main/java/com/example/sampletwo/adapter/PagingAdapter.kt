@@ -6,9 +6,9 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sampletwo.databinding.PagingItemListBinding
-import com.example.sampletwo.retrofit.model.ApiData
+import com.example.sampletwo.retrofit.model.NorthData
 
-class PagingAdapter : PagingDataAdapter<ApiData.DataList, PagingAdapter.ViewHolder>(DiffCallback()) {
+class PagingAdapter : PagingDataAdapter<NorthData, PagingAdapter.ViewHolder>(DiffCallback()) {
 
     class ViewHolder(val binding: PagingItemListBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -28,12 +28,12 @@ class PagingAdapter : PagingDataAdapter<ApiData.DataList, PagingAdapter.ViewHold
         }
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<ApiData.DataList>() {
-        override fun areItemsTheSame(oldItem: ApiData.DataList, newItem: ApiData.DataList): Boolean {
+    class DiffCallback : DiffUtil.ItemCallback<NorthData>() {
+        override fun areItemsTheSame(oldItem: NorthData, newItem: NorthData): Boolean {
             return oldItem.excMan == newItem.excMan
         }
 
-        override fun areContentsTheSame(oldItem: ApiData.DataList, newItem: ApiData.DataList): Boolean {
+        override fun areContentsTheSame(oldItem: NorthData, newItem: NorthData): Boolean {
             return oldItem == newItem
         }
     }

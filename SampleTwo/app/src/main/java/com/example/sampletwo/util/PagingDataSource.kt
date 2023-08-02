@@ -2,18 +2,18 @@ package com.example.sampletwo.util
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.sampletwo.retrofit.model.ApiData
+import com.example.sampletwo.retrofit.model.NorthData
 import com.example.sampletwo.retrofit.service.APIService
 
-class PagingDataSource(private val apiService: APIService) : PagingSource<Int, ApiData.DataList>() {
+class PagingDataSource(private val apiService: APIService) : PagingSource<Int, NorthData>() {
 
-    override fun getRefreshKey(state: PagingState<Int, ApiData.DataList>): Int? =
+    override fun getRefreshKey(state: PagingState<Int, NorthData>): Int? =
         state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ApiData.DataList> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, NorthData> {
         return try {
             val page = params.key ?: 1
             val response = apiService.getData(
@@ -25,12 +25,11 @@ class PagingDataSource(private val apiService: APIService) : PagingSource<Int, A
                 START_YMD,
                 END_YMD
             )
-            val data = response.body()
 
             LoadResult.Page(
-                data = data?.items ?: emptyList(),
+                data = response.body()?.items ?: emptyList(),
                 prevKey = null,
-                nextKey = if (data?.items?.size == 50) page + 1 else null
+                nextKey = if (response.body()?.items?.size == 50) page + 1 else null
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

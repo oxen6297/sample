@@ -5,7 +5,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.sampletwo.retrofit.ApiResult
 import com.example.sampletwo.retrofit.Repository
-import com.example.sampletwo.retrofit.model.ApiData
+import com.example.sampletwo.retrofit.model.NorthData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RetrofitViewModel @Inject constructor(private val repository: Repository) : BaseViewModel() {
 
-    private val _data = MutableStateFlow<ApiResult<PagingData<ApiData.DataList>>>(ApiResult.Loading)
+    private val _data = MutableStateFlow<ApiResult<PagingData<NorthData>>>(ApiResult.Loading)
     val data = _data.asStateFlow()
 
     fun getData() {
