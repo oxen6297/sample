@@ -9,9 +9,13 @@ import com.example.sampletwo.util.PagingDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class Repository @Inject constructor(private val apiService: APIService) {
+class Repository @Inject constructor(apiService: APIService) {
+
+    private val pagingDataSource = PagingDataSource(apiService)
 
     fun fetchData(): Flow<PagingData<NorthData>> = Pager(
         config = PagingConfig(1),
-        pagingSourceFactory = { PagingDataSource(apiService) }).flow
+        pagingSourceFactory = { pagingDataSource }).flow
+
+    fun totalCnt():String = pagingDataSource.totalCnt()
 }

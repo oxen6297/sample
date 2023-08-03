@@ -3,10 +3,29 @@ package com.example.sampletwo.util
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.sampletwo.extension.toList
+import com.example.sampletwo.retrofit.model.ApiModel
 import com.example.sampletwo.retrofit.model.NorthData
 import com.example.sampletwo.retrofit.service.APIService
+import kotlinx.coroutines.runBlocking
+import retrofit2.Response
 
 class PagingDataSource(private val apiService: APIService) : PagingSource<Int, NorthData>() {
+
+    private var response: Response<ApiModel>
+
+    init {
+        runBlocking {
+            response = apiService.getData(
+                SERVICE_KEY,
+                PAGE_NO,
+                NUM_OF_ROWS,
+                KEYWORD,
+                EXC_MAN,
+                START_YMD,
+                END_YMD
+            )
+        }
+    }
 
     override fun getRefreshKey(state: PagingState<Int, NorthData>): Int? =
         state.anchorPosition?.let { anchorPosition ->
@@ -17,17 +36,7 @@ class PagingDataSource(private val apiService: APIService) : PagingSource<Int, N
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, NorthData> {
         return try {
             val page = params.key ?: 1
-            val response = apiService.getData(
-                SERVICE_KEY,
-                PAGE_NO,
-                NUM_OF_ROWS,
-                KEYWORD,
-                EXC_MAN,
-                START_YMD,
-                END_YMD
-            )
-
-            val item = response.body()?.items?.toList<NorthData>()?: emptyList()
+            val item = response.body()?.items?.toList<NorthData>() ?: emptyList()
 
             LoadResult.Page(
                 data = item,
@@ -35,10 +44,11 @@ class PagingDataSource(private val apiService: APIService) : PagingSource<Int, N
                 nextKey = if (item.size == 50) page + 1 else null
             )
         } catch (e: Exception) {
-            e.printStackTrace()
             LoadResult.Error(e)
         }
     }
+
+    fun totalCnt(): String = response.body()?.totalCount.toString()
 
     companion object {
         private const val SERVICE_KEY =

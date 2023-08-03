@@ -32,6 +32,9 @@ class PagingFragment :
     @SuppressLint("SetTextI18n")
     private fun observeData(context: Context) {
         lifecycleScope.launch {
+            viewModel.totalCnt.observe(viewLifecycleOwner) {
+                binding.textTotalCount.text = "totalCount: $it"
+            }
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.data.collectLatest {
                     handleData(binding.progressbar, context, it) { data ->
