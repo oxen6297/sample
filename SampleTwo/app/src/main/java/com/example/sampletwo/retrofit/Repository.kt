@@ -7,6 +7,7 @@ import com.example.sampletwo.retrofit.model.NorthData
 import com.example.sampletwo.retrofit.service.APIService
 import com.example.sampletwo.util.PagingDataSource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 class Repository @Inject constructor(apiService: APIService) {
@@ -17,5 +18,5 @@ class Repository @Inject constructor(apiService: APIService) {
         config = PagingConfig(1),
         pagingSourceFactory = { pagingDataSource }).flow
 
-    fun totalCnt():String = pagingDataSource.totalCnt()
+    fun getTotalCnt(): MutableStateFlow<Int?> = pagingDataSource.totalCnt
 }

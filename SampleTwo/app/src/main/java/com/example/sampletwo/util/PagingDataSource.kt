@@ -3,29 +3,13 @@ package com.example.sampletwo.util
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.sampletwo.extension.toList
-import com.example.sampletwo.retrofit.model.ApiModel
 import com.example.sampletwo.retrofit.model.NorthData
 import com.example.sampletwo.retrofit.service.APIService
-import kotlinx.coroutines.runBlocking
-import retrofit2.Response
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class PagingDataSource(private val apiService: APIService) : PagingSource<Int, NorthData>() {
 
-    private var response: Response<ApiModel>
-
-    init {
-        runBlocking {
-            response = apiService.getData(
-                SERVICE_KEY,
-                PAGE_NO,
-                NUM_OF_ROWS,
-                KEYWORD,
-                EXC_MAN,
-                START_YMD,
-                END_YMD
-            )
-        }
-    }
+    val totalCnt = MutableStateFlow<Int?>(null)
 
     override fun getRefreshKey(state: PagingState<Int, NorthData>): Int? =
         state.anchorPosition?.let { anchorPosition ->
@@ -35,6 +19,16 @@ class PagingDataSource(private val apiService: APIService) : PagingSource<Int, N
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, NorthData> {
         return try {
+            val response = apiService.getData(
+                SERVICE_KEY,
+                PAGE_NO,
+                NUM_OF_ROWS,
+                KEYWORD,
+                EXC_MAN,
+                START_YMD,
+                END_YMD
+            )
+            totalCnt.emit(response.body()?.totalCount)
             val page = params.key ?: 1
             val item = response.body()?.items?.toList<NorthData>() ?: emptyList()
 
@@ -47,8 +41,6 @@ class PagingDataSource(private val apiService: APIService) : PagingSource<Int, N
             LoadResult.Error(e)
         }
     }
-
-    fun totalCnt(): String = response.body()?.totalCount.toString()
 
     companion object {
         private const val SERVICE_KEY =

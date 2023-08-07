@@ -1,7 +1,5 @@
 package com.example.sampletwo.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -21,19 +19,26 @@ class RetrofitViewModel @Inject constructor(private val repository: Repository) 
     private val _data = MutableStateFlow<ApiResult<PagingData<NorthData>>>(ApiResult.Loading)
     val data = _data.asStateFlow()
 
-    private val _totalCnt = MutableLiveData<String>()
-    val totalCnt: LiveData<String> get() = _totalCnt
+    private val _totalCnt = MutableStateFlow<Int?>(null)
+    val totalCnt = _totalCnt.asStateFlow()
 
     fun getData() {
         viewModelScope.launch {
             delay(1000)
             try {
-                _totalCnt.value = repository.totalCnt()
                 repository.fetchData().cachedIn(this).collect {
                     _data.emit(ApiResult.Success(it))
                 }
             } catch (e: Exception) {
                 _data.emit(ApiResult.Error(e))
+            }
+        }
+    }
+
+    fun getTotalCnt() {
+        viewModelScope.launch {
+            repository.getTotalCnt().collect {
+                _totalCnt.emit(it)
             }
         }
     }
