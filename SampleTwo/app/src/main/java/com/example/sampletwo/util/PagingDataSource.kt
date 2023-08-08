@@ -38,6 +38,7 @@ class PagingDataSource(private val apiService: APIService) : PagingSource<Int, N
                 nextKey = if (item.size == 50) page + 1 else null
             )
         } catch (e: Exception) {
+            totalCnt.emit(null)
             LoadResult.Error(e)
         }
     }
