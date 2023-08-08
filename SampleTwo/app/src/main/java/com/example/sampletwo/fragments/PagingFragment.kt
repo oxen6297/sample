@@ -25,15 +25,15 @@ class PagingFragment :
     override fun setUpBinding(view: View) {
         binding.recyclerviewPaging.adapter =
             pagingAdapter.withLoadStateFooter(LoadStateAdapter(pagingAdapter))
-        observeData(view.context)
-        getTotalCnt()
+        collectData(view.context)
+        collectTotalCnt()
         viewModel.apply {
             getData()
             getTotalCnt()
         }
     }
 
-    private fun observeData(context: Context) {
+    private fun collectData(context: Context) {
         repeatOnStarted {
             viewModel.data.collect {
                 handleData(binding.progressbar, context, it) { data ->
@@ -44,7 +44,7 @@ class PagingFragment :
     }
 
     @SuppressLint("SetTextI18n")
-    private fun getTotalCnt() {
+    private fun collectTotalCnt() {
         repeatOnStarted {
             viewModel.totalCnt.collect { totalCount ->
                 binding.textTotalCount.apply {
