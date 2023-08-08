@@ -23,7 +23,8 @@ class PagingFragment :
     private val pagingAdapter = PagingAdapter()
 
     override fun setUpBinding(view: View) {
-        binding.recyclerviewPaging.adapter = pagingAdapter.withLoadStateFooter(LoadStateAdapter())
+        binding.recyclerviewPaging.adapter =
+            pagingAdapter.withLoadStateFooter(LoadStateAdapter(pagingAdapter))
         observeData(view.context)
         getTotalCnt()
         viewModel.apply {
