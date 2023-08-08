@@ -4,6 +4,10 @@ import android.content.Context
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.sampletwo.R
 import com.example.sampletwo.util.CustomDialog
 import com.example.sampletwo.util.CustomDialogTwoButton
@@ -11,6 +15,8 @@ import com.example.sampletwo.util.SingleClickListener
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 fun View.hide() {
     visibility = View.GONE
@@ -84,3 +90,9 @@ fun SearchView.queryTextListener(search: (String) -> Unit) {
 
 inline fun <reified T> JsonElement.toList(): List<T> =
     Gson().fromJson(this, object : TypeToken<List<T>>() {}.type)
+
+fun LifecycleOwner.repeatOnStarted(block: suspend CoroutineScope.() -> Unit) {
+    lifecycleScope.launch {
+        lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED, block)
+    }
+}
