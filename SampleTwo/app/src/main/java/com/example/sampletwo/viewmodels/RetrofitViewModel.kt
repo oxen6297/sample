@@ -37,8 +37,12 @@ class RetrofitViewModel @Inject constructor(private val repository: Repository) 
 
     fun getTotalCnt() {
         viewModelScope.launch {
-            repository.getTotalCnt().collect {
-                _totalCnt.emit(it)
+            try {
+                repository.getTotalCnt().collect {
+                    _totalCnt.emit(it)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }
