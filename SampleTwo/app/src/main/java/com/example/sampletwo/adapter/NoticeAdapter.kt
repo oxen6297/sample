@@ -58,6 +58,7 @@ class NoticeAdapter : ListAdapter<NoticeEntity, NoticeAdapter.ViewHolder>(DiffCa
         }
     }
 
+    //test
     class DiffCallback : DiffUtil.ItemCallback<NoticeEntity>() {
         override fun areItemsTheSame(oldItem: NoticeEntity, newItem: NoticeEntity): Boolean {
             return oldItem.id == newItem.id
