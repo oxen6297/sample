@@ -38,7 +38,7 @@ class PasswordFragment :
         viewModel.passwordList.observe(viewLifecycleOwner, ::passwordWatcher)
 
 
-    private fun passwordWatcher(password: MutableList<Int?>) {
+    private fun passwordWatcher(password: List<Int?>) {
         binding.apply {
             val passwordImageViews = listOf(
                 imgPasswordOne,
@@ -61,7 +61,10 @@ class PasswordFragment :
                     savePassword(password.joinToString())
                     textPassword.hide()
                     textConfirmPassword.show()
-                    viewModel.initPassword()
+                    viewModel.apply {
+                        initPassword()
+                        mixKeyPad()
+                    }
                 } else if (password[5] != null && textConfirmPassword.isShow() && readPassword() != password.joinToString()) {
                     textNotCorrectPassword.show()
                 } else if (password[5] != null && textConfirmPassword.isShow() && readPassword() == password.joinToString()) {

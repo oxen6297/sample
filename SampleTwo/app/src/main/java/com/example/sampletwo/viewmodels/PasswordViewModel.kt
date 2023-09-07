@@ -6,13 +6,17 @@ import androidx.lifecycle.MutableLiveData
 class PasswordViewModel : BaseViewModel() {
 
     private val password = MutableList<Int?>(6) { null }
-    private val _passwordList = MutableLiveData(MutableList<Int?>(6) { null })
-    val passwordList: LiveData<MutableList<Int?>> get() = _passwordList
 
-    fun clickNumberBtn(numText: Int) {
+    private val _passwordList = MutableLiveData(List<Int?>(6) { null })
+    val passwordList: LiveData<List<Int?>> get() = _passwordList
+
+    private val _randomNumber = MutableLiveData(listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9).shuffled())
+    val randomNumber: LiveData<List<Int>> get() = _randomNumber
+
+    fun clickNumberBtn(position: Int) {
         val nullIndex = password.indexOfFirst { it == null }
         if (nullIndex != -1) {
-            password[nullIndex] = numText
+            password[nullIndex] = randomNumber.value?.get(position)
             _passwordList.value = password
         }
     }
@@ -28,5 +32,9 @@ class PasswordViewModel : BaseViewModel() {
     fun initPassword() {
         password.fill(null)
         _passwordList.value = password
+    }
+
+    fun mixKeyPad() {
+        _randomNumber.value = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9).shuffled()
     }
 }
