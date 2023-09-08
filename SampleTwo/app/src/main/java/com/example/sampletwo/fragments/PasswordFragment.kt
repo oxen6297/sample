@@ -38,7 +38,7 @@ class PasswordFragment :
         viewModel.passwordList.observe(viewLifecycleOwner, ::passwordWatcher)
 
 
-    private fun passwordWatcher(password: List<Int?>) {
+    private fun passwordWatcher(passwordList: List<Int?>) {
         binding.apply {
             val passwordImageViews = listOf(
                 imgPasswordOne,
@@ -49,7 +49,7 @@ class PasswordFragment :
                 imgPasswordSix
             )
 
-            password.forEachIndexed { index, value ->
+            passwordList.forEachIndexed { index, value ->
                 val drawableRes = if (value == null) R.drawable.password_circle_background
                 else R.drawable.password_write_circle_background
 
@@ -57,17 +57,17 @@ class PasswordFragment :
             }
 
             viewLifecycleOwner.lifecycleScope.launch {
-                if (password[5] != null && textPassword.isShow()) {
-                    savePassword(password.joinToString())
+                if (passwordList[5] != null && textPassword.isShow()) {
+                    savePassword(passwordList.joinToString())
                     textPassword.hide()
                     textConfirmPassword.show()
                     viewModel.apply {
                         initPassword()
                         mixKeyPad()
                     }
-                } else if (password[5] != null && textConfirmPassword.isShow() && readPassword() != password.joinToString()) {
+                } else if (passwordList[5] != null && textConfirmPassword.isShow() && readPassword() != passwordList.joinToString()) {
                     textNotCorrectPassword.show()
-                } else if (password[5] != null && textConfirmPassword.isShow() && readPassword() == password.joinToString()) {
+                } else if (passwordList[5] != null && textConfirmPassword.isShow() && readPassword() == passwordList.joinToString()) {
                     textNotCorrectPassword.hide()
                     findNavController().navigate(PasswordFragmentDirections.actionPasswordFragmentToBioVerifyFragment())
                 }
@@ -84,9 +84,8 @@ class PasswordFragment :
     }
 
     private suspend fun readPassword(): String {
-        return requireContext().dataStorePassword.data
-            .map { preferences ->
-                preferences[passwordKey] ?: ""
-            }.first()
+        return requireContext().dataStorePassword.data.map { preferences ->
+            preferences[passwordKey] ?: ""
+        }.first()
     }
 }
