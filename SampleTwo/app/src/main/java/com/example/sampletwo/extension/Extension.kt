@@ -96,3 +96,15 @@ fun LifecycleOwner.repeatOnStarted(block: suspend CoroutineScope.() -> Unit) {
         lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED, block)
     }
 }
+
+inline fun <T> List<T>.indexOfFirstOrNull(predicate: (T) -> Boolean): Int? {
+    val index = indexOfFirst { predicate(it) }
+    return if (index == -1) null
+    else index
+}
+
+inline fun <T> List<T>.indexOfLastOrNull(predicate: (T) -> Boolean): Int? {
+    val index = indexOfLast { predicate(it) }
+    return if (index == -1) null
+    else index
+}

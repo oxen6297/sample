@@ -2,6 +2,8 @@ package com.example.sampletwo.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.sampletwo.extension.indexOfFirstOrNull
+import com.example.sampletwo.extension.indexOfLastOrNull
 
 class PasswordViewModel : BaseViewModel() {
 
@@ -14,16 +16,16 @@ class PasswordViewModel : BaseViewModel() {
     val randomNumber: LiveData<List<Int>> get() = _randomNumber
 
     fun clickNumberBtn(position: Int) {
-        val nullIndex = password.indexOfFirst { it == null }
-        if (nullIndex != -1) {
+        val nullIndex = password.indexOfFirstOrNull { it == null }
+        if (nullIndex != null) {
             password[nullIndex] = randomNumber.value?.get(position)
             _passwordList.value = password
         }
     }
 
     fun clickDelete() {
-        val notNullIndex = password.indexOfLast { it != null }
-        if (notNullIndex != -1) {
+        val notNullIndex = password.indexOfLastOrNull { it != null }
+        if (notNullIndex != null) {
             password[notNullIndex] = null
             _passwordList.value = password
         }
