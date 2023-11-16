@@ -22,10 +22,10 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-      working-directory: ./sampleTwo
+      working-directory: ${{ github.workspace }}/sampleTwo
     - name: Build with Gradle
       run: ./gradlew build
-      working-directory: ./sampleTwo
+      working-directory: ${{ github.workspace }}/sampleTwo
     - name: Build assemble release apk
       run: ./gradlew assembleRelease
-      working-directory: ./sampleTwo
+      working-directory: ${{ github.workspace }}/sampleTwo
