@@ -15,5 +15,6 @@ interface APIService {
         @Query("excman") excMan: String,
         @Query("bgng_ymd") bgngYmd: String,
         @Query("end_ymd") endYmd: String,
+
     ): Response<ApiModel>
 }
